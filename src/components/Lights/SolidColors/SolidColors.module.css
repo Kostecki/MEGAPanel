@@ -1,0 +1,50 @@
+.paper, .card {
+  padding: 15px;
+  margin-bottom: 40px;
+}
+
+p {
+  color: rgba(0, 0, 0, 0.54);
+  font-weight: 300;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-style: italic;
+  font-size: .8rem;
+}
+
+.cardTitle {
+  color: rgba(0, 0, 0, 0.54);
+  font-weight: 300;
+  margin: 0 0 10px 0;
+  font-size: 24px;
+  text-transform: uppercase;
+}
+
+.colorPreview {
+  height: 210px;
+  width: 210px;
+}
+
+.colorPresets {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: space-between;
+}
+
+.colorPreset {
+  height: 100px;
+  width: 100px;
+}
+
+.brightnessSlider {
+  display: inline-block;
+}
+
+.huePicker {
+  width: inherit !important;
+}
+
+.alphaPicker {
+  margin-top: 10px;
+}
