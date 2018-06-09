@@ -1,15 +1,3 @@
-.card {
-  padding: 15px;
-}
-
-.cardTitle {
-  color: rgba(0, 0, 0, 0.54);
-  font-weight: 300;
-  margin: 0 0 10px 0;
-  font-size: 24px;
-  text-transform: uppercase;
-}
-
 .animations {
   display: flex;
   justify-content: space-between;
@@ -38,9 +26,4 @@
 
 .active {
   box-shadow: 0 0 1px 1px green !important;
-}
-
-/* TODO: General Styles */
-.divider {
-  margin-bottom: 20px !important;
 }

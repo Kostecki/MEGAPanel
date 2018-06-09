@@ -1,0 +1,17 @@
+.card {
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.cardTitle {
+  color: rgba(0, 0, 0, 0.54);
+  font-weight: 300;
+  margin: 0 0 10px 0;
+  font-size: 24px;
+  text-transform: uppercase;
+}
+
+/* TODO: General Styles */
+.divider {
+  margin-bottom: 20px !important;
+}
