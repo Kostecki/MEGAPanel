@@ -25,6 +25,7 @@ script:
 
 before_deploy:
   - chmod 600 .travis/id_rsa && mv .travis/id_rsa ~/.ssh/id_rsa
+  - ls -ls $TRAVIS_BUILD_DIR
 
 deploy:
   provider: script
