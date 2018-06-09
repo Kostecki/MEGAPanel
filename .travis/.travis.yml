@@ -1,0 +1,27 @@
+language: node_js
+node_js:
+  - "stable"
+
+addons:
+  sshknownhosts:
+    - 62.135.244.78
+
+branches:
+  only:
+    - master
+
+cache:
+  directories:
+    - "node_modules"
+
+install:
+  - npm install
+
+beforescript:
+  - chmod 600 .travis/id_rsa.enc && mv .travis/id_rsa.enc ~/.ssh/id_rsa
+
+script:
+  - npm run build
+
+after_success:
+  - "./travis/deploy.sh"
