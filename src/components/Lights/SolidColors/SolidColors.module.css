@@ -53,6 +53,12 @@ p {
   width: inherit !important;
 }
 
+.brightnessIcons {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
+}
+
 /* TODO: General Styles */
 .divider {
   margin-bottom: 20px !important;
