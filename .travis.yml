@@ -24,7 +24,7 @@ script:
   - npm run build
 
 before_deploy:
-  - chmod 600 .travis/id_rsa.enc && mv .travis/id_rsa.enc ~/.ssh/id_rsa
+  - chmod 600 .travis/id_rsa && mv .travis/id_rsa ~/.ssh/id_rsa
 
 deploy:
   provider: script
