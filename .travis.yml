@@ -18,7 +18,8 @@ install:
   - npm install
 
 beforescript:
-  - chmod 600 .travis/deploy.sh && chmod 600 .travis/id_rsa.enc && mv .travis/id_rsa.enc ~/.ssh/id_rsa
+  - chmod 600 .travis/id_rsa.enc && mv .travis/id_rsa.enc ~/.ssh/id_rsa
+  - chmod +x .travis/deploy.sh
 
 script:
   - npm run build
