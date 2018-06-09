@@ -15,7 +15,7 @@ cache:
   - node_modules
 
 before_install:
-  - openssl aes-256-cbc -K $encrypted_dff4350836d8_key -iv $encrypted_dff4350836d8_iv -in id_rsa.enc -out .travis/id_rsa -d
+  - openssl aes-256-cbc -K $encrypted_bcaf09bc0ad7_key -iv $encrypted_bcaf09bc0ad7_iv -in id_rsa.enc -out .travis/id_rsa -d
 
 install:
   - npm install
