@@ -10,7 +10,6 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Navigation />
         <Switch>
           <Route path='/lights' component={Lights} />
           <Route path='/stats' component={Stats} />

@@ -12,7 +12,8 @@
 
 .animations {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .animations button {
@@ -27,7 +28,7 @@
   font-size: .8rem;
   text-align: center;
   padding: 15px 30px;
-  margin-right: 30px;
+  margin-bottom: 15px;
 }
 
 .animContainer:hover {
@@ -35,4 +36,11 @@
   box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
 }
 
-.animTitle {}
+.active {
+  box-shadow: 0 0 1px 1px green !important;
+}
+
+/* TODO: General Styles */
+.divider {
+  margin-bottom: 20px !important;
+}
