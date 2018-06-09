@@ -4,7 +4,7 @@ node_js:
 
 addons:
   ssh_known_hosts:
-    - israndom.win
+    - israndom.win:123
 
 branches:
   only:
