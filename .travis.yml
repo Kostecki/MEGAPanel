@@ -25,6 +25,6 @@ before_deploy:
 
 deploy:
   provider: script
-  script: scp $TRAVIS_BUILD_DIR/build $SSH_USER@$SSH_HOST:$REMOTE_DIR
+  script: scp -P 123 $TRAVIS_BUILD_DIR/build $SSH_USER@$SSH_HOST:$REMOTE_DIR
   on:
     branch: master
