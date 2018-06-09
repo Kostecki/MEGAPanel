@@ -1,7 +1,7 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom';
 
-import styles from './Navigation.module.css'
+import styles from './Navigation.module.css';
 
 const navigation = (props) => (
   <div className="navigation">
@@ -16,4 +16,4 @@ const navigation = (props) => (
   </div>
 )
 
-export default navigation
+export default navigation;

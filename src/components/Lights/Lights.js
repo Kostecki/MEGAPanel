@@ -1,9 +1,9 @@
-import React from 'react'
+import React from 'react';
 
-import SolidColors from './SolidColors/SolidColors'
-import Animations from './Animations/Animations'
+import SolidColors from './SolidColors/SolidColors';
+import Animations from './Animations/Animations';
 
-import styles from './Lights.module.css'
+import styles from './Lights.module.css';
 
 const lights = () => (
   <div className={styles.lightsContainer}>
@@ -12,4 +12,4 @@ const lights = () => (
   </div>
 )
 
-export default lights
+export default lights;
