@@ -1,18 +1,21 @@
 language: node_js
 node_js:
-  - "stable"
+- stable
 
 addons:
   ssh_known_hosts:
-    - israndom.win:123
+  - israndom.win:123
 
 branches:
   only:
-    - master
+  - master
 
 cache:
   directories:
-    - "node_modules"
+  - node_modules
+
+before_install:
+  - openssl aes-256-cbc -K $encrypted_2386994de81a_key -iv $encrypted_2386994de81a_iv -in id_rsa.enc -out id_rsa -d
 
 install:
   - npm install
@@ -21,7 +24,7 @@ script:
   - npm run build
 
 before_deploy:
-- chmod 600 .travis/id_rsa.enc && mv .travis/id_rsa.enc ~/.ssh/id_rsa
+  - chmod 600 .travis/id_rsa.enc && mv .travis/id_rsa.enc ~/.ssh/id_rsa
 
 deploy:
   provider: script
