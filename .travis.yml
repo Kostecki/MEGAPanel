@@ -3,8 +3,8 @@ node_js:
   - "stable"
 
 addons:
-  sshknownhosts:
-    - 62.135.244.78
+  ssh_known_hosts:
+    - israndom.win
 
 branches:
   only:
