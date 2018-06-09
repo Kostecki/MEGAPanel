@@ -6,7 +6,7 @@ import Animations from './Animations/Animations';
 
 import styles from './Lights.module.css';
 
-const lights = () => (
+const Lights = () => (
   <div className={styles.lightsContainer}>
     <CardDefault title='Farver'>
       <SolidColors />
@@ -17,4 +17,4 @@ const lights = () => (
   </div>
 )
 
-export default lights;
+export default Lights;

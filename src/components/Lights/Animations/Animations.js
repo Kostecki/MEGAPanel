@@ -6,7 +6,7 @@ import Paper from '@material-ui/core/Paper';
 import styles from './Animations.module.css';
 import animationTypes from './AnimationTypes.module.css';
 
-const animations = () => (
+const Animations = () => (
   <Grid item xs={12} className={styles.animations}>
     <Paper className={`${styles.animContainer} ${styles.active}`}>
       <div className={animationTypes.pulse}></div>
@@ -51,4 +51,4 @@ const animations = () => (
   </Grid>
 )
 
-export default animations;
+export default Animations;
