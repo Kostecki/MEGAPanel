@@ -22,11 +22,11 @@ class Lights extends Component {
   }
 
   handleHueChangeComplete = (color) => {
-    this.setState({ color: color.rgb }, () => this.postColorChange());
+    this.setState({ color: color.rgb, animation: null }, () => this.postColorChange());
   }
 
   handleAlphaChangeComplete = (color) => {
-    this.setState({ color: color.rgb }, () => this.postColorChange());
+    this.setState({ color: color.rgb, animation: null }, () => this.postColorChange());
   }
 
   handlePresetClick = (color) => {
@@ -36,13 +36,17 @@ class Lights extends Component {
       b: parseInt(color.substring(5, 7), 16),
       a: 1
     }
-    this.setState({ color: newColor }, () => this.postColorChange());
+    this.setState({ color: newColor, animation: null }, () => this.postColorChange());
   }
 
   handleBrightnessChangeComplete = (color) => {
     let brightness = {...this.state.brightness};
     brightness.a = color.rgb.a;
-    this.setState({ brightness: brightness }, () => this.postColorChange());
+    this.setState({ brightness: brightness, animation: null }, () => this.postColorChange());
+  }
+
+  handleAnimationSelection = (animationID) => {
+    this.setState({animation: animationID}, () => this.postColorChange());
   }
 
   createRgbaString = (color) => {
@@ -76,7 +80,8 @@ class Lights extends Component {
             createRgbaStringHandler={this.createRgbaString} />
         </CardDefault>
         <CardDefault title='Animationer'>
-          <Animations />
+          <Animations 
+            animationClickHandler={this.handleAnimationSelection} />
         </CardDefault>
       </div>
     )

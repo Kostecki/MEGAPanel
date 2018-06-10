@@ -20,9 +20,11 @@ class Animations extends Component {
     return (
       <Grid item xs={12} className={styles.animations}>
         { this.animationTypes.map((item, i) => <Animation key={i}
+                                                id={i}
                                                 animation={item}
                                                 toggleSelected={this.toggleSelected}
-                                                active={this.state.selected === item} />) }
+                                                active={this.state.selected === item} 
+                                                animationClickHandler={this.props.animationClickHandler}/>) }
       </Grid>
     )
   }

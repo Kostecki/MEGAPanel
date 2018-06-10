@@ -7,6 +7,7 @@ import animationTypes from './AnimationTypes.module.css';
 class Animation extends Component {
   handleSelectedClick = () => {
     this.props.toggleSelected(this.props.animation);
+    this.props.animationClickHandler(this.props.id);
   }
 
   render() {
