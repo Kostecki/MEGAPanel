@@ -1,7 +1,8 @@
 import React from 'react';
 import CardDefault from './../UI/CardDefault/CardDefault';
-import UsageIntervals from './UsageIntervals/UsageIntervals';
 
+import UsageIntervals from './UsageIntervals/UsageIntervals';
+import AvgSpeed from './AvgSpeed/AvgSpeed';
 import Navigation from '../Navigation/Navigation';
 
 import styles from './Statistics.module.css';
@@ -11,6 +12,7 @@ const Statistics = () => (
     <div className={styles.statsContainer}>
       <CardDefault title='Statistik'>
         <UsageIntervals />
+        <AvgSpeed />
       </CardDefault>
     </div>
     <Navigation />

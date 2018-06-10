@@ -1,6 +1,6 @@
 .usageInterval {
   padding: 15px;
-  max-width: 210px;
+  max-width: 180px;
   position: relative;
 }
 
@@ -10,7 +10,7 @@
 
 .textInsideDoughnut {
   position: absolute;
-  bottom: 25px;
+  bottom: 15px;
   left: 0;
   right: 0;
   text-align: center;
