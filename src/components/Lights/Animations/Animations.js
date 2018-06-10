@@ -19,7 +19,7 @@ class Animations extends Component {
   render() {
     return (
       <Grid item xs={12} className={styles.animations}>
-        { this.animationTypes.map((item, i) => <Animation id={i}
+        { this.animationTypes.map((item, i) => <Animation key={i}
                                                 animation={item}
                                                 toggleSelected={this.toggleSelected}
                                                 active={this.state.selected === item} />) }

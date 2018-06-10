@@ -22,11 +22,6 @@ p {
   cursor: pointer;
 }
 
-.colorPreset {
-  height: 100px;
-  width: 100px;
-}
-
 .brightnessSlider {
   display: inline-block;
 }
