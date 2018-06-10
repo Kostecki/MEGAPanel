@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Paper from '@material-ui/core/Paper';
+
 import styles from './Animation.module.css';
 import animationTypes from './AnimationTypes.module.css';
 

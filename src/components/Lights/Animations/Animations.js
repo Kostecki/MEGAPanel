@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-
 import Grid from '@material-ui/core/Grid';
 
 import Animation from './Animation/Animation';
+
 import styles from './Animations.module.css';
 
 class Animations extends Component {
