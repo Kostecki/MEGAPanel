@@ -1,0 +1,11 @@
+.cardTitle {
+  color: rgba(0, 0, 0, 0.54);
+  font-weight: 300;
+  margin: 0 0 10px 0;
+  font-size: 24px;
+  text-transform: uppercase;
+}
+
+.divider {
+  margin-bottom: 20px !important;
+}
