@@ -1,5 +1,6 @@
 notifications:
   email: false
+  slack: thunderducks:LC3z1hKqrNtlFLtF9AsXZjVF
 
 language: node_js
 node_js:
