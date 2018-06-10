@@ -1,54 +1,27 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
 
+import Animation from './Animation/Animation';
 import styles from './Animations.module.css';
-import animationTypes from './AnimationTypes.module.css';
 
-const Animations = () => (
-  <Grid item xs={12} className={styles.animations}>
-    <Paper className={`${styles.animContainer} ${styles.active}`}>
-      <div className={animationTypes.pulse}></div>
-      <span className={styles.animTitle}>Pulse</span>
-    </Paper>
-    <Paper className={styles.animContainer}>
-      <div className={animationTypes.fade}><div></div><div></div><div></div><div></div></div>
-      <span className={styles.animTitle}>Fade</span>
-    </Paper>
-    <Paper className={styles.animContainer}>
-      <div className={animationTypes.pulse}></div>
-      <span className={styles.animTitle}>Pulse</span>
-    </Paper>
-    <Paper className={styles.animContainer}>
-      <div className={animationTypes.fade}><div></div><div></div><div></div><div></div></div>
-      <span className={styles.animTitle}>Fade</span>
-    </Paper>
-    <Paper className={styles.animContainer}>
-      <div className={animationTypes.pulse}></div>
-      <span className={styles.animTitle}>Pulse</span>
-    </Paper>
-    <Paper className={styles.animContainer}>
-      <div className={animationTypes.fade}><div></div><div></div><div></div><div></div></div>
-      <span className={styles.animTitle}>Fade</span>
-    </Paper>
-    <Paper className={styles.animContainer}>
-      <div className={animationTypes.pulse}></div>
-      <span className={styles.animTitle}>Pulse</span>
-    </Paper>
-    <Paper className={styles.animContainer}>
-      <div className={animationTypes.fade}><div></div><div></div><div></div><div></div></div>
-      <span className={styles.animTitle}>Fade</span>
-    </Paper>
-    <Paper className={styles.animContainer}>
-      <div className={animationTypes.pulse}></div>
-      <span className={styles.animTitle}>Pulse</span>
-    </Paper>
-    <Paper className={styles.animContainer}>
-      <div className={animationTypes.fade}><div></div><div></div><div></div><div></div></div>
-      <span className={styles.animTitle}>Fade</span>
-    </Paper>
-  </Grid>
-)
+class Animations extends Component {
+  state = {
+    selected: ''
+  }
+
+  toggleSelected = (selected) => {
+    this.setState(prevState => ({selected: prevState.selected === selected ? '' : selected}))
+  };
+
+  render() {
+    return (
+      <Grid item xs={12} className={styles.animations}>
+        <Animation animation='pulse' toggleSelected={this.toggleSelected} active={this.state.selected === 'pulse'} />
+        <Animation animation='fade' toggleSelected={this.toggleSelected} active={this.state.selected === 'fade'}/>
+      </Grid>
+    )
+  }
+}
 
 export default Animations;
