@@ -1,0 +1,39 @@
+.landingContainer {
+  height: 75vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.landingContainer h1 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 100;
+  color: white;
+  font-size: 6rem;
+  margin: 0 0 15px 0;
+  padding: 0;
+  border-bottom: 1px solid white;
+}
+
+.landingContainer ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.landingContainer li a {
+  text-decoration: none;
+  color: white;
+  text-transform: uppercase;
+  font-weight: 300;
+  letter-spacing: 1px;
+  padding: 0 15px;
+  font-size: 20px;
+}
+
+.landingContainer li a:hover {
+  color: lightgray;
+}
