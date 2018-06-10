@@ -14,11 +14,15 @@ class Animations extends Component {
     this.setState(prevState => ({selected: prevState.selected === selected ? '' : selected}))
   };
 
+  animationTypes = ['pulse', 'fade'];
+
   render() {
     return (
       <Grid item xs={12} className={styles.animations}>
-        <Animation animation='pulse' toggleSelected={this.toggleSelected} active={this.state.selected === 'pulse'} />
-        <Animation animation='fade' toggleSelected={this.toggleSelected} active={this.state.selected === 'fade'}/>
+        { this.animationTypes.map((item, i) => <Animation id={i}
+                                                animation={item}
+                                                toggleSelected={this.toggleSelected}
+                                                active={this.state.selected === item} />) }
       </Grid>
     )
   }
