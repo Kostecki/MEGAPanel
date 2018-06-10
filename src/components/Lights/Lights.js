@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-
 import CardDefault from './../UI/CardDefault/CardDefault';
 import SolidColors from './SolidColors/SolidColors';
 import Animations from './Animations/Animations';
+
+import Navigation from '../Navigation/Navigation';
 
 import styles from './Lights.module.css';
 
@@ -69,21 +70,24 @@ class Lights extends Component {
 
   render() {
     return(
-      <div className={styles.lightsContainer}>
-        <CardDefault title='Farver'>
-          <SolidColors
-            currentSelection={this.state}
-            hueChangeHandler={this.handleHueChangeComplete}
-            alphaChangeHandler={this.handleAlphaChangeComplete} 
-            presetClickHandler={this.handlePresetClick} 
-            brightnessChangeHandler={this.handleBrightnessChangeComplete} 
-            createRgbaStringHandler={this.createRgbaString} />
-        </CardDefault>
-        <CardDefault title='Animationer'>
-          <Animations 
-            animationClickHandler={this.handleAnimationSelection} />
-        </CardDefault>
-      </div>
+      <React.Fragment>
+        <div className={styles.lightsContainer}>
+          <CardDefault title='Farver'>
+            <SolidColors
+              currentSelection={this.state}
+              hueChangeHandler={this.handleHueChangeComplete}
+              alphaChangeHandler={this.handleAlphaChangeComplete} 
+              presetClickHandler={this.handlePresetClick} 
+              brightnessChangeHandler={this.handleBrightnessChangeComplete} 
+              createRgbaStringHandler={this.createRgbaString} />
+          </CardDefault>
+          <CardDefault title='Animationer'>
+            <Animations 
+              animationClickHandler={this.handleAnimationSelection} />
+          </CardDefault>
+        </div>
+        <Navigation />
+      </React.Fragment>
     )
   }
 }
