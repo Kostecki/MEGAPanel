@@ -19,19 +19,19 @@ const data = {
 const DailyBarGraph = () => (
   <Card className={styles.dailyBarGraphContainer}>
     <p>Dagen i detaljer</p>
-  <Bar
-          data={data}
-          width={470}
-          options={{
-            maintainAspectRatio: true,
-            tooltips: {
-              callbacks: {
-                label: function (tooltipItems, data) {
-                  return data.datasets[tooltipItems.datasetIndex].label + ': ' + data.datasets[tooltipItems.datasetIndex].data[tooltipItems.index] + ' GB';
-                }
-              }
+    <Bar
+      data={data}
+      width={470}
+      options={{
+        maintainAspectRatio: true,
+        tooltips: {
+          callbacks: {
+            label: function (tooltipItems, data) {
+              return data.datasets[tooltipItems.datasetIndex].label + ': ' + data.datasets[tooltipItems.datasetIndex].data[tooltipItems.index] + ' GB';
             }
-          }} />
+          }
+        }
+      }} />
   </Card>
 )
 

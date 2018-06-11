@@ -6,8 +6,7 @@ import SolidColorPreset from './SolidColorPreset/SolorColorPreset';
 
 import styles from './SolidColors.module.css';
 
-const SolidColors = (props) => {
-  return (
+const SolidColors = (props) => (
     <React.Fragment>
       <Grid item xs={4}>
         <div className={styles.colorPreview} style={{ background: props.createRgbaStringHandler(props.currentSelection.color) }}></div>
@@ -46,7 +45,6 @@ const SolidColors = (props) => {
           onChangeComplete={props.alphaChangeHandler} />
       </Grid>
     </React.Fragment>
-  )
-}
+)
 
 export default SolidColors;
