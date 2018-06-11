@@ -1,0 +1,11 @@
+.chargeGood {
+  color: green;
+}
+
+.chargeOkay {
+  color: yellow;
+}
+
+.chargeBad {
+  color: red;
+}

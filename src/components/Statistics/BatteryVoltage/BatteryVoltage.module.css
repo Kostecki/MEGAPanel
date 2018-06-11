@@ -1,0 +1,19 @@
+.avgSpeed {
+  padding: 15px;
+  width: 180px;
+}
+
+.avgSpeed p {
+  margin-top: 0;
+}
+
+.avgSpeed h2 {
+  margin: 0 10px 0 0;
+}
+
+.voltageStatus {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
