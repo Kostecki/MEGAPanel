@@ -21,7 +21,7 @@ const DailyBarGraph = () => (
     <p>Dagen i detaljer</p>
     <Bar
       data={data}
-      width={470}
+      width={700}
       options={{
         maintainAspectRatio: true,
         tooltips: {
