@@ -11,8 +11,6 @@ const BatteryVoltage = (props) => {
     let health = '';
     let icon = '';
 
-    voltage = 11;
-
     if (voltage > 12) {
       health = 'chargeGood'
       icon = 'mood';
