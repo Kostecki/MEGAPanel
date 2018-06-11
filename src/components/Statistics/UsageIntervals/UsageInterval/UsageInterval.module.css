@@ -15,3 +15,7 @@
   right: 0;
   text-align: center;
 }
+
+.textInsideDoughnut .upDownSpeed {
+  margin-bottom: 5px;
+}

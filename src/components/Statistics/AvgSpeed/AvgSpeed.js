@@ -3,11 +3,12 @@ import Card from '@material-ui/core/Card';
 
 import styles from './AvgSpeed.module.css';
 
-const AvgSpeed = () => (
+const AvgSpeed = (props) => (
   <Card className={styles.avgSpeed}>
-    <p>Gennemsnit</p>
-    <h3>320 kbit/s</h3>
-    <h3>320 kbit/s</h3>
+    <p>Avg. Speeds</p>
+    <h4>Download: {props.download}</h4>
+    <hr />
+    <h4>Upload: {props.upload}</h4>
   </Card>
 )
 

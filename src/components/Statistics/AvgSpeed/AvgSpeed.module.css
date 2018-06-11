@@ -13,12 +13,24 @@
 .avgSpeed {
   padding: 15px;
   margin: 12px;
+  width: 180px;
 }
 
-.avgSpeed h3 {
+.avgSpeed h4 {
   margin: 0;
+  font-style: italic;
+  color: rgba(0, 0, 0, 0.60);
+}
+
+.avgSpeed i {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.54);
 }
 
 .avgSpeed p {
   margin-top: 0;
+}
+
+.avgSpeed hr {
+  margin: 5px 0;
 }
