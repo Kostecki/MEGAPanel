@@ -1,6 +1,6 @@
 import React from 'react';
 import Card from '@material-ui/core/Card';
-import { defaults, Bar } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 
 import styles from './DailyBarGraph.module.css';
 
