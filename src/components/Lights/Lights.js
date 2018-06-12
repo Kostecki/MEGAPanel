@@ -46,8 +46,12 @@ class Lights extends Component {
     this.setState({ brightness: brightness, animation: null }, () => this.postColorChange());
   }
 
-  handleAnimationSelection = (animationID) => {
-    this.setState({animation: animationID}, () => this.postColorChange());
+  handleAnimationSelection = (animationID, toggle) => {
+    if (toggle) {
+      this.setState({animation: animationID}, () => this.postColorChange());
+    } else {
+      this.setState({animation: null}, () => this.postColorChange());
+    }
   }
 
   createRgbaString = (color) => {

@@ -7,7 +7,7 @@ import animationTypes from './AnimationTypes.module.css';
 const Animation = (props) => {
   let handleSelectedClick = () => {
     props.toggleSelected(props.animation);
-    props.animationClickHandler(props.id);
+    props.animationClickHandler(props.id, !props.active);
   }
 
   let fadeDivs = '<div></div><div></div><div></div><div></div></div>';
