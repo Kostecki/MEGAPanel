@@ -1,24 +1,13 @@
-/* .avgSpeedContainer {
-  padding: 15px;
-  display: flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
-	justify-content: space-between;
-	align-items: stretch;
-  align-content: stretch;
-  max-width: 180px;
-  width: 180px;
-} */
-
 .avgSpeed {
   padding: 15px;
   width: 180px;
+  text-align: center;
 }
 
 .avgSpeed h4 {
   margin: 0;
-  font-style: italic;
   color: rgba(0, 0, 0, 0.60);
+  font-weight: 300;
 }
 
 .avgSpeed i {
@@ -27,5 +16,10 @@
 }
 
 .avgSpeed p {
+  text-align: left;
   margin-top: 0;
+}
+
+.avgSpeed .speed {
+  font-weight: bold;
 }

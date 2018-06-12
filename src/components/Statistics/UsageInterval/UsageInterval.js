@@ -47,7 +47,7 @@ const UsageInterval = (props) => {
         '#46BFBD'
       ],
       hoverBackgroundColor: [
-        '#616774',
+        '#6a707f',
         '#5AD3D1'
       ]
     }]

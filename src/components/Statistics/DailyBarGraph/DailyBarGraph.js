@@ -10,7 +10,7 @@ const data = {
     {
       label: 'Download',
       backgroundColor: '#616774',
-      hoverBorderColor: '#616774',
+      hoverBorderColor: '#6a707f',
       data: [1, 1, 3, 2, 1, 5, 8, 2, 3, 7, 3, 4, 2, 4, 6, 7, 4, 4, 5, 3, 3, 2, 1, 8]
     }
   ]
