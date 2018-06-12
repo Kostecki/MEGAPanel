@@ -23,7 +23,7 @@ class Animations extends Component {
                                                 id={i}
                                                 animation={item}
                                                 toggleSelected={this.toggleSelected}
-                                                active={this.state.selected === item} 
+                                                active={this.state.selected === item}
                                                 animationClickHandler={this.props.animationClickHandler}/>) }
       </Grid>
     )

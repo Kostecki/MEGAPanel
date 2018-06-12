@@ -86,7 +86,7 @@ class Lights extends Component {
               createRgbaStringHandler={this.createRgbaString} />
           </CardDefault>
           <CardDefault title='Animationer'>
-            <Animations 
+            <Animations
               animationClickHandler={this.handleAnimationSelection} />
           </CardDefault>
         </div>
