@@ -76,8 +76,6 @@ class Lights extends Component {
   }
 
   postColorChange = () => {
-    console.log("Posting..");
-    console.log(this.state);
     axiosPost('/setlights', this.state);
   }
 

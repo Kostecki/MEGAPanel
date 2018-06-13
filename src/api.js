@@ -1,11 +1,12 @@
-import axios from 'axios';
+//import axios from 'axios';
 
-const instance = axios.create({
+/* const instance = axios.create({
   baseURL: ''
-});
+}); */
 
 let axiosGet = (data) => {
-  console.log("API isn't ready yet. Relax, dude!")
+  console.log("Posting...");
+  console.log("API isn't done. Relax, man!");
   /* instance.get(data)
     .then(function (response) {
       console.log(response);
@@ -16,7 +17,9 @@ let axiosGet = (data) => {
 }
 
 let axiosPost = (endpoint, data) => {
-  console.log("API isn't ready yet. Relax, dude!")
+  console.log("Posting...");
+  console.log("API isn't done. Relax, man!");
+  console.log(data);
   /* instance.post(endpoint, data, {})
   .then(function (response) {
     console.log(response);
