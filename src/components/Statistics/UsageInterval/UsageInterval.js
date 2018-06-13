@@ -3,6 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import { defaults, Doughnut } from 'react-chartjs-2';
 import Moment from 'moment';
+import 'moment/locale/da';
 
 import styles from './UsageInterval.module.css';
 
