@@ -7,11 +7,13 @@ import styles from './Animations.module.css';
 
 class Animations extends Component {
   state = {
-    selected: ''
+    selected: this.props.activeAnimation
   }
 
   toggleSelected = (selected) => {
+    console.log(this.state.selected);
     this.setState(prevState => ({selected: prevState.selected === selected ? '' : selected}))
+    console.log(this.state.selected);
   };
 
   animationTypes = ['pulse', 'fade'];

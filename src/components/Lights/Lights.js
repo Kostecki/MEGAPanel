@@ -19,15 +19,17 @@ class Lights extends Component {
     brightness: {
       a: 0.5
     },
-    animation: null
+    animation: {
+      enabled: false,
+      type: null
+    }
   }
 
-  handleHueChangeComplete = (color) => {
-    this.setState({ color: color.rgb, animation: null }, () => this.postColorChange());
-  }
+  handleColorChangeComplete = (color) => {
+    let animationCopy = {...this.state.animation};
+    animationCopy.enabled = this.state.animation.enabled;
 
-  handleAlphaChangeComplete = (color) => {
-    this.setState({ color: color.rgb, animation: null }, () => this.postColorChange());
+    this.setState({color: color.rgb, animation: animationCopy}, () => this.postColorChange());
   }
 
   handlePresetClick = (color) => {
@@ -37,20 +39,35 @@ class Lights extends Component {
       b: parseInt(color.substring(5, 7), 16),
       a: 1
     }
-    this.setState({ color: newColor, animation: null }, () => this.postColorChange());
+
+    let animationCopy = {...this.state.animation};
+    animationCopy.enabled = this.state.animation.enabled;
+
+    this.setState({color: newColor, animation: animationCopy}, () => this.postColorChange());
   }
 
   handleBrightnessChangeComplete = (color) => {
     let brightness = {...this.state.brightness};
+    let animationCopy = {...this.state.animation};
     brightness.a = color.rgb.a;
-    this.setState({ brightness: brightness, animation: null }, () => this.postColorChange());
+    animationCopy.enabled = this.state.animation.enabled;
+
+    this.setState({ brightness: brightness, animation: animationCopy }, () => this.postColorChange());
   }
 
-  handleAnimationSelection = (animationID, toggle) => {
+  handleAnimationSelection = (animationName, toggle) => {
+    let animationCopy = {...this.state.animation};
+
     if (toggle) {
-      this.setState({animation: animationID}, () => this.postColorChange());
+      animationCopy.enabled = true;
+      animationCopy.type = animationName;
+
+      this.setState({animation: animationCopy}, () => this.postColorChange());
     } else {
-      this.setState({animation: null}, () => this.postColorChange());
+      animationCopy.enabled = false;
+      animationCopy.type = '';
+
+      this.setState({animation: animationCopy}, () => this.postColorChange());
     }
   }
 
@@ -60,6 +77,7 @@ class Lights extends Component {
 
   postColorChange = () => {
     console.log("Posting..");
+    console.log(this.state);
     axiosPost('/setlights', this.state);
   }
 
@@ -70,14 +88,15 @@ class Lights extends Component {
           <CardDefault title='Farver'>
             <SolidColors
               currentSelection={this.state}
-              hueChangeHandler={this.handleHueChangeComplete}
-              alphaChangeHandler={this.handleAlphaChangeComplete} 
+              hueChangeHandler={this.handleColorChangeComplete}
+              alphaChangeHandler={this.handleColorChangeComplete} 
               presetClickHandler={this.handlePresetClick} 
               brightnessChangeHandler={this.handleBrightnessChangeComplete} 
               createRgbaStringHandler={this.createRgbaString} />
           </CardDefault>
           <CardDefault title='Animationer'>
             <Animations
+              activeAnimation={this.state.animation}
               animationClickHandler={this.handleAnimationSelection} />
           </CardDefault>
         </div>
