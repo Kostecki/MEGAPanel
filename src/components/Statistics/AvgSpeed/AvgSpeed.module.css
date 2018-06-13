@@ -8,6 +8,7 @@
 @media (min-width: 601px) {
   .avgSpeed {
     width: 180px;
+    box-sizing: unset;
   }
 }
 
