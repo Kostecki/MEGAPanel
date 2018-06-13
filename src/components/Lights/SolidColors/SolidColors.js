@@ -8,7 +8,7 @@ import styles from './SolidColors.module.css';
 
 const SolidColors = (props) => (
     <React.Fragment>
-      <Grid item xs={4}>
+      <Grid item xs={4} md={4}>
         <div className={styles.colorPreview} style={{ background: props.createRgbaStringHandler(props.currentSelection.color) }}></div>
       </Grid>
       <Grid item xs={8} className={styles.colorPresets}>
@@ -21,19 +21,8 @@ const SolidColors = (props) => (
         <SolidColorPreset backgroundColor='#FF5000' onClickHandler={props.presetClickHandler} />
         <SolidColorPreset backgroundColor='#800080' onClickHandler={props.presetClickHandler} />
       </Grid>
-
-      <Grid item xs={6} className={styles.brightnessSlider}>
-        <p>Lysstyrke ({Math.trunc(props.currentSelection.brightness.a * 100)}%)</p>
-        <AlphaPicker
-          className={styles.alphaPicker}
-          color={props.currentSelection.brightness}
-          onChangeComplete={props.brightnessChangeHandler} />
-        <div className={styles.brightnessIcons}>
-          <i className="far fa-lightbulb"></i>
-          <i className="fas fa-lightbulb"></i>
-        </div>
-      </Grid>
-      <Grid item xs={6}>
+      
+      <Grid item xs={12} md={6}>
         <p>Farvevælger ({props.currentSelection.color.r}, {props.currentSelection.color.g}, {props.currentSelection.color.b}, {props.currentSelection.color.a})</p>
         <HuePicker
           className={styles.huePicker}
@@ -43,6 +32,18 @@ const SolidColors = (props) => (
           className={styles.alphaPicker}
           color={props.currentSelection.color}
           onChangeComplete={props.alphaChangeHandler} />
+      </Grid>
+
+      <Grid item xs={12} md={6} className={styles.brightnessSlider}>
+        <p>Lysstyrke ({Math.trunc(props.currentSelection.brightness.a * 100)}%)</p>
+        <AlphaPicker
+          className={styles.alphaPicker}
+          color={props.currentSelection.brightness}
+          onChangeComplete={props.brightnessChangeHandler} />
+        <div className={styles.brightnessIcons}>
+          <i className="far fa-lightbulb"></i>
+          <i className="fas fa-lightbulb"></i>
+        </div>
       </Grid>
     </React.Fragment>
 )

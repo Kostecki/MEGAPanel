@@ -8,10 +8,17 @@ p {
 }
 
 .colorPreview {
-  height: 210px;
-  width: 210px;
+  height: 120px;
+  width: 100px;
   box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12);
   border-radius: 2px;
+}
+
+@media (min-width: 601px) {
+  .colorPreview {
+    height: 210px;
+    width: 210px;
+  }
 }
 
 .colorPresets {

@@ -1,13 +1,20 @@
-.avgSpeed {
+.voltage {
   padding: 15px;
-  width: 180px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.avgSpeed p {
+@media (min-width: 601px) {
+  .voltage {
+    width: 180px;
+  }
+}
+
+.voltage p {
   margin-top: 0;
 }
 
-.avgSpeed h2 {
+.voltage h2 {
   margin: 0 10px 0 0;
 }
 

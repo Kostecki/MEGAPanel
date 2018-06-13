@@ -20,8 +20,8 @@ class Lights extends Component {
       a: 0.5
     },
     animation: {
-      enabled: false,
-      type: null
+      enabled: true,
+      type: 'fade'
     }
   }
 
@@ -65,7 +65,7 @@ class Lights extends Component {
       this.setState({animation: animationCopy}, () => this.postColorChange());
     } else {
       animationCopy.enabled = false;
-      animationCopy.type = '';
+      animationCopy.type = null;
 
       this.setState({animation: animationCopy}, () => this.postColorChange());
     }
@@ -96,7 +96,7 @@ class Lights extends Component {
           </CardDefault>
           <CardDefault title='Animationer'>
             <Animations
-              activeAnimation={this.state.animation}
+              activeAnimation={this.state.animation.type}
               animationClickHandler={this.handleAnimationSelection} />
           </CardDefault>
         </div>

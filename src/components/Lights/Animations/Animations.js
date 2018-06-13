@@ -11,9 +11,7 @@ class Animations extends Component {
   }
 
   toggleSelected = (selected) => {
-    console.log(this.state.selected);
     this.setState(prevState => ({selected: prevState.selected === selected ? '' : selected}))
-    console.log(this.state.selected);
   };
 
   animationTypes = ['pulse', 'fade'];

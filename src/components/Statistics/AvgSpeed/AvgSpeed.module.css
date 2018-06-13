@@ -1,7 +1,14 @@
 .avgSpeed {
   padding: 15px;
-  width: 180px;
+  width: 100%;
+  box-sizing: border-box;
   text-align: center;
+}
+
+@media (min-width: 601px) {
+  .avgSpeed {
+    width: 180px;
+  }
 }
 
 .avgSpeed h4 {

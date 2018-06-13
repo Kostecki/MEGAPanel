@@ -28,7 +28,7 @@ const BatteryVoltage = (props) => {
   
 
   return (
-    <Card className={styles.avgSpeed}>
+    <Card className={styles.voltage}>
       <p>Batteri</p>
       <div className={`${styles.voltageStatus} ${chargeStatus()[0]}`}>
         <h2>{props.voltage} Volt</h2><Icon>{chargeStatus()[1]}</Icon>
