@@ -16,9 +16,7 @@ class Lights extends Component {
       b: 0,
       a: 1
     },
-    brightness: {
-      a: 0.5
-    },
+    brightness: 0.5,
     animation: {
       enabled: true,
       type: 'fade'
@@ -47,9 +45,8 @@ class Lights extends Component {
   }
 
   handleBrightnessChangeComplete = (color) => {
-    let brightness = {...this.state.brightness};
+    let brightness = color.rgb.a;
     let animationCopy = {...this.state.animation};
-    brightness.a = color.rgb.a;
     animationCopy.enabled = this.state.animation.enabled;
 
     this.setState({ brightness: brightness, animation: animationCopy }, () => this.postColorChange());
