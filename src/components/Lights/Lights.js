@@ -18,8 +18,8 @@ class Lights extends Component {
     },
     brightness: 0.5,
     animation: {
-      enabled: true,
-      type: 'fade'
+      enabled: false,
+      type: null
     }
   }
 
