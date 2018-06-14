@@ -17,17 +17,11 @@ class Lights extends Component {
       a: 1
     },
     brightness: 0.5,
-    animation: {
-      enabled: false,
-      type: null
-    }
+    animation: 'fade'
   }
 
   handleColorChangeComplete = (color) => {
-    let animationCopy = {...this.state.animation};
-    animationCopy.enabled = this.state.animation.enabled;
-
-    this.setState({color: color.rgb, animation: animationCopy}, () => this.postColorChange());
+    this.setState({color: color.rgb, animation: this.state.animation}, () => this.postColorChange());
   }
 
   handlePresetClick = (color) => {
@@ -37,34 +31,21 @@ class Lights extends Component {
       b: parseInt(color.substring(5, 7), 16),
       a: 1
     }
-
-    let animationCopy = {...this.state.animation};
-    animationCopy.enabled = this.state.animation.enabled;
-
-    this.setState({color: newColor, animation: animationCopy}, () => this.postColorChange());
+    
+    this.setState({color: newColor, animation: this.state.animation}, () => this.postColorChange());
   }
 
   handleBrightnessChangeComplete = (color) => {
     let brightness = color.rgb.a;
-    let animationCopy = {...this.state.animation};
-    animationCopy.enabled = this.state.animation.enabled;
 
-    this.setState({ brightness: brightness, animation: animationCopy }, () => this.postColorChange());
+    this.setState({ brightness: brightness, animation: this.state.animation }, () => this.postColorChange());
   }
 
   handleAnimationSelection = (animationName, toggle) => {
-    let animationCopy = {...this.state.animation};
-
     if (toggle) {
-      animationCopy.enabled = true;
-      animationCopy.type = animationName;
-
-      this.setState({animation: animationCopy}, () => this.postColorChange());
+      this.setState({animation: animationName}, () => this.postColorChange());
     } else {
-      animationCopy.enabled = false;
-      animationCopy.type = null;
-
-      this.setState({animation: animationCopy}, () => this.postColorChange());
+      this.setState({animation: null}, () => this.postColorChange());
     }
   }
 
@@ -91,7 +72,7 @@ class Lights extends Component {
           </CardDefault>
           <CardDefault title='Animationer'>
             <Animations
-              activeAnimation={this.state.animation.type}
+              activeAnimation={this.state.animation}
               animationClickHandler={this.handleAnimationSelection} />
           </CardDefault>
         </div>
