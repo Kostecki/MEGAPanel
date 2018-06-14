@@ -8,7 +8,6 @@
 **POST**: /chooseLights*
 ```
 {
-  controller: boolean,
   animation: string,
   brightness: double/float,
   color: {
@@ -16,7 +15,8 @@
     g: int,
     b: int,
     a: double/float
-  }
+  },
+  controller: boolean
 }
 ```
 
@@ -25,8 +25,8 @@
 ```
 {
   avg: {
-    up: float,
-    down: float
+    down: float,
+    up: float
   },
   lastSeven: {
     monday: {
