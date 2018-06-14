@@ -17,7 +17,7 @@ class Lights extends Component {
       a: 1
     },
     brightness: 0.5,
-    animation: 'fade'
+    animation: null
   }
 
   handleColorChangeComplete = (color) => {
