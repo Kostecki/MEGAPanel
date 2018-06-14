@@ -10,14 +10,15 @@ import styles from './Lights.module.css';
 
 class Lights extends Component {
   state = {
+    animation: null,
+    brightness: 0.5,
     color: {
       r: 0,
       g: 0,
       b: 0,
       a: 1
     },
-    brightness: 0.5,
-    animation: null
+    controller: false
   }
 
   handleColorChangeComplete = (color) => {
