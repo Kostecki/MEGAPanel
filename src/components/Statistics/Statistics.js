@@ -1,6 +1,5 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import Divider from '@material-ui/core/Divider';
 
 import CardDefault from './../UI/CardDefault/CardDefault';
 import AvgSpeed from './AvgSpeed/AvgSpeed';
@@ -22,7 +21,6 @@ const Statistics = () => (
           <BattMinmax minVolt={11.0} maxVolt={13.1} />
           <AvgSpeed download={'314 kbit/s'} upload={'129 kbit/s'} />
         </Grid>
-        <Divider />
         <Grid item xs={12} className={styles.group2}>
           <UsageInterval period={'Time'} upload={0.5} download={2} />
           <UsageInterval period={'Dag'} upload={1} download={3} />
