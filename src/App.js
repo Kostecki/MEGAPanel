@@ -7,6 +7,7 @@ import Landing from './components/Landing/Landing';
 import Lights from './components/Lights/Lights';
 import Stats from './components/Statistics/Statistics';
 import QRScan from './components/QRScan/QRScan';
+import Admin from './components/Admin/Admin';
 import Login from './components/Auth/Login/Login';
 import Axios from './utils/api';
 
@@ -26,7 +27,6 @@ class App extends Component {
     }))
     Axios.get('/')
       .then((response) => {
-        console.log(response);
         this.setState(() => ({ pinToCheckAgainst: 1234 }))
       })
   }
@@ -51,12 +51,12 @@ class App extends Component {
       <div className="App">
         <Switch>
           <Route exact path='/' component={Landing} />
-          <PrivateRoute isAuthenticated={this.state.isAuthenticated} path='/lights' component={Lights} />
+          <PrivateRoute path='/lights' isAuthenticated={this.state.isAuthenticated} component={Lights} />
           <Route path='/stats' component={Stats} />
           <Route path='/qr' component={QRScan} />
-          <Route
-            path='/login'
-            render={(props) => <Login {...props} doAuth={this.doAuth} />} />
+          <PrivateRoute path='/admin' isAuthenticated={this.state.isAuthenticated} component={Admin} />
+
+          <Route path='/login' render={(props) => <Login {...props} doAuth={this.doAuth} />} />
         </Switch>
       </div>
     )

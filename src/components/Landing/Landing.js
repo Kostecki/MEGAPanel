@@ -3,6 +3,12 @@ import { NavLink } from 'react-router-dom';
 
 import styles from './Landing.module.css';
 
+const showAdminIfAuthenticated = () => {
+  if (JSON.parse(localStorage.getItem('isAuthenticated'))) {
+    return <li><NavLink to='/admin'>Admin</NavLink></li>
+  }
+}
+
 const Landing = () => (
   <div className={styles.landingContainer}>
     <h1>MEGABøvlet</h1>
@@ -17,6 +23,7 @@ const Landing = () => (
         <li>
           <NavLink to='/qr'>QR</NavLink>
         </li>
+        {showAdminIfAuthenticated()}
       </ul>
     </div>
   </div>

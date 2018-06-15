@@ -3,9 +3,10 @@ import { withRouter } from 'react-router-dom'
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import HomeIcon from '@material-ui/icons/Home'
-import ColorLensIcon from '@material-ui/icons/ColorLens'
-import InsertChartOutlinedIcon from '@material-ui/icons/InsertChart';
+import LightsIcon from '@material-ui/icons/ColorLens'
+import StatisticsIcon from '@material-ui/icons/InsertChart';
 import CameraIcon from '@material-ui/icons/CameraAlt';
+import AdminIcon from '@material-ui/icons/Settings';
 
 import styles from './Navigation.module.css';
 
@@ -14,7 +15,7 @@ class Navigation extends Component {
     value: null
   }
 
-  componentDidMount() {
+  componentWillMount() {
     //I'm sorry. This is gross..
     let curPage = this.props.location.pathname;
     switch(curPage) {
@@ -28,6 +29,10 @@ class Navigation extends Component {
 
       case '/qr':
         this.setState({value: 3})
+        break;
+
+      case '/admin':
+        this.setState({value: 4})
         break;
       
       default:
@@ -52,9 +57,19 @@ class Navigation extends Component {
       case 3:
       this.props.history.push('/qr')
         break;
+
+      case 4:
+      this.props.history.push('/admin')
+        break;
     
       default:
         break;
+    }
+  }
+
+  showAdminIfAuthenticated = () => {
+    if (JSON.parse(localStorage.getItem('isAuthenticated'))) {
+      return <BottomNavigationAction label="Admin" icon={<AdminIcon />} />
     }
   }
 
@@ -67,9 +82,10 @@ class Navigation extends Component {
         value={this.state.value}
       >
         <BottomNavigationAction label="Hjem" icon={<HomeIcon />} />
-        <BottomNavigationAction label="Lys" icon={<ColorLensIcon />} />
-        <BottomNavigationAction label="Statistik" icon={<InsertChartOutlinedIcon />} />
+        <BottomNavigationAction label="Lys" icon={<LightsIcon />} />
+        <BottomNavigationAction label="Statistik" icon={<StatisticsIcon />} />
         <BottomNavigationAction label="QR" icon={<CameraIcon />} />
+        {this.showAdminIfAuthenticated()}
       </BottomNavigation>
     )
   }
