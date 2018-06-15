@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import QrReader from 'react-qr-reader'
 import Grid from '@material-ui/core/Grid';
+import Swal from 'sweetalert2';
 
 import CardDefault from '../UI/CardDefault/CardDefault';
 import Navigation from '../Navigation/Navigation';
@@ -11,9 +12,9 @@ class QRScan extends Component {
   }
 
   handleCameraScan = (data) => {
-    if (data !== this.state.result && data !== null) {
-      this.setState({batteryId: data})
-      console.log(data);
+    if (data !== this.state.batteryId && data !== null) {
+      this.setState({batteryId: data}, () => Swal('Awesome!', `${this.state.batteryId} has been added`, 'success'))
+      console.log("Posting", this.state.batteryId);
     }
   }
 
@@ -27,7 +28,6 @@ class QRScan extends Component {
         <CardDefault title='Tilføj batteri'>
           <Grid item xs={12}>
             <QrReader
-              delay={1000}
               onScan={this.handleCameraScan}
               onError={this.handleCameraError} />
             <h3>{this.state.result}</h3>
