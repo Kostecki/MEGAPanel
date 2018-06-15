@@ -30,7 +30,6 @@ class QRScan extends Component {
             <QrReader
               onScan={this.handleCameraScan}
               onError={this.handleCameraError} />
-            <h3>{this.state.result}</h3>
           </Grid>
         </CardDefault>
         <Navigation />

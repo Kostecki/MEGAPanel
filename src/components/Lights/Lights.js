@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { axiosPost } from '../../api';
+import Axios from '../../utils/api';
 import CardDefault from './../UI/CardDefault/CardDefault';
 import SolidColors from './SolidColors/SolidColors';
 import Animations from './Animations/Animations';
@@ -55,7 +55,7 @@ class Lights extends Component {
   }
 
   postColorChange = () => {
-    axiosPost('/setlights', this.state);
+    Axios.post('/setlights', this.state);
   }
 
   render() {
