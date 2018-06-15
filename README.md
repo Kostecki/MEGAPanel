@@ -9,12 +9,12 @@
 ```
 {
   animation: string,
-  brightness: double/float,
+  brightness: float,
   color: {
     r: int,
     g: int,
     b: int,
-    a: double/float
+    a: float
   },
   controller: boolean
 }
