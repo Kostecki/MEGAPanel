@@ -6,7 +6,7 @@ import styles from './VoltageGraph.module.css';
 
 const data = {
   datasets: [{
-    data: ['11', '11', '12', '12', '12', '12', '12', '11', '13', '13', '11', '11', '12', '13', '12', '12', '12', '11', '11', '12', '11', '12', '11', '12', '12', '11', '11', '12', '12', '12', '12', '12', '11', '13', '13', '11', '11', '12', '13', '12', '12', '12'],
+    data: ['11.4', '11.2', '12.8', '12.1', '12', '12', '12', '11', '13', '13', '11', '11', '12', '13', '12', '12', '12', '11', '11', '12', '11', '12', '11', '12', '12', '11', '11', '12', '12', '12', '12', '12', '11', '13', '13', '11', '11', '12', '13', '12', '12', '12'],
     label: 'Spænding',
     yAxisID: 'left-y-axis'
   }],
@@ -62,6 +62,13 @@ const options = {
       type: 'linear',
       position: 'left'
     }]
+  },
+  tooltips: {
+    callbacks: {
+      label: function (tooltipItems, data) {
+        return data.datasets[tooltipItems.datasetIndex].data[tooltipItems.index] + 'V';
+      }
+    }
   }
 }
 
