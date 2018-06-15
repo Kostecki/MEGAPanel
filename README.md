@@ -4,8 +4,8 @@
 
 
 ## API
-***GET**: /getlit   
-**POST**: /setlights*
+***GET:** /getLit   
+**POST:** /setLights*
 ```
 {
   animation: string,
@@ -20,14 +20,14 @@
 }
 ```
 
-***GET**: /getStatus   
+***GET:** /getStatus*
 ```
 {
   avgSpeed: {
     down: float,
     up: float
   },
-  DataWeek: {
+  dataWeek: {
     monday: {
       0: float
       1: float
@@ -61,32 +61,14 @@
     saturday: {...},
     sunday: {...}
   },
-  BatteryWeek: {
+  batteryWeek: {
     monday: {
       0: float
-      1: float
-      2: float
-      3: float
       4: float
-      5: float
-      6: float
-      7: float
       8: float
-      9: float
-      10: float
-      11: float
       12: float
-      13: float
-      14: float
-      15: float
       16: float
-      17: float
-      18: float
-      19: float
       20: float
-      21: float
-      22: float
-      23: float
     },
     tuesday: {...},
     wednesday: {...},
@@ -98,21 +80,21 @@
 }
 ```
 
-**POST**: /setStatus*
+***POST**: /setStatus*
 ```
 {
   avgSpeed: {
     down: float,
     up: float
   },
-  currentUsage: {
+  dataAmount: {
     up: float,
     down: float
   }
 }
 ```
 
-**POST**: /setVoltage*
+***POST**: /setVoltage*
 ```
 {
   voltage: float
