@@ -5,7 +5,7 @@
 
 ## API
 ***GET**: /getlit   
-**POST**: /chooseLights*
+**POST**: /setlights*
 ```
 {
   animation: string,
@@ -20,15 +20,14 @@
 }
 ```
 
-***GET**: /statzNow   
-**POST**: /newStatz*
+***GET**: /getStatus   
 ```
 {
-  avg: {
+  avgSpeed: {
     down: float,
     up: float
   },
-  lastSeven: {
+  DataWeek: {
     monday: {
       0: float
       1: float
@@ -61,12 +60,59 @@
     friday: {...},
     saturday: {...},
     sunday: {...}
+  },
+  BatteryWeek: {
+    monday: {
+      0: float
+      1: float
+      2: float
+      3: float
+      4: float
+      5: float
+      6: float
+      7: float
+      8: float
+      9: float
+      10: float
+      11: float
+      12: float
+      13: float
+      14: float
+      15: float
+      16: float
+      17: float
+      18: float
+      19: float
+      20: float
+      21: float
+      22: float
+      23: float
+    },
+    tuesday: {...},
+    wednesday: {...},
+    thursday: {...},
+    friday: {...},
+    saturday: {...},
+    sunday: {...}
+  },
+}
+```
+
+**POST**: /setStatus*
+```
+{
+  avgSpeed: {
+    down: float,
+    up: float
+  },
+  currentUsage: {
+    up: float,
+    down: float
   }
 }
 ```
 
-***GET**: /currentWatt   
-**POST**: /newWatt*
+**POST**: /setVoltage*
 ```
 {
   voltage: float
