@@ -68,7 +68,7 @@ const options = {
 const VoltageGraph = () => (
   <Card className={styles.voltageGraph}>
     <p>Batterierne i løbet af ugen</p>
-    <Line data={data} options={options} />
+    <Line data={data} options={options} width={700} height={200} /> {/* not specifying a height fucks up the layout.. TODO: Make it nicer */}
   </Card>
 )
 
