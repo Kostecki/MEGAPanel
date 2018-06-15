@@ -94,6 +94,19 @@
 }
 ```
 
+***GET:** /getVoltage*
+```
+{
+  1: {
+    batteryId: string,
+    voltage: float,
+    current: boolean
+  },
+  2: {...},
+  3: {...}
+}
+```
+
 ***POST**: /setVoltage*
 ```
 {
