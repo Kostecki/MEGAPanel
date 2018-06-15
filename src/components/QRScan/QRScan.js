@@ -7,15 +7,14 @@ import Navigation from '../Navigation/Navigation';
 
 class QRScan extends Component {
   state = {
-    delay: 1000,
-    result: ''
+    batteryId: ''
   }
 
   handleCameraScan = (data) => {
-    if (data) {
-      this.setState({result: data})
+    if (data !== this.state.result && data !== null) {
+      this.setState({batteryId: data})
+      console.log(data);
     }
-    console.log(data);
   }
 
   handleCameraError = (err) => {
@@ -28,7 +27,7 @@ class QRScan extends Component {
         <CardDefault title='Tilføj batteri'>
           <Grid item xs={12}>
             <QrReader
-              delay={this.state.delay}
+              delay={1000}
               onScan={this.handleCameraScan}
               onError={this.handleCameraError} />
             <h3>{this.state.result}</h3>
