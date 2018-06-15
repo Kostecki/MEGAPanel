@@ -61,7 +61,7 @@ const UsageInterval = (props) => {
     tooltips: {
       callbacks: {
         label: function (tooltipItems, data) {
-          return data.labels[tooltipItems.datasetIndex] + ': ' + data.datasets[tooltipItems.datasetIndex].data[tooltipItems.index] + props.unit.toUpperCase();
+          return data.labels[tooltipItems.datasetIndex] + ': ' + data.datasets[tooltipItems.datasetIndex].data[tooltipItems.index] + 'GB';
         }
       }
     }

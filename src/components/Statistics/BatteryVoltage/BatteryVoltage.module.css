@@ -2,12 +2,13 @@
   padding: 15px;
   width: 100%;
   box-sizing: border-box;
+  height: auto;
 }
 
 @media (min-width: 601px) {
   .voltage {
-    width: 180px;
-    box-sizing: unset;
+    width: 210px; /* 180px + 30px margin (⊙_⊙) */
+    height: 100%;
   }
 }
 
