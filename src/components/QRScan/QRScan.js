@@ -7,6 +7,7 @@ import Navigation from '../Navigation/Navigation';
 
 class QRScan extends Component {
   state = {
+    delay: 1000,
     result: ''
   }
 
@@ -27,6 +28,7 @@ class QRScan extends Component {
         <CardDefault title='Tilføj batteri'>
           <Grid item xs={12}>
             <QrReader
+              delay={this.state.delay}
               onScan={this.handleCameraScan}
               onError={this.handleCameraError} />
             <h3>{this.state.result}</h3>
