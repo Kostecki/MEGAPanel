@@ -5,6 +5,7 @@ import ReactGA from 'react-ga';
 import Landing from './components/Landing/Landing';
 import Lights from './components/Lights/Lights';
 import Stats from './components/Statistics/Statistics';
+import QRScan from './components/QRScan/QRScan';
 
 import './App.css';
 
@@ -21,6 +22,7 @@ class App extends Component {
           <Route exact path='/' component={Landing} />
           <Route path='/lights' component={Lights} />
           <Route path='/stats' component={Stats} />
+          <Route path='/qr' component={QRScan} />
         </Switch>
       </div>
     )

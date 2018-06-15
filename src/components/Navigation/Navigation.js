@@ -4,7 +4,8 @@ import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import HomeIcon from '@material-ui/icons/Home'
 import ColorLensIcon from '@material-ui/icons/ColorLens'
-import InsertChartOutlined from '@material-ui/icons/InsertChart';
+import InsertChartOutlinedIcon from '@material-ui/icons/InsertChart';
+import CameraIcon from '@material-ui/icons/CameraAlt';
 
 import styles from './Navigation.module.css';
 
@@ -23,6 +24,10 @@ class Navigation extends Component {
       
       case '/stats':
         this.setState({value: 2})
+        break;
+
+      case '/qr':
+        this.setState({value: 3})
         break;
       
       default:
@@ -43,6 +48,10 @@ class Navigation extends Component {
       case 2:
         this.props.history.push('/stats')
         break;
+
+      case 3:
+      this.props.history.push('/qr')
+        break;
     
       default:
         break;
@@ -59,7 +68,8 @@ class Navigation extends Component {
       >
         <BottomNavigationAction label="Hjem" icon={<HomeIcon />} />
         <BottomNavigationAction label="Lys" icon={<ColorLensIcon />} />
-        <BottomNavigationAction label="Statistik" icon={<InsertChartOutlined />} />
+        <BottomNavigationAction label="Statistik" icon={<InsertChartOutlinedIcon />} />
+        <BottomNavigationAction label="QR" icon={<CameraIcon />} />
       </BottomNavigation>
     )
   }

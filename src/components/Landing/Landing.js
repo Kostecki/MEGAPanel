@@ -14,6 +14,9 @@ const Landing = () => (
         <li>
           <NavLink to='/stats'>Statistik</NavLink>
         </li>
+        <li>
+          <NavLink to='/qr'>QR</NavLink>
+        </li>
       </ul>
     </div>
   </div>
