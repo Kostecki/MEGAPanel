@@ -13,8 +13,7 @@
   color: {
     r: int,
     g: int,
-    b: int,
-    a: float
+    b: int
   },
   controller: boolean
 }
