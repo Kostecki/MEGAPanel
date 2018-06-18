@@ -4,6 +4,7 @@
   width: 100%;
   box-sizing: border-box;
   text-align: center;
+  min-height: 82px;
 }
 
 @media (min-width: 601px) {

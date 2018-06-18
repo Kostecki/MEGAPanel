@@ -1,0 +1,39 @@
+.BatteriesLastSeen {
+  padding: 15px;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+@media (min-width: 601px) {
+  .BatteriesLastSeen {
+    width: 180px;
+    box-sizing: unset;
+  }
+}
+
+.elementsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.BatteriesLastSeen h4 {
+  margin: 0;
+  color: rgba(0, 0, 0, 0.60);
+  font-weight: 300;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 15px;
+}
+
+.BatteriesLastSeen p {
+  text-align: left;
+  margin-top: 0;
+}
+
+.BatteriesLastSeen .volt {
+  font-weight: bold;
+}
