@@ -15,8 +15,7 @@ class Lights extends Component {
     color: {
       r: 0,
       g: 0,
-      b: 0,
-      a: 1
+      b: 0
     },
     controller: false
   }
@@ -29,8 +28,7 @@ class Lights extends Component {
     let newColor = {
       r: parseInt(color.substring(1, 3), 16),
       g: parseInt(color.substring(3, 5), 16),
-      b: parseInt(color.substring(5, 7), 16),
-      a: 1
+      b: parseInt(color.substring(5, 7), 16)
     }
     
     this.setState({color: newColor, animation: this.state.animation}, () => this.postColorChange());
@@ -51,11 +49,11 @@ class Lights extends Component {
   }
 
   createRgbaString = (color) => {
-    return `rgba(${this.state.color.r}, ${this.state.color.g}, ${this.state.color.b}, ${this.state.color.a})`;
+    return `rgba(${this.state.color.r}, ${this.state.color.g}, ${this.state.color.b})`;
   }
 
   postColorChange = () => {
-    Axios.post('/setlights', this.state);
+    //Axios.post('/setlights', this.state);
   }
 
   render() {

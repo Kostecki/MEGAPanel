@@ -34,15 +34,15 @@ const SolidColors = (props) => (
     </Grid>
 
     <Grid item xs={12} md={6}>
-      <p>Farvevælger ({props.currentSelection.color.r}, {props.currentSelection.color.g}, {props.currentSelection.color.b}, {props.currentSelection.color.a})</p>
+      <p>Farvevælger ({props.currentSelection.color.r}, {props.currentSelection.color.g}, {props.currentSelection.color.b})</p>
       <HuePicker
         className={styles.huePicker}
         color={props.currentSelection.color}
         onChangeComplete={props.hueChangeHandler} />
-      <AlphaPicker
+      {/* <AlphaPicker
         className={styles.alphaPicker}
         color={props.currentSelection.color}
-        onChangeComplete={props.alphaChangeHandler} />
+        onChangeComplete={props.alphaChangeHandler} /> */}
     </Grid>
 
     <Grid item xs={12} md={6} className={styles.brightnessSlider}>
@@ -51,10 +51,10 @@ const SolidColors = (props) => (
         className={styles.alphaPicker}
         color={setBrightness(props.currentSelection.brightness)}
         onChangeComplete={props.brightnessChangeHandler} />
-      <div className={styles.brightnessIcons}>
+      {/* <div className={styles.brightnessIcons}>
         <i className="far fa-lightbulb"></i>
         <i className="fas fa-lightbulb"></i>
-      </div>
+      </div> */}
     </Grid>
   </React.Fragment>
 )
