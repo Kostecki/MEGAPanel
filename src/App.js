@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import PrivateRoute from './utils/auth';
 import ReactGA from 'react-ga';
+import Swal from 'sweetalert2';
 
 import Landing from './components/Landing/Landing';
 import Lights from './components/Lights/Lights';
@@ -18,7 +19,7 @@ ReactGA.initialize('UA-39781810-11');
 class App extends Component {
   state = {
     isAuthenticated: false,
-    pinToCheckAgainst: null
+    pinToCheckAgainst: 1234
   }
 
   componentWillMount = () => {
@@ -28,6 +29,10 @@ class App extends Component {
     Axios.get('/')
       .then((response) => {
         this.setState(() => ({ pinToCheckAgainst: 1234 }))
+      })
+      .catch((error) => {
+        console.log("This happens in App.js. No worries");
+        console.log(error);
       })
   }
 
@@ -43,6 +48,9 @@ class App extends Component {
         localStorage.setItem('isAuthenticated', JSON.stringify(true));
         this.props.history.push(from);
       });
+    } else {
+      console.log("Wrong Pin!");
+      Swal('No Access!', 'Wrong Pin', 'warning');
     };
   }
 
