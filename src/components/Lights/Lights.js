@@ -4,6 +4,7 @@ import CardDefault from './../UI/CardDefault/CardDefault';
 import SolidColors from './SolidColors/SolidColors';
 import Animations from './Animations/Animations';
 
+import withAuthorization from '../Auth/withAuthorization';
 import Navigation from '../Navigation/Navigation';
 
 import styles from './Lights.module.css';
@@ -81,4 +82,6 @@ class Lights extends Component {
   }
 }
 
-export default Lights;
+const authCondition = (authUser) => !!authUser;
+
+export default withAuthorization(authCondition)(Lights);
