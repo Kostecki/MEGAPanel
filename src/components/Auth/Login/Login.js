@@ -18,7 +18,7 @@ const byPropKey = (propertyName, value) => () => ({
 const INITIAL_STATE = {
   email: 'admin@mega.re', //We're just going for the pin-type login here ¯\_(ツ)_/¯
   password: '',
-  error: null,
+  error: null
 };
 
 class Login extends Component {
@@ -31,17 +31,17 @@ class Login extends Component {
   onSubmit = (event) => {
     const {
       email,
-      password,
+      password
     } = this.state;
 
     const {
-      history,
+      history
     } = this.props;
 
     auth.doSignInWithEmailAndPassword(email, password)
       .then(() => {
         this.setState(() => ({ ...INITIAL_STATE }));
-        history.push("/");
+        history.push(this.props.location.state.from);
       })
       .catch(error => {
         this.setState(byPropKey('error', error));
@@ -54,8 +54,7 @@ class Login extends Component {
   render() {
     const {
       email,
-      password,
-      error,
+      password
     } = this.state;
 
     const isInvalid = password === '' || email === '';

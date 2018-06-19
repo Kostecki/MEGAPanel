@@ -84,4 +84,4 @@ class Lights extends Component {
 
 const authCondition = (authUser) => !!authUser;
 
-export default withAuthorization(authCondition)(Lights);
+export default withAuthorization(authCondition, "/lights")(Lights);

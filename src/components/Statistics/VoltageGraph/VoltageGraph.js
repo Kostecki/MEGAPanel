@@ -2,8 +2,6 @@ import React from 'react';
 import Card from '@material-ui/core/Card';
 import { Line } from 'react-chartjs-2';
 
-import Axios from '../../../utils/api';
-
 import styles from './VoltageGraph.module.css';
 
 const data = {

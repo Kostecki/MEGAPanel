@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
 
-import Axios from '../../utils/api';
+//import Axios from '../../utils/api';
 import CardDefault from './../UI/CardDefault/CardDefault';
 import AvgSpeed from './AvgSpeed/AvgSpeed';
 import BatteryVoltage from './BatteryVoltage/BatteryVoltage';

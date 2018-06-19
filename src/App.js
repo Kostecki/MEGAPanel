@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import ReactGA from 'react-ga';
 
-import { auth } from './firebase'
 import withAuthentication from './components/Auth/withAuthentication';
 
 import Landing from './components/Landing/Landing';

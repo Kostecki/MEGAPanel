@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Grid from '@material-ui/core/Grid';
 import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
 import Swal from 'sweetalert2';
@@ -48,8 +47,7 @@ class Admin extends Component {
   render() {
     const {
       passwordOne,
-      passwordTwo,
-      error,
+      passwordTwo
     } = this.state;
 
     const isInvalid =
