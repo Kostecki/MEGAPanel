@@ -4,10 +4,10 @@ import Swal from 'sweetalert2';
 import Input from '@material-ui/core/Input';
 import Button from '@material-ui/core/Button';
 
+import CardDefault from '../../UI/CardDefault/CardDefault';
 import { auth } from '../../../firebase';
 import AuthUserContext from '../AuthUserContext';
-
-import CardDefault from '../../UI/CardDefault/CardDefault';
+import Navigation from '../../Navigation/Navigation';
 
 import styles from './Login.module.css';
 
@@ -61,29 +61,32 @@ class Login extends Component {
     const isInvalid = password === '' || email === '';
 
     return (
-      <CardDefault title="login">
-        <div className={styles.loginContainer}>
-          <AuthUserContext.Consumer>
-            {authUser => authUser ?
-              <React.Fragment>
-                <h2>Already logged in</h2>
-                <Button onClick={auth.doSignOut} variant="contained" color="secondary">Log out</Button>
-              </React.Fragment> :
-              <form onSubmit={this.onSubmit}>
-                <Input
-                  value={password}
-                  onChange={event => this.setState(byPropKey('password', event.target.value))}
-                  type="password"
-                  placeholder="Password"
-                />
-                <Button disabled={isInvalid} type="submit" variant="contained" color="primary">
-                  Sign In
-                </Button>
-              </form>
-            }
-          </AuthUserContext.Consumer>
-        </div>
-      </CardDefault>
+      <React.Fragment>
+        <CardDefault title="login">
+          <div className={styles.loginContainer}>
+            <AuthUserContext.Consumer>
+              {authUser => authUser ?
+                <React.Fragment>
+                  <h2>Already logged in</h2>
+                  <Button onClick={auth.doSignOut} variant="contained" color="secondary">Log out</Button>
+                </React.Fragment> :
+                <form onSubmit={this.onSubmit}>
+                  <Input
+                    value={password}
+                    onChange={event => this.setState(byPropKey('password', event.target.value))}
+                    type="password"
+                    placeholder="Password"
+                  />
+                  <Button disabled={isInvalid} type="submit" variant="contained" color="primary">
+                    Sign In
+                  </Button>
+                </form>
+              }
+            </AuthUserContext.Consumer>
+          </div>
+        </CardDefault>
+        <Navigation />
+      </React.Fragment>
     );
   }
 }
