@@ -1,3 +1,18 @@
 .adminContainer {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  margin: 5px auto 35px auto;
+  width: auto;
+}
+
+.adminContainer form {
+  display: inline-grid;
+}
+
+.adminContainer form input {
+  margin-top: 20px;
+}
+
+.adminContainer button {
+  margin-top: 35px;
 }

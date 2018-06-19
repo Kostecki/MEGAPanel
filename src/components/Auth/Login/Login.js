@@ -45,7 +45,7 @@ class Login extends Component {
       })
       .catch(error => {
         this.setState(byPropKey('error', error));
-        Swal('', error.message, 'error')
+        Swal('Oops..', error.message, 'error')
       });
 
     event.preventDefault();
@@ -67,8 +67,8 @@ class Login extends Component {
             <AuthUserContext.Consumer>
               {authUser => authUser ?
                 <React.Fragment>
-                  <h2>Already logged in</h2>
-                  <Button onClick={auth.doSignOut} variant="contained" color="secondary">Log out</Button>
+                  <h2>Allerede logget ind..</h2>
+                  <Button onClick={auth.doSignOut} variant="contained" color="secondary">Log ud</Button>
                 </React.Fragment> :
                 <form onSubmit={this.onSubmit}>
                   <Input
@@ -78,7 +78,7 @@ class Login extends Component {
                     placeholder="Password"
                   />
                   <Button disabled={isInvalid} type="submit" variant="contained" color="primary">
-                    Sign In
+                    Log ind
                   </Button>
                 </form>
               }

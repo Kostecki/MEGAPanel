@@ -8,6 +8,8 @@ import StatisticsIcon from '@material-ui/icons/InsertChart';
 import CameraIcon from '@material-ui/icons/CameraAlt';
 import AdminIcon from '@material-ui/icons/Settings';
 
+import AuthUserContext from '../Auth/AuthUserContext';
+
 import styles from './Navigation.module.css';
 
 class Navigation extends Component {
@@ -18,23 +20,23 @@ class Navigation extends Component {
   componentWillMount() {
     //I'm sorry. This is gross..
     let curPage = this.props.location.pathname;
-    switch(curPage) {
+    switch (curPage) {
       case '/lights':
-        this.setState({value: 1})
+        this.setState({ value: 0 })
         break;
-      
+
       case '/stats':
-        this.setState({value: 2})
+        this.setState({ value: 1 })
         break;
 
       case '/qr':
-        this.setState({value: 3})
+        this.setState({ value: 2 })
         break;
 
       case '/admin':
-        this.setState({value: 4})
+        this.setState({ value: 3 })
         break;
-      
+
       default:
         break;
     }
@@ -43,37 +45,27 @@ class Navigation extends Component {
   handleChange = (event, value) => {
     switch (value) {
       case 0:
-        this.props.history.push('/')
-        break;
-
-      case 1:
         this.props.history.push('/lights')
         break;
 
-      case 2:
+      case 1:
         this.props.history.push('/stats')
         break;
 
-      case 3:
-      this.props.history.push('/qr')
+      case 2:
+        this.props.history.push('/qr')
         break;
 
-      case 4:
-      this.props.history.push('/admin')
+      case 3:
+        this.props.history.push('/admin')
         break;
-    
+
       default:
         break;
     }
   }
 
-  showAdminIfAuthenticated = () => {
-    if (JSON.parse(localStorage.getItem('isAuthenticated'))) {
-      return <BottomNavigationAction label="Admin" icon={<AdminIcon />} />
-    }
-  }
-
-  render() {  
+  render() {
     return (
       <BottomNavigation
         onChange={this.handleChange}
@@ -81,11 +73,10 @@ class Navigation extends Component {
         className={styles.bottomNav}
         value={this.state.value}
       >
-        <BottomNavigationAction label="Hjem" icon={<HomeIcon />} />
         <BottomNavigationAction label="Lys" icon={<LightsIcon />} />
         <BottomNavigationAction label="Statistik" icon={<StatisticsIcon />} />
         <BottomNavigationAction label="QR" icon={<CameraIcon />} />
-        {this.showAdminIfAuthenticated()}
+        <BottomNavigationAction label="Admin" icon={<AdminIcon />} />
       </BottomNavigation>
     )
   }
