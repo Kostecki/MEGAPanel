@@ -4,6 +4,10 @@
   margin: 25px auto 35px auto;
 }
 
+.loginContainer form {
+  display: inline-grid;
+}
+
 .loginContainer button {
   margin-top: 15px;
 }
