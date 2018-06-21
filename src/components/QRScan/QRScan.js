@@ -8,13 +8,17 @@ import CardDefault from '../UI/CardDefault/CardDefault';
 import Navigation from '../Navigation/Navigation';
 
 const QRScan = () => {
+  let batteryId;
+
   const handleCameraScan = (data) => {
-    if (data !== this.state.batteryId && data !== null) {
+    if (data !== batteryId && data !== null) {
       Axios.post('/changebattery', {
         batId: data
       })
         .then((response) => {
-          Swal(response, `${data} has been added`, 'success')
+          console.log("api: " + response.data.response);
+          batteryId = data
+          Swal('Succes', `${data} blev tilføjet`, 'success')
         })
         .catch((error) => {
           console.log(error);
