@@ -8,6 +8,7 @@
   justify-content: space-between;
   align-items: center;
   box-sizing: border-box;
+  align-items: flex-start;
 }
 
 @media (min-width: 601px) {
