@@ -6,8 +6,10 @@ import styles from './BatteryVoltage.module.css';
 import './BatteryVoltage.css';
 
 const BatteryVoltage = (props) => {
-  const chargeStatus = () => {  //TODO: Make this whole BatteryVoltage-thing not gross..
-    let voltage = props.voltage.replace(',', '.');
+  console.log(props.data);
+
+  const chargeStatus = () => {
+    let voltage = props.data.Voltage;
     let health = '';
     let icon = '';
 
@@ -22,8 +24,7 @@ const BatteryVoltage = (props) => {
       icon = 'mood_bad';
     }
 
-    let result = [health, icon];
-    return result;
+    return [health, icon];
   }
   
 
@@ -31,7 +32,7 @@ const BatteryVoltage = (props) => {
     <Card className={styles.voltage}>
       <p>Batteri</p>
       <div className={`${styles.voltageStatus} ${chargeStatus()[0]}`}>
-        <h2>{props.voltage} Volt</h2><Icon>{chargeStatus()[1]}</Icon>
+        <h2>{props.data.Voltage} Volt</h2><Icon>{chargeStatus()[1]}</Icon>
       </div>
     </Card>
   )

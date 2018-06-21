@@ -8,8 +8,9 @@ const BatteriesLastSeen = (props) => {
     <Card className={styles.BatteriesLastSeen}>
       <p>Batterier (Sidst set)</p>
       <div className={styles.elementsContainer}>
-        {props.data.map((item, i) => <h4 key={i}>{item.name}: <span className={styles.volt}>{item.voltage} Volt</span></h4>
-      )}
+        {
+          Object.keys(props.data).map((key) => <h4 key={key} >{props.data[key].BatteryId}: <span className={styles.volt}>{props.data[key].Voltage} Volt</span></h4>)
+        }
       </div>
     </Card>
   )

@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
+import Moment from 'moment';
+import 'moment/locale/da';
 
-//import Axios from '../../utils/api';
+import Axios from '../../utils/api';
 import CardDefault from './../UI/CardDefault/CardDefault';
 import AvgSpeed from './AvgSpeed/AvgSpeed';
 import BatteryVoltage from './BatteryVoltage/BatteryVoltage';
@@ -13,59 +15,142 @@ import Navigation from '../Navigation/Navigation';
 
 import styles from './Statistics.module.css';
 
-let lastSeenData = [
-  {
-    name: 'ThunderDucks',
-    voltage: 11.7
-  },
-  {
-    name: 'LightningGeese',
-    voltage: 12.3
-  },
-  {
-    name: 'EnergySwallows',
-    voltage: 12.7
-  }
-]
-
 class Statistics extends Component {
+  state = {
+    status: {},
+    batteries: {}
+  }
+
   componentDidMount = () => {
-    /* this.interval = setInterval(() => {
-      //Get information on avg. speeds, weekly data usage and battery status
-      Axios.get('/getbatteryhistoric')
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }, 1000); */
+    this.fetchFromApi();
+    this.interval = setInterval(() => {
+      this.fetchFromApi();
+    }, 300000);
   }
 
   componentWillUnmount = () => {
     clearInterval(this.interval);
   }
 
+  fetchFromApi = () => (
+    Axios.get('/getstatus')
+      .then((response) => {
+        this.setState({status: response.data});
+
+        return Axios.get('/getbatteries');
+      })
+      .then((response) => {
+        this.setState({batteries: response.data});
+        console.log(this.state);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  )
+
+  getHour = () => {
+    var d = new Date();
+    return d.getHours();
+  }
+
+  getDay = () => {
+    var d = new Date();
+    var weekday = new Array(7);
+    weekday[0] = "Sunday";
+    weekday[1] = "Monday";
+    weekday[2] = "Tuesday";
+    weekday[3] = "Wednesday";
+    weekday[4] = "Thursday";
+    weekday[5] = "Friday";
+    weekday[6] = "Saturday";
+
+    return weekday[d.getDay()];
+  }
+
+  getUpDownHour = () => {
+    let data = {
+      up: this.state.status.DataWeek[this.getDay()][this.getHour()].Up,
+      down: this.state.status.DataWeek[this.getDay()][this.getHour()].Down
+    }
+
+    return data;
+  }
+
+  getUpDownDay = () => {
+    let today = this.state.status.DataWeek[this.getDay()]
+    let data = {
+      up: 0,
+      down: 0
+    }
+
+    for (let i = 0; i < today.length; i++) {
+      data.up += today[i].Up;
+      data.down += today[i].Down;
+    };
+
+    return data;
+  }
+
+  getUpDownWeek = () => {
+    let startOfWeek = Moment().startOf('isoweek').format('D');
+    let endOfWeek = parseInt(startOfWeek, 10) + 6;
+    let today = this.state.status.DataWeek[this.getDay()]
+    let data = {
+      up: 0,
+      down: 0
+    }
+
+    for (let i = startOfWeek; i < endOfWeek; i++) {
+      data.up += today[i].Up;
+      data.down += today[i].Down;
+    }
+
+    return data;
+  }
+
+  getCurrentBattery = () => {
+    let data;
+
+    for (let i = 0; i < this.state.batteries.length; i++) {
+      if (!this.state.batteries[i].CurrentBattery) {
+        console.log("inside");
+        data = this.state.batteries[i];
+      }
+    }
+
+    return data;
+  }
+
   render() {
+    if (Object.keys(this.state.batteries).length === 0){
+      return (
+        <CardDefault title='Statistik'>
+          <Grid item xs={12} className={styles.loading}>
+            <div className="lds-dual-ring"></div>
+          </Grid>
+        </CardDefault>
+      )
+    }
+
     return (
       <React.Fragment>
         <div className={styles.statsContainer}>
           <CardDefault title='Statistik'>
             <Grid item xs={12} className={styles.group1}>
-              <BatteryVoltage voltage={'12,7'} />
-              <BatteriesLastSeen data={lastSeenData} />
-              <AvgSpeed download={'314 Kbit/s'} upload={'129 Kbit/s'} />
+              <BatteryVoltage data={this.getCurrentBattery()} voltage={'12,7'} />
+              <BatteriesLastSeen data={this.state.batteries} />
+              <AvgSpeed download={this.state.status.Avg.Down} upload={this.state.status.Avg.Up} />
             </Grid>
             <Grid item xs={12} className={styles.group2}>
-              <UsageInterval period={'Time'} upload={0.5} download={2} />
-              <UsageInterval period={'Dag'} upload={1} download={3} />
-              <UsageInterval period={'Uge'} upload={7} download={2} />
+              <UsageInterval period="Time" upload={this.getUpDownHour().up} download={this.getUpDownHour().down} />
+              <UsageInterval period="Dag" upload={this.getUpDownDay().up} download={this.getUpDownDay().down} />
+              <UsageInterval period="Uge" upload={this.getUpDownWeek().up} download={this.getUpDownWeek().down} />
             </Grid>
             <Grid item xs={12} className={styles.group3}>
-              <DailyBarGraph />
+              <DailyBarGraph data={this.state.status.DataWeek[this.getDay()]} />
             </Grid>
             <Grid item xs={12}>
-              <VoltageGraph />
+              <VoltageGraph data={this.state.status.BatteryWeek} />
             </Grid>
           </CardDefault>
         </div>
