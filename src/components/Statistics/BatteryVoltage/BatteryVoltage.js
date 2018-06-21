@@ -6,8 +6,6 @@ import styles from './BatteryVoltage.module.css';
 import './BatteryVoltage.css';
 
 const BatteryVoltage = (props) => {
-  console.log(props.data);
-
   const chargeStatus = () => {
     let voltage = props.data.Voltage;
     let health = '';

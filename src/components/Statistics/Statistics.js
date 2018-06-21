@@ -41,7 +41,6 @@ class Statistics extends Component {
       })
       .then((response) => {
         this.setState({batteries: response.data});
-        console.log(this.state);
       })
       .catch((error) => {
         console.log(error);
@@ -113,7 +112,6 @@ class Statistics extends Component {
 
     for (let i = 0; i < this.state.batteries.length; i++) {
       if (!this.state.batteries[i].CurrentBattery) {
-        console.log("inside");
         data = this.state.batteries[i];
       }
     }
