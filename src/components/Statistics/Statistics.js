@@ -133,7 +133,7 @@ class Statistics extends Component {
     return (
       <React.Fragment>
         <div className={styles.statsContainer}>
-          <CardDefault title='Statistik' clickAction={this.fetchFromApi}>
+          <CardDefault title='Statistik' showRefresh clickAction={this.fetchFromApi}>
             <Grid item xs={12} className={styles.group1}>
               <BatteryVoltage data={this.getCurrentBattery()} voltage={'12,7'} />
               <BatteriesLastSeen data={this.state.batteries} />

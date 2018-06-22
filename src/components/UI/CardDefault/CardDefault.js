@@ -9,7 +9,7 @@ import styles from './CardDefault.module.css';
 const CardDefault = (props) => {
   return (
     <Card className={styles.card}>
-      <TitleWithDivider clickAction={props.clickAction} title={props.title} />
+      <TitleWithDivider showRefresh={props.showRefresh} clickAction={props.clickAction} title={props.title} />
       <Grid container spacing={24}>
         {props.children}
       </Grid>
