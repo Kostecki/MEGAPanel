@@ -16,17 +16,6 @@ class Lights extends Component {
     loader: true
   }
 
-  /* state = {
-    animation: null,
-    brightness: 0.5,
-    color: {
-      r: 255,
-      g: 0,
-      b: 0
-    },
-    controller: null
-  } */
-
   componentDidMount = () => {
     this.fetchFromApi();
     this.interval = setInterval(() => {
