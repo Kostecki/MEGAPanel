@@ -3,6 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import Moment from 'moment';
 import 'moment/locale/da';
 
+import Loader from '../UI/Loader/Loader';
 import Axios from '../../utils/api';
 import CardDefault from './../UI/CardDefault/CardDefault';
 import AvgSpeed from './AvgSpeed/AvgSpeed';
@@ -28,9 +29,9 @@ class Statistics extends Component {
     }, 300000);
   }
 
-  componentWillUnmount = () => {
-    clearInterval(this.interval);
-  }
+  componentWillUnmount = () => (
+    clearInterval(this.interval)
+  )
 
   fetchFromApi = () => (
     Axios.get('/getstatus')
@@ -122,11 +123,7 @@ class Statistics extends Component {
   render() {
     if (Object.keys(this.state.batteries).length === 0){
       return (
-        <CardDefault title='Statistik'>
-          <Grid item xs={12} className={styles.loading}>
-            <div className="lds-dual-ring"></div>
-          </Grid>
-        </CardDefault>
+        <Loader title='Statistik' />
       )
     }
 

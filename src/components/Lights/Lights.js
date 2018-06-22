@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import Axios from '../../utils/api';
-import CardDefault from './../UI/CardDefault/CardDefault';
+
+import Loader from '../UI/Loader/Loader';
+import CardDefault from '../UI/CardDefault/CardDefault';
 import SolidColors from './SolidColors/SolidColors';
 import Animations from './Animations/Animations';
-
 import withAuthorization from '../Auth/withAuthorization';
 import Navigation from '../Navigation/Navigation';
 
@@ -12,18 +13,46 @@ import styles from './Lights.module.css';
 class Lights extends Component {
   state = {
     animation: null,
+    brightness: null,
+    color: {},
+    controller: null
+  }
+
+  /* state = {
+    animation: null,
     brightness: 0.5,
     color: {
-      r: 0,
+      r: 255,
       g: 0,
       b: 0
     },
-    controller: false
+    controller: null
+  } */
+
+  /* componentDidMount = () => {
+    this.fetchFromApi();
+    this.interval = setInterval(() => {
+      this.fetchFromApi();
+    }, 300000);
   }
 
-  handleColorChangeComplete = (color) => {
-    this.setState({color: color.rgb, animation: this.state.animation}, () => this.postColorChange());
-  }
+  componentWillUnmount = () => {
+    clearInterval(this.interval);
+  } */
+
+  fetchFromApi = () => (
+    Axios.get('/getlit')
+      .then((response) => {
+        this.setState(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  )
+
+  handleColorChangeComplete = (color) => (
+    this.setState({color: color.rgb, animation: this.state.animation}, () => this.postColorChange())
+  )
 
   handlePresetClick = (color) => {
     let newColor = {
@@ -49,15 +78,21 @@ class Lights extends Component {
     }
   }
 
-  createRgbaString = (color) => {
-    return `rgba(${this.state.color.r}, ${this.state.color.g}, ${this.state.color.b})`;
-  }
+  createRgbaString = () => (
+    `rgba(${this.state.color.r}, ${this.state.color.g}, ${this.state.color.b})`
+  )
 
-  postColorChange = () => {
-    Axios.post('/setlights', this.state);
-  }
+  postColorChange = () => (
+    Axios.post('/setlights', this.state)
+  )
 
   render() {
+    if (!this.state.brightness){
+      return (
+        <Loader title='Statistik' />
+      )
+    }
+    
     return(
       <React.Fragment>
         <div className={styles.lightsContainer}>

@@ -20,10 +20,3 @@
 .group3 {
   overflow: auto;
 }
-
-.loading {
-  display: flex;
-  justify-content: center;
-  height: 150px;
-  align-items: center;
-}
