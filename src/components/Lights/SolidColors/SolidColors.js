@@ -39,10 +39,6 @@ const SolidColors = (props) => (
         className={styles.huePicker}
         color={props.currentSelection.color}
         onChangeComplete={props.hueChangeHandler} />
-      {/* <AlphaPicker
-        className={styles.alphaPicker}
-        color={props.currentSelection.color}
-        onChangeComplete={props.alphaChangeHandler} /> */}
     </Grid>
 
     <Grid item xs={12} md={6} className={styles.brightnessSlider}>
@@ -51,10 +47,6 @@ const SolidColors = (props) => (
         className={styles.alphaPicker}
         color={setBrightness(props.currentSelection.brightness)}
         onChangeComplete={props.brightnessChangeHandler} />
-      {/* <div className={styles.brightnessIcons}>
-        <i className="far fa-lightbulb"></i>
-        <i className="fas fa-lightbulb"></i>
-      </div> */}
     </Grid>
   </React.Fragment>
 )
