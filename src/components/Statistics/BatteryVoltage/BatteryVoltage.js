@@ -1,6 +1,5 @@
 import React from 'react';
 import Card from '@material-ui/core/Card';
-import Icon from '@material-ui/core/Icon';
 
 import styles from './BatteryVoltage.module.css';
 import './BatteryVoltage.css';
@@ -11,7 +10,7 @@ const BatteryVoltage = (props) => {
     let health = '';
     let icon = '';
 
-    if (voltage > 12) {
+    if (voltage >= 12.10) {
       health = 'chargeGood'
       icon = 'mood';
     } else if (voltage > 11.5) {
@@ -63,7 +62,6 @@ const BatteryVoltage = (props) => {
     }
   }
   
-
   return (
     <Card className={styles.voltage}>
       <p>Batteri</p>
