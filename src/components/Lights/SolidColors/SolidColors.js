@@ -20,7 +20,7 @@ const setBrightness = (brightness) => {
 const SolidColors = (props) => (
   <React.Fragment>
     <Grid item xs={4} md={4}>
-      <div className={styles.colorPreview} style={{ background: props.createRgbaStringHandler(props.currentSelection.color) }}></div>
+      <div className={styles.colorPreview} style={{ background: props.createRgbaStringHandler(props.currentSelection.Color) }}></div>
     </Grid>
     <Grid item xs={8} className={styles.colorPresets}>
       <SolidColorPreset backgroundColor='#ff0000' onClickHandler={props.presetClickHandler} />
@@ -34,18 +34,18 @@ const SolidColors = (props) => (
     </Grid>
 
     <Grid item xs={12} md={6}>
-      <p>Farvevælger ({props.currentSelection.color.r}, {props.currentSelection.color.g}, {props.currentSelection.color.b})</p>
+      <p>Farvevælger ({props.currentSelection.Color.R}, {props.currentSelection.Color.G}, {props.currentSelection.Color.B})</p>
       <HuePicker
         className={styles.huePicker}
-        color={props.currentSelection.color}
+        color={props.currentSelection.Color}
         onChangeComplete={props.hueChangeHandler} />
     </Grid>
 
     <Grid item xs={12} md={6} className={styles.brightnessSlider}>
-      <p>Lysstyrke ({Math.trunc(props.currentSelection.brightness * 100)}%)</p>
+      <p>Lysstyrke ({Math.trunc(props.currentSelection.Brightness * 100)}%)</p>
       <AlphaPicker
         className={styles.alphaPicker}
-        color={setBrightness(props.currentSelection.brightness)}
+        color={setBrightness(props.currentSelection.Brightness)}
         onChangeComplete={props.brightnessChangeHandler} />
     </Grid>
   </React.Fragment>

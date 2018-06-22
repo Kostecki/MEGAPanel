@@ -53,22 +53,22 @@ class Lights extends Component {
 
   handleColorChangeComplete = (color) => {
     let lights = this.state.lights;
-    lights.color = color.rgb;
-    lights.animation = this.state.lights.animation;
+    lights.Color = color.rgb;
+    lights.Animation = this.state.lights.Animation;
 
     this.setState({ lights: lights }, () => this.postColorChange())
   }
 
   handlePresetClick = (color) => {
     let newColor = {
-      r: parseInt(color.substring(1, 3), 16),
-      g: parseInt(color.substring(3, 5), 16),
-      b: parseInt(color.substring(5, 7), 16)
+      R: parseInt(color.substring(1, 3), 16),
+      G: parseInt(color.substring(3, 5), 16),
+      B: parseInt(color.substring(5, 7), 16)
     }
 
     let lights = this.state.lights;
-    lights.color = newColor;
-    lights.animation = this.state.lights.animation;
+    lights.Color = newColor;
+    lights.Animation = this.state.lights.Animation;
 
     this.setState({ lights: lights }, () => this.postColorChange());
   }
@@ -77,8 +77,8 @@ class Lights extends Component {
     let brightness = color.rgb.a;
 
     let lights = this.state.lights;
-    lights.brightness = brightness;
-    lights.animation = this.state.lights.animation;
+    lights.Brightness = brightness;
+    lights.Animation = this.state.lights.Animation;
 
     this.setState({ lights: lights }, () => this.postColorChange());
   }
@@ -87,21 +87,22 @@ class Lights extends Component {
     let lights = this.state.lights;
 
     if (toggle) {
-      lights.animation = animationName;
+      lights.Animation = animationName;
     } else {
-      lights.animation = null;
+      lights.Animation = null;
     }
 
     this.setState({ lights: lights }, () => this.postColorChange());
   }
 
   createRgbaString = () => (
-    `rgba(${this.state.lights.color.r}, ${this.state.lights.color.g}, ${this.state.lights.color.b})`
+    `rgba(${this.state.lights.Color.R}, ${this.state.lights.Color.G}, ${this.state.lights.Color.B})`
   )
 
-  postColorChange = () => (
-    Axios.post('/setlights', this.state.lights)
-  )
+  postColorChange = () => {
+    Axios.post('/setlights', this.state.lights);
+    console.log(this.state);
+  }
 
   render() {
     if (this.state.loader) {
@@ -113,7 +114,7 @@ class Lights extends Component {
     return (
       <React.Fragment>
         <div className={styles.lightsContainer}>
-          <CardDefault title='Farver'>
+          <CardDefault title='Farver' showRefresh clickAction={this.fetchFromApi}>
             <SolidColors
               currentSelection={this.state.lights}
               hueChangeHandler={this.handleColorChangeComplete}
