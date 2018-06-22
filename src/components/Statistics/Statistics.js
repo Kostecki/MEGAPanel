@@ -19,7 +19,8 @@ import styles from './Statistics.module.css';
 class Statistics extends Component {
   state = {
     status: {},
-    batteries: {}
+    batteries: {},
+    loader: true
   }
 
   componentDidMount = () => {
@@ -33,20 +34,22 @@ class Statistics extends Component {
     clearInterval(this.interval)
   )
 
-  fetchFromApi = () => (
+  fetchFromApi = () => {
+    this.setState({ loader: true });
     Axios.get('/getstatus')
       .then((response) => {
-        this.setState({status: response.data});
+        this.setState({ status: response.data });
 
         return Axios.get('/getbatteries');
       })
       .then((response) => {
-        this.setState({batteries: response.data});
+        this.setState({ batteries: response.data });
+        this.setState({ loader: false });
       })
       .catch((error) => {
         console.log(error);
       })
-  )
+  }
 
   getHour = () => {
     var d = new Date();
@@ -121,7 +124,7 @@ class Statistics extends Component {
   }
 
   render() {
-    if (Object.keys(this.state.batteries).length === 0){
+    if (this.state.loader) {
       return (
         <Loader title='Statistik' />
       )
@@ -130,7 +133,7 @@ class Statistics extends Component {
     return (
       <React.Fragment>
         <div className={styles.statsContainer}>
-          <CardDefault title='Statistik'>
+          <CardDefault title='Statistik' clickAction={this.fetchFromApi}>
             <Grid item xs={12} className={styles.group1}>
               <BatteryVoltage data={this.getCurrentBattery()} voltage={'12,7'} />
               <BatteriesLastSeen data={this.state.batteries} />
