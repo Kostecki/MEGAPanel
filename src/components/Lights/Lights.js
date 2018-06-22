@@ -12,10 +12,8 @@ import styles from './Lights.module.css';
 
 class Lights extends Component {
   state = {
-    animation: null,
-    brightness: null,
-    color: {},
-    controller: null
+    lights: {},
+    loader: true
   }
 
   /* state = {
@@ -29,7 +27,7 @@ class Lights extends Component {
     controller: null
   } */
 
-  /* componentDidMount = () => {
+  componentDidMount = () => {
     this.fetchFromApi();
     this.interval = setInterval(() => {
       this.fetchFromApi();
@@ -38,21 +36,28 @@ class Lights extends Component {
 
   componentWillUnmount = () => {
     clearInterval(this.interval);
-  } */
+  }
 
-  fetchFromApi = () => (
+  fetchFromApi = () => {
+    this.setState({ loader: true });
     Axios.get('/getlit')
       .then((response) => {
-        this.setState(response.data);
+        this.setState({ lights: response.data });
+        this.setState({ loader: false });
+        console.log(this.state);
       })
       .catch((error) => {
         console.log(error);
       })
-  )
+  }
 
-  handleColorChangeComplete = (color) => (
-    this.setState({color: color.rgb, animation: this.state.animation}, () => this.postColorChange())
-  )
+  handleColorChangeComplete = (color) => {
+    let lights = this.state.lights;
+    lights.color = color.rgb;
+    lights.animation = this.state.lights.animation;
+
+    this.setState({ lights: lights }, () => this.postColorChange())
+  }
 
   handlePresetClick = (color) => {
     let newColor = {
@@ -60,54 +65,66 @@ class Lights extends Component {
       g: parseInt(color.substring(3, 5), 16),
       b: parseInt(color.substring(5, 7), 16)
     }
-    
-    this.setState({color: newColor, animation: this.state.animation}, () => this.postColorChange());
+
+    let lights = this.state.lights;
+    lights.color = newColor;
+    lights.animation = this.state.lights.animation;
+
+    this.setState({ lights: lights }, () => this.postColorChange());
   }
 
   handleBrightnessChangeComplete = (color) => {
     let brightness = color.rgb.a;
 
-    this.setState({ brightness: brightness, animation: this.state.animation }, () => this.postColorChange());
+    let lights = this.state.lights;
+    lights.brightness = brightness;
+    lights.animation = this.state.lights.animation;
+
+    this.setState({ lights: lights }, () => this.postColorChange());
   }
 
   handleAnimationSelection = (animationName, toggle) => {
+    let lights = this.state.lights;
+
     if (toggle) {
-      this.setState({animation: animationName}, () => this.postColorChange());
+      lights.animation = animationName;
     } else {
-      this.setState({animation: null}, () => this.postColorChange());
+      lights.animation = null;
     }
+
+    this.setState({ lights: lights }, () => this.postColorChange());
   }
 
   createRgbaString = () => (
-    `rgba(${this.state.color.r}, ${this.state.color.g}, ${this.state.color.b})`
+    `rgba(${this.state.lights.color.r}, ${this.state.lights.color.g}, ${this.state.lights.color.b})`
   )
 
   postColorChange = () => (
-    Axios.post('/setlights', this.state)
+    Axios.post('/setlights', this.state.lights)
   )
 
   render() {
-    if (!this.state.brightness){
+    if (this.state.loader) {
       return (
-        <Loader title='Statistik' />
+        <Loader title='Farver' />
       )
     }
-    
-    return(
+
+    return (
       <React.Fragment>
         <div className={styles.lightsContainer}>
           <CardDefault title='Farver'>
             <SolidColors
-              currentSelection={this.state}
+              currentSelection={this.state.lights}
               hueChangeHandler={this.handleColorChangeComplete}
-              alphaChangeHandler={this.handleColorChangeComplete} 
-              presetClickHandler={this.handlePresetClick} 
-              brightnessChangeHandler={this.handleBrightnessChangeComplete} 
+              alphaChangeHandler={this.handleColorChangeComplete}
+              presetClickHandler={this.handlePresetClick}
+              brightnessChangeHandler={this.handleBrightnessChangeComplete}
               createRgbaStringHandler={this.createRgbaString} />
           </CardDefault>
           <CardDefault title='Animationer'>
             <Animations
-              activeAnimation={this.state.animation}
+              activeAnimation={this.state.lights.animation}
               animationClickHandler={this.handleAnimationSelection} />
           </CardDefault>
         </div>
