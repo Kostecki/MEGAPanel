@@ -2,4 +2,6 @@
 
 [https://mega.re](https://mega.re)
 
-[https://github.com/LarsPede/MegAPI](https://github.com/LarsPede/MegAPI)
+[https://github.com/LarsPede/MegAPI](https://github.com/LarsPede/MegAPI)    
+[https://github.com/Kostecki/MEGAPi](https://github.com/Kostecki/MEGAPi)    
+[https://github.com/Kostecki/MEGAScripts](https://github.com/Kostecki/MEGAScripts)
