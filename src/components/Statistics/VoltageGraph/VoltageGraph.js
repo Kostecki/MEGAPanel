@@ -43,7 +43,7 @@ const VoltageGraph = (props) => {
   return (
     <Card className={styles.voltageGraph}>
       <p>Batterierne i løbet af ugen</p>
-      <Line data={data} options={options} width={700} height={200} /> {/* not specifying a height fucks up the layout.. TODO: Make it nicer */}
+      <Line data={data} options={options} width={700} height={194} /> {/* not specifying a height fucks up the layout. Same with setting it to anything above 194.. TODO: Make it nicer */}
     </Card>
   )
 }
