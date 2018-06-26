@@ -84,6 +84,6 @@ class Admin extends Component {
   }
 }
 
-const authCondition = (authUser) => !!authUser && authUser.uid === "wDmoxi1UV5T9wXlDNU0iFwvAuz32"; //eeeeew
+const authCondition = (authUser) => !!authUser && authUser.email === "admin@mega.re";
 
 export default withAuthorization(authCondition)(Admin);
