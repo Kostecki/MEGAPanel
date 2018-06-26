@@ -33,7 +33,6 @@ class Lights extends Component {
       .then((response) => {
         this.setState({ lights: response.data });
         this.setState({ loader: false });
-        console.log(this.state);
       })
       .catch((error) => {
         console.log(error);
@@ -90,7 +89,6 @@ class Lights extends Component {
 
   postColorChange = () => {
     Axios.post('/setlights', this.state.lights);
-    console.log(this.state);
   }
 
   render() {
