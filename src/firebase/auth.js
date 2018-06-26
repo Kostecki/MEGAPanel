@@ -2,7 +2,7 @@ import { auth } from './firebase';
 
 //Log in
 export const doSignInWithEmailAndPassword = (email, password) =>
-  auth.signInWithEmailAndPassword(email, password);
+  auth.signInWithEmailAndPassword(email + '@mega.re', password);
 
 //Log out
 export const doSignOut = () =>

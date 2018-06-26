@@ -8,6 +8,10 @@
   display: inline-grid;
 }
 
+.loginContainer form div:first-child {
+  margin-bottom: 15px;
+}
+
 .loginContainer button {
   margin-top: 35px;
 }

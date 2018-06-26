@@ -74,6 +74,8 @@ class Admin extends Component {
                 Skift Password
                 </Button>
             </form>
+
+            <Button onClick={auth.doSignOut} variant="contained" color="secondary">Log ud</Button>
           </div>
         </CardDefault>
         <Navigation />
@@ -82,6 +84,6 @@ class Admin extends Component {
   }
 }
 
-const authCondition = (authUser) => !!authUser;
+const authCondition = (authUser) => !!authUser && authUser.uid === "wDmoxi1UV5T9wXlDNU0iFwvAuz32"; //eeeeew
 
 export default withAuthorization(authCondition)(Admin);

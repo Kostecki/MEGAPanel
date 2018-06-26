@@ -16,7 +16,7 @@ const byPropKey = (propertyName, value) => () => ({
 });
 
 const INITIAL_STATE = {
-  email: 'admin@mega.re', //We're just going for the pin-type login here ¯\_(ツ)_/¯
+  username: '',
   password: '',
   error: null
 };
@@ -30,7 +30,7 @@ class Login extends Component {
 
   onSubmit = (event) => {
     const {
-      email,
+      username,
       password
     } = this.state;
 
@@ -38,7 +38,7 @@ class Login extends Component {
       history
     } = this.props;
 
-    auth.doSignInWithEmailAndPassword(email, password)
+    auth.doSignInWithEmailAndPassword(username, password)
       .then(() => {
         this.setState(() => ({ ...INITIAL_STATE }));
         history.push(this.props.location.state.from);
@@ -53,11 +53,11 @@ class Login extends Component {
 
   render() {
     const {
-      email,
+      username,
       password
     } = this.state;
 
-    const isInvalid = password === '' || email === '';
+    const isInvalid = password === '' || username === '';
 
     return (
       <React.Fragment>
@@ -70,6 +70,12 @@ class Login extends Component {
                   <Button onClick={auth.doSignOut} variant="contained" color="secondary">Log ud</Button>
                 </React.Fragment> :
                 <form onSubmit={this.onSubmit}>
+                <Input
+                    value={username}
+                    onChange={event => this.setState(byPropKey('username', event.target.value))}
+                    type="text"
+                    placeholder="Brugernavn"
+                  />
                   <Input
                     value={password}
                     onChange={event => this.setState(byPropKey('password', event.target.value))}
