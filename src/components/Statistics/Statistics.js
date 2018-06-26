@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
+import Moment from 'moment';
+import 'moment/locale/da';
 
 import Loader from '../UI/Loader/Loader';
 import Axios from '../../utils/api';
@@ -36,7 +38,7 @@ class Statistics extends Component {
     this.setState({ loader: true });
     Axios.get('/getstatus')
       .then((response) => {
-        this.setState({ status: response.data });
+        this.setState({ status: response.data }, () => console.log(this.state.status));
 
         return Axios.get('/getbatteries');
       })
@@ -95,16 +97,19 @@ class Statistics extends Component {
   }
 
   getUpDownWeek = () => {
+    const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    let today = Moment().isoWeekday();
+    
     let week = this.state.status.DataWeek;
     let data = {
       up: 0,
       down: 0
     }
-
-    for (const i of Object.keys(week)) {
-      for (const j of Object.keys(week[i])) {
-        data.up += week[i][j].Up;
-        data.down += week[i][j].Down;
+    
+    for (let i = 0; i < today; i++) {
+      for (const j of Object.keys(week[days[i]])) {
+        data.up += week[days[i]][j].Up;
+        data.down += week[days[i]][j].Down;
       }
     }
 
