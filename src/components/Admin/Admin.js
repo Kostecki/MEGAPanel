@@ -86,4 +86,4 @@ class Admin extends Component {
 
 const authCondition = (authUser) => !!authUser && authUser.email === "admin@mega.re";
 
-export default withAuthorization(authCondition)(Admin);
+export default withAuthorization(authCondition, "/admin")(Admin);
