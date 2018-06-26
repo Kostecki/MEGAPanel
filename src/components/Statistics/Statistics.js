@@ -131,7 +131,10 @@ class Statistics extends Component {
   render() {
     if (this.state.loader) {
       return (
-        <Loader title='Statistik' />
+        <React.Fragment>
+          <Loader title='Statistik' />
+          <Navigation />
+        </React.Fragment>
       )
     }
 

@@ -94,7 +94,10 @@ class Lights extends Component {
   render() {
     if (this.state.loader) {
       return (
-        <Loader title='Farver' />
+        <React.Fragment>
+          <Loader title='Farver' />
+          <Navigation />
+        </React.Fragment>
       )
     }
 
