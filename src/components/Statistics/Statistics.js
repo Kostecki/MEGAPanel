@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import Grid from '@material-ui/core/Grid';
-import Moment from 'moment';
-import 'moment/locale/da';
 
 import Loader from '../UI/Loader/Loader';
 import Axios from '../../utils/api';
@@ -51,12 +49,14 @@ class Statistics extends Component {
       })
   }
 
+  //Get current hour
   getHour = () => {
     var d = new Date();
     return d.getHours();
   }
 
-  getDay = () => {
+  //Get weekday as string
+  getToday = () => {
     var d = new Date();
     var weekday = new Array(7);
     weekday[0] = "Sunday";
@@ -72,15 +72,15 @@ class Statistics extends Component {
 
   getUpDownHour = () => {
     let data = {
-      up: this.state.status.DataWeek[this.getDay()][this.getHour()].Up,
-      down: this.state.status.DataWeek[this.getDay()][this.getHour()].Down
+      up: this.state.status.DataWeek[this.getToday()][this.getHour()].Up,
+      down: this.state.status.DataWeek[this.getToday()][this.getHour()].Down
     }
 
     return data;
   }
 
   getUpDownDay = () => {
-    let today = this.state.status.DataWeek[this.getDay()]
+    let today = this.state.status.DataWeek[this.getToday()]
     let data = {
       up: 0,
       down: 0
@@ -95,17 +95,17 @@ class Statistics extends Component {
   }
 
   getUpDownWeek = () => {
-    let startOfWeek = Moment().startOf('isoweek').format('D');
-    let endOfWeek = parseInt(startOfWeek, 10) + 6;
-    let today = this.state.status.DataWeek[this.getDay()]
+    let week = this.state.status.DataWeek;
     let data = {
       up: 0,
       down: 0
     }
 
-    for (let i = startOfWeek; i < endOfWeek; i++) {
-      data.up += today[i].Up;
-      data.down += today[i].Down;
+    for (const i of Object.keys(week)) {
+      for (const j of Object.keys(week[i])) {
+        data.up += week[i][j].Up;
+        data.down += week[i][j].Down;
+      }
     }
 
     return data;
@@ -145,7 +145,7 @@ class Statistics extends Component {
               <UsageInterval period="Uge" upload={this.getUpDownWeek().up} download={this.getUpDownWeek().down} />
             </Grid>
             <Grid item xs={12} className={styles.group3}>
-              <DailyBarGraph data={this.state.status.DataWeek[this.getDay()]} />
+              <DailyBarGraph data={this.state.status.DataWeek[this.getToday()]} />
             </Grid>
             <Grid item xs={12}>
               <VoltageGraph data={this.state.status.BatteryWeek} />
