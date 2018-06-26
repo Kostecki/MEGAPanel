@@ -18,7 +18,7 @@ const UsageInterval = (props) => {
 
     switch (period) {
       case 'Time':
-        range = now.format('HH:MM');
+        range = now.format('HH:00') + '-' + now.add(1, 'hour').format('HH:59');
         break;
       
       case 'Dag':
