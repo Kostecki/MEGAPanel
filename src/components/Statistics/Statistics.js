@@ -74,9 +74,11 @@ class Statistics extends Component {
 
   getUpDownHour = () => {
     let data = {
-      up: this.state.status.DataWeek[this.getToday()][this.getHour()].Up,
-      down: this.state.status.DataWeek[this.getToday()][this.getHour()].Down
+      up: this.state.status.DataWeek[this.getToday()][this.getHour() - 2].Up, //Noo
+      down: this.state.status.DataWeek[this.getToday()][this.getHour() - 2].Down //Noo
     }
+
+    console.log(data);
 
     return data;
   }
@@ -108,8 +110,10 @@ class Statistics extends Component {
     
     for (let i = 0; i < today; i++) {
       for (const j of Object.keys(week[days[i]])) {
-        data.up += week[days[i]][j].Up;
-        data.down += week[days[i]][j].Down;
+        if (week[days[i]][j].Up !== 0 || week[days[i]][j].Down !== 0) {
+          data.up += week[days[i]][j].Up;
+          data.down += week[days[i]][j].Down;
+        } 
       }
     }
 
@@ -120,7 +124,8 @@ class Statistics extends Component {
     let data;
 
     for (let i = 0; i < this.state.batteries.length; i++) {
-      if (!this.state.batteries[i].CurrentBattery) {
+      if (this.state.batteries[i].CurrentBattery) {
+        console.log(this.state.batteries[i])
         data = this.state.batteries[i];
       }
     }
@@ -143,7 +148,7 @@ class Statistics extends Component {
         <div className={styles.statsContainer}>
           <CardDefault title='Statistik' showRefresh clickAction={this.fetchFromApi}>
             <Grid item xs={12} className={styles.group1}>
-              <BatteryVoltage data={this.getCurrentBattery()} voltage={'12,7'} />
+              <BatteryVoltage data={this.getCurrentBattery()} />
               <BatteriesLastSeen data={this.state.batteries} />
               <AvgSpeed download={this.state.status.Avg.Down} upload={this.state.status.Avg.Up} />
             </Grid>

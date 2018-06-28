@@ -64,7 +64,7 @@ const BatteryVoltage = (props) => {
   
   return (
     <Card className={styles.voltage}>
-      <p>Batteri</p>
+      <p>Batteri ({props.data.BatteryId})</p>
       <div className={`${styles.voltageStatus} ${chargeStatus()[0]}`}>
         <h2>{props.data.Voltage} Volt </h2>
         <h2>{chargeLevel()} %</h2>
