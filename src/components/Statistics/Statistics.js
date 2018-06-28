@@ -74,8 +74,8 @@ class Statistics extends Component {
 
   getUpDownHour = () => {
     let data = {
-      up: this.state.status.DataWeek[this.getToday()][this.getHour() - 2].Up, //Noo
-      down: this.state.status.DataWeek[this.getToday()][this.getHour() - 2].Down //Noo
+      up: this.state.status.DataWeek[this.getToday()][this.getHour()].Up,
+      down: this.state.status.DataWeek[this.getToday()][this.getHour()].Down
     }
 
     console.log(data);
