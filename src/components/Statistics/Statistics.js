@@ -78,8 +78,6 @@ class Statistics extends Component {
       down: this.state.status.DataWeek[this.getToday()][this.getHour()].Down
     }
 
-    console.log(data);
-
     return data;
   }
 
@@ -125,7 +123,6 @@ class Statistics extends Component {
 
     for (let i = 0; i < this.state.batteries.length; i++) {
       if (this.state.batteries[i].CurrentBattery) {
-        console.log(this.state.batteries[i])
         data = this.state.batteries[i];
       }
     }

@@ -16,7 +16,6 @@ const QRScan = () => {
         batId: data
       })
         .then((response) => {
-          console.log("api: " + response.data.response);
           batteryId = data
           Swal('Succes', `${data} blev tilføjet`, 'success')
         })
