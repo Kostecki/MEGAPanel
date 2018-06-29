@@ -4,7 +4,7 @@ import Axios from '../../utils/api';
 import Loader from '../UI/Loader/Loader';
 import CardDefault from '../UI/CardDefault/CardDefault';
 import SolidColors from './SolidColors/SolidColors';
-import Animations from './Animations/Animations';
+//import Animations from './Animations/Animations';
 import withAuthorization from '../Auth/withAuthorization';
 import Navigation from '../Navigation/Navigation';
 
@@ -41,10 +41,16 @@ class Lights extends Component {
 
   handleColorChangeComplete = (color) => {
     let lights = this.state.lights;
-    lights.Color = color.rgb;
+    let newLights = {
+      Color: {
+        R: color.rgb.r,
+        G: color.rgb.g,
+        B: color.rgb.b
+      }
+    }
     lights.Animation = this.state.lights.Animation;
 
-    this.setState({ lights: lights }, () => this.postColorChange())
+    this.setState({ lights: newLights }, () => this.postColorChange())
   }
 
   handlePresetClick = (color) => {
@@ -58,17 +64,24 @@ class Lights extends Component {
     lights.Color = newColor;
     lights.Animation = this.state.lights.Animation;
 
+    console.log(lights);
+
     this.setState({ lights: lights }, () => this.postColorChange());
   }
 
   handleBrightnessChangeComplete = (color) => {
     let brightness = color.rgb.a;
+    let newLights = {
+      Color: {
+        R: this.state.lights.Color.r,
+        G: this.state.lights.Color.g,
+        B: this.state.lights.Color.b
+      }
+    };
+    newLights.Brightness = brightness;
+    newLights.Animation = this.state.lights.Animation;
 
-    let lights = this.state.lights;
-    lights.Brightness = brightness;
-    lights.Animation = this.state.lights.Animation;
-
-    this.setState({ lights: lights }, () => this.postColorChange());
+    this.setState({ lights: newLights }, () => this.postColorChange());
   }
 
   handleAnimationSelection = (animationName, toggle) => {
@@ -113,11 +126,11 @@ class Lights extends Component {
               brightnessChangeHandler={this.handleBrightnessChangeComplete}
               createRgbaStringHandler={this.createRgbaString} />
           </CardDefault>
-          <CardDefault title='Animationer'>
+          {/* <CardDefault title='Animationer'>
             <Animations
               activeAnimation={this.state.lights.animation}
               animationClickHandler={this.handleAnimationSelection} />
-          </CardDefault>
+          </CardDefault> */}
         </div>
         <Navigation />
       </React.Fragment>
