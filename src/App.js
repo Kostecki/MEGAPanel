@@ -4,7 +4,6 @@ import ReactGA from 'react-ga';
 
 import withAuthentication from './components/Auth/withAuthentication';
 
-import Landing from './components/Landing/Landing';
 import Lights from './components/Lights/Lights';
 import Stats from './components/Statistics/Statistics';
 import QRScan from './components/QRScan/QRScan';
@@ -23,9 +22,8 @@ class App extends Component {
     return (
       <div className="App">
         <Switch>
-          <Route exact path='/' component={Landing} />
+          <Route exact path='/' component={Stats} />
           <Route path='/lights' component={Lights} />
-          <Route path='/stats' component={Stats} />
           <Route path='/qr' component={QRScan} />
           <Route path='/admin' component={Admin} />
 

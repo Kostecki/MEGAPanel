@@ -18,11 +18,11 @@ class Navigation extends Component {
     //I'm sorry. This is gross..
     let curPage = this.props.location.pathname;
     switch (curPage) {
-      case '/lights':
+      case '/':
         this.setState({ value: 0 })
         break;
 
-      case '/stats':
+      case '/lights':
         this.setState({ value: 1 })
         break;
 
@@ -42,11 +42,11 @@ class Navigation extends Component {
   handleChange = (event, value) => {
     switch (value) {
       case 0:
-        this.props.history.push('/lights')
+        this.props.history.push('/')
         break;
 
       case 1:
-        this.props.history.push('/stats')
+        this.props.history.push('/lights')
         break;
 
       case 2:
@@ -70,8 +70,8 @@ class Navigation extends Component {
         className={styles.bottomNav}
         value={this.state.value}
       >
-        <BottomNavigationAction label="Lys" icon={<LightsIcon />} />
         <BottomNavigationAction label="Statistik" icon={<StatisticsIcon />} />
+        <BottomNavigationAction label="Lys" icon={<LightsIcon />} />
         <BottomNavigationAction label="QR" icon={<CameraIcon />} />
         <BottomNavigationAction label="Admin" icon={<AdminIcon />} />
       </BottomNavigation>
