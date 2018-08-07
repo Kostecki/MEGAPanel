@@ -1,5 +1,4 @@
 import React from 'react';
-import Card from '@material-ui/core/Card';
 
 import styles from './BatteryVoltage.module.css';
 import './BatteryVoltage.css';
@@ -8,20 +7,16 @@ const BatteryVoltage = (props) => {
   const chargeStatus = () => {
     let voltage = props.data.Voltage;
     let health = '';
-    let icon = '';
 
     if (voltage >= 12.10) {
       health = 'chargeGood'
-      icon = 'mood';
     } else if (voltage > 11.5) {
       health = 'chargeOkay'
-      icon = 'mood';
     } else {
       health = 'chargeBad'
-      icon = 'mood_bad';
     }
 
-    return [health, icon];
+    return health;
   }
 
   const chargeLevel = () => {
@@ -63,13 +58,12 @@ const BatteryVoltage = (props) => {
   }
   
   return (
-    <Card className={styles.voltage}>
-      <p>Batteri ({props.data.BatteryId})</p>
-      <div className={`${styles.voltageStatus} ${chargeStatus()[0]}`}>
-        <h2>{props.data.Voltage} Volt </h2>
-        <h2>{chargeLevel()} %</h2>
+    <div className={styles.container}>
+      <p className={styles.p}>Batteri ({props.data.BatteryId})</p>
+      <div className={`${styles.voltageStatus} ${chargeStatus()}`}>
+        <h2 className={styles.h2}>{props.data.Voltage} Volt ({chargeLevel()}%)</h2>
       </div>
-    </Card>
+    </div>
   )
 }
 

@@ -4,7 +4,7 @@ import Axios from '../../utils/api';
 import Loader from '../UI/Loader/Loader';
 import CardDefault from '../UI/CardDefault/CardDefault';
 import SolidColors from './SolidColors/SolidColors';
-//import Animations from './Animations/Animations';
+import Animations from './Animations/Animations';
 import withAuthorization from '../Auth/withAuthorization';
 import Navigation from '../Navigation/Navigation';
 
@@ -13,14 +13,15 @@ import styles from './Lights.module.css';
 class Lights extends Component {
   state = {
     lights: {},
-    loader: true
+    isLoading: true,
+    firstLoad: false
   }
 
-  componentDidMount = () => {
+  componentWillMount = () => {
     this.fetchFromApi();
     this.interval = setInterval(() => {
       this.fetchFromApi();
-    }, 300000);
+    }, 3000);
   }
 
   componentWillUnmount = () => {
@@ -28,11 +29,14 @@ class Lights extends Component {
   }
 
   fetchFromApi = () => {
-    this.setState({ loader: true });
+    if (!this.state.firstLoad) {
+      this.setState({ loader: true });
+      this.setState({ firstLoad: true });
+    }
+
     Axios.get('/getlit')
       .then((response) => {
-        this.setState({ lights: response.data });
-        this.setState({ loader: false });
+        this.setState({ lights: response.data, isLoading: false});
       })
       .catch((error) => {
         console.log(error);
@@ -40,17 +44,15 @@ class Lights extends Component {
   }
 
   handleColorChangeComplete = (color) => {
-    let lights = this.state.lights;
-    let newLights = {
-      Color: {
-        R: color.rgb.r,
-        G: color.rgb.g,
-        B: color.rgb.b
-      }
+    let newLights = this.state.lights;
+    let newColors = {
+      R: color.rgb.r,
+      G: color.rgb.g,
+      B: color.rgb.b
     }
-    lights.Animation = this.state.lights.Animation;
-
-    this.setState({ lights: newLights }, () => this.postColorChange())
+    
+    newLights.Color = newColors;
+    this.setState({ lights: this.state.lights }, () => this.postColorChange())
   }
 
   handlePresetClick = (color) => {
@@ -63,8 +65,6 @@ class Lights extends Component {
     let lights = this.state.lights;
     lights.Color = newColor;
     lights.Animation = this.state.lights.Animation;
-
-    console.log(lights);
 
     this.setState({ lights: lights }, () => this.postColorChange());
   }
@@ -105,7 +105,7 @@ class Lights extends Component {
   }
 
   render() {
-    if (this.state.loader) {
+    if (this.state.isLoading) {
       return (
         <React.Fragment>
           <Loader title='Farver' />
@@ -126,11 +126,11 @@ class Lights extends Component {
               brightnessChangeHandler={this.handleBrightnessChangeComplete}
               createRgbaStringHandler={this.createRgbaString} />
           </CardDefault>
-          {/* <CardDefault title='Animationer'>
+          <CardDefault title='Animationer'>
             <Animations
               activeAnimation={this.state.lights.animation}
               animationClickHandler={this.handleAnimationSelection} />
-          </CardDefault> */}
+          </CardDefault>
         </div>
         <Navigation />
       </React.Fragment>

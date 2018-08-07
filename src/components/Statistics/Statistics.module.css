@@ -2,21 +2,19 @@
   margin-bottom: 75px;
 }
 
-.group1, .group2 {
+.row {
+  width: 100%;
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
-  box-sizing: border-box;
-  align-items: flex-start;
+  margin-left: 15px;
+  margin-right: 15px;
 }
 
-@media (min-width: 601px) {
-  .group1, .group2 {
-    flex-direction: row;
-  }
+.row:not(:first-of-type) {
+  padding-top: 15px;
 }
 
-.group3 {
-  overflow: auto;
+.row:not(:last-of-type) {
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(0,0,0,.1);
 }
