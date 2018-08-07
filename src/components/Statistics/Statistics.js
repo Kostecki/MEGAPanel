@@ -20,14 +20,15 @@ class Statistics extends Component {
   state = {
     status: {},
     batteries: {},
-    loader: true
+    isLoading: true,
+    firstLoad: false
   }
 
-  componentDidMount = () => {
+  componentWillMount = () => {
     this.fetchFromApi();
     this.interval = setInterval(() => {
       this.fetchFromApi();
-    }, 300000);
+    }, 3000);
   }
 
   componentWillUnmount = () => (
@@ -35,16 +36,13 @@ class Statistics extends Component {
   )
 
   fetchFromApi = () => {
-    this.setState({ loader: true });
     Axios.get('/getstatus')
       .then((response) => {
-        this.setState({ status: response.data }, () => console.log(this.state.status));
-
+        this.setState({ status: response.data });
         return Axios.get('/getbatteries');
       })
       .then((response) => {
-        this.setState({ batteries: response.data });
-        this.setState({ loader: false });
+        this.setState({ batteries: response.data, isLoading: false });
       })
       .catch((error) => {
         console.log(error);
@@ -131,7 +129,7 @@ class Statistics extends Component {
   }
 
   render() {
-    if (this.state.loader) {
+    if (this.state.isLoading) {
       return (
         <React.Fragment>
           <Loader title='Statistik' />

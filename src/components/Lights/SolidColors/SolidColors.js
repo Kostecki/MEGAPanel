@@ -45,7 +45,7 @@ const SolidColors = (props) => (
     </Grid>
 
     <Grid item xs={12} md={6}>
-      <p>Farvevælger ({props.currentSelection.Color.R}, {props.currentSelection.Color.G}, {props.currentSelection.Color.B})</p>
+      <p>Farvevælger RGB({props.currentSelection.Color.R}, {props.currentSelection.Color.G}, {props.currentSelection.Color.B})</p>
       <HuePicker
         className={styles.huePicker}
         color={objectKeysToLowerCase(props.currentSelection.Color)}
