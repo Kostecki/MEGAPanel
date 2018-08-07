@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import Grid from '@material-ui/core/Grid';
 import Moment from 'moment';
 import 'moment/locale/da';
 
 import Loader from '../UI/Loader/Loader';
+import DividerV from '../UI/DividerV/DividerV';
 import Axios from '../../utils/api';
 import CardDefault from './../UI/CardDefault/CardDefault';
 import AvgSpeed from './AvgSpeed/AvgSpeed';
@@ -143,23 +143,28 @@ class Statistics extends Component {
     return (
       <React.Fragment>
         <div className={styles.statsContainer}>
-          <CardDefault title='Statistik' showRefresh clickAction={this.fetchFromApi}>
-            <Grid item xs={12} className={styles.group1}>
+          <CardDefault title='Statistik' showRefresh clickAction={this.fetchFromApi} extraClass={styles.widthAlignment}>
+            <div className={styles.row}>
               <BatteryVoltage data={this.getCurrentBattery()} />
+              <DividerV />
               <BatteriesLastSeen data={this.state.batteries} />
+              <DividerV />
               <AvgSpeed download={this.state.status.Avg.Down} upload={this.state.status.Avg.Up} />
-            </Grid>
-            <Grid item xs={12} className={styles.group2}>
+            </div>
+
+            <div className={styles.row}>
               <UsageInterval period="Time" upload={this.getUpDownHour().up} download={this.getUpDownHour().down} />
               <UsageInterval period="Dag" upload={this.getUpDownDay().up} download={this.getUpDownDay().down} />
               <UsageInterval period="Uge" upload={this.getUpDownWeek().up} download={this.getUpDownWeek().down} />
-            </Grid>
-            <Grid item xs={12} className={styles.group3}>
+            </div>
+
+            <div className={styles.row}>
               <DailyBarGraph data={this.state.status.DataWeek[this.getToday()]} />
-            </Grid>
-            <Grid item xs={12}>
+            </div>
+
+            <div className={styles.row}>
               <VoltageGraph data={this.state.status.BatteryWeek} />
-            </Grid>
+            </div>
           </CardDefault>
         </div>
         <Navigation />

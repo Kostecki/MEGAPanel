@@ -4,7 +4,7 @@ import Axios from '../../utils/api';
 import Loader from '../UI/Loader/Loader';
 import CardDefault from '../UI/CardDefault/CardDefault';
 import SolidColors from './SolidColors/SolidColors';
-//import Animations from './Animations/Animations';
+import Animations from './Animations/Animations';
 import withAuthorization from '../Auth/withAuthorization';
 import Navigation from '../Navigation/Navigation';
 
@@ -126,11 +126,11 @@ class Lights extends Component {
               brightnessChangeHandler={this.handleBrightnessChangeComplete}
               createRgbaStringHandler={this.createRgbaString} />
           </CardDefault>
-          {/* <CardDefault title='Animationer'>
+          <CardDefault title='Animationer'>
             <Animations
               activeAnimation={this.state.lights.animation}
               animationClickHandler={this.handleAnimationSelection} />
-          </CardDefault> */}
+          </CardDefault>
         </div>
         <Navigation />
       </React.Fragment>

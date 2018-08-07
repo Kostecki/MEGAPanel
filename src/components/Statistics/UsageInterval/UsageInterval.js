@@ -1,6 +1,4 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
-import Card from '@material-ui/core/Card';
 import { defaults, Doughnut } from 'react-chartjs-2';
 import Moment from 'moment';
 import 'moment/locale/da';
@@ -41,7 +39,8 @@ const UsageInterval = (props) => {
   const data = {
     labels: ['Upload', 'Download'],
     datasets: [{
-      data: [props.upload, props.download],
+      // data: [props.upload, props.download],
+      data: [17, 28],
       backgroundColor: [
         '#616774',
         '#46BFBD'
@@ -67,15 +66,11 @@ const UsageInterval = (props) => {
   }
 
   return (
-    <Card className={`${styles.usageInterval} ${props.period.toLowerCase()}`}>
-      <p>{props.period} ({usageIntervalPeriod(props.period)})</p>
-      <Grid container spacing={16}>
-        <Grid item xs={12}>
-          <p className={styles.textInsideDoughnut}><i className="fas fa-long-arrow-alt-up"></i>{formatSizeUnits(props.upload * 1024)} <br /> <i className="fas fa-long-arrow-alt-down"></i>{formatSizeUnits(props.download * 1024)}</p>
-          <Doughnut data={data} options={options} />
-        </Grid>
-      </Grid>
-    </Card>
+    <div className={`${styles.usageInterval} ${props.period.toLowerCase()}`}>
+      <p>{usageIntervalPeriod(props.period)}</p>
+      <p className={styles.textInsideDoughnut}><i className="fas fa-long-arrow-alt-up"></i>{formatSizeUnits(props.upload * 1024)} <br /> <i className="fas fa-long-arrow-alt-down"></i>{formatSizeUnits(props.download * 1024)}</p>
+      <Doughnut data={data} options={options} />
+    </div>
   )
 }
 

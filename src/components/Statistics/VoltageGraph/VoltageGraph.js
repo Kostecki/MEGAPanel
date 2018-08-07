@@ -1,5 +1,4 @@
 import React from 'react';
-import Card from '@material-ui/core/Card';
 import { Line } from 'react-chartjs-2';
 
 import styles from './VoltageGraph.module.css';
@@ -24,6 +23,7 @@ const VoltageGraph = (props) => {
     }],
   }
   const options = {
+    maintainAspectRatio: false,
     scales: {
       yAxes: [{
         id: 'left-y-axis',
@@ -41,10 +41,13 @@ const VoltageGraph = (props) => {
   }
 
   return (
-    <Card className={styles.voltageGraph}>
+    <div className={styles.container}>
       <p>Batterierne i løbet af ugen</p>
-      <Line data={data} options={options} width={700} height={191} /> {/* not specifying a height fucks up the layout. Same with setting it to anything above 191.. TODO: Make it nicer */}
-    </Card>
+      <Line
+        data={data}
+        options={options}
+        width={630} /> {/* not specifying a height fucks up the layout. Same with setting it to anything above 191.. TODO: Make it nicer */}
+    </div>
   )
 }
 

@@ -1,23 +1,15 @@
-.voltage {
+.container {
   padding: 15px;
-  width: 100%;
-  box-sizing: border-box;
-  height: auto;
 }
 
-@media (min-width: 601px) {
-  .voltage {
-    width: 210px; /* 180px + 30px margin (⊙_⊙) */
-    height: 100%;
-  }
-}
-
-.voltage p {
+.p {
   margin-top: 0;
 }
 
-.voltage h2 {
-  margin: 0 10px 0 0;
+.h2 {
+  margin: 0;
+  font-size: 30px;
+  font-weight: bold;
 }
 
 .voltageStatus {
@@ -25,10 +17,4 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-}
-
-@media (min-width: 601px) {
-  .voltageStatus {
-    flex-direction: column;
-  }
 }

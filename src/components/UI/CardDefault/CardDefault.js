@@ -10,7 +10,7 @@ const CardDefault = (props) => {
   return (
     <Card className={styles.card}>
       <TitleWithDivider showRefresh={props.showRefresh} clickAction={props.clickAction} title={props.title} />
-      <Grid container spacing={24}>
+      <Grid container spacing={24} className={props.extraClass}>
         {props.children}
       </Grid>
     </Card>

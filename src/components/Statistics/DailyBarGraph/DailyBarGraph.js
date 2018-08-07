@@ -1,5 +1,4 @@
 import React from 'react';
-import Card from '@material-ui/core/Card';
 import { Bar } from 'react-chartjs-2';
 
 import formatSizeUnits from '../../../utils/formatSizeUnits';
@@ -40,13 +39,13 @@ const DailyBarGraph = (props) => {
   };
   
   return (
-    <Card className={styles.dailyBarGraphContainer}>
-      <p>Dagen i detaljer</p>
+    <div className={styles.container}>
+      <p className={styles.p}>Dagen i detaljer</p>
       <Bar
         data={data}
-        width={700}
+        width={630}
         options={{
-          maintainAspectRatio: true,
+          maintainAspectRatio: false,
           tooltips: {
             callbacks: {
               label: function (tooltipItems, data) {
@@ -55,7 +54,7 @@ const DailyBarGraph = (props) => {
             }
           }
         }} />
-    </Card>
+    </div>
   )
 }
 
