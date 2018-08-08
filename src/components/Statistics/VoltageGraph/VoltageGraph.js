@@ -45,8 +45,7 @@ const VoltageGraph = (props) => {
       <p>Batterierne i løbet af ugen</p>
       <Line
         data={data}
-        options={options}
-        width={630} /> {/* not specifying a height fucks up the layout. Same with setting it to anything above 191.. TODO: Make it nicer */}
+        options={options} />
     </div>
   )
 }

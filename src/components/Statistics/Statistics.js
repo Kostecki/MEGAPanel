@@ -3,7 +3,6 @@ import Moment from 'moment';
 import 'moment/locale/da';
 
 import Loader from '../UI/Loader/Loader';
-import DividerV from '../UI/DividerV/DividerV';
 import Axios from '../../utils/api';
 import CardDefault from './../UI/CardDefault/CardDefault';
 import AvgSpeed from './AvgSpeed/AvgSpeed';
@@ -144,9 +143,9 @@ class Statistics extends Component {
           <CardDefault title='Statistik' showRefresh clickAction={this.fetchFromApi} extraClass={styles.widthAlignment}>
             <div className={styles.row}>
               <BatteryVoltage data={this.getCurrentBattery()} />
-              <DividerV />
+              <div className={styles.divider} />
               <BatteriesLastSeen data={this.state.batteries} />
-              <DividerV />
+              <div className={styles.divider} />
               <AvgSpeed download={this.state.status.Avg.Down} upload={this.state.status.Avg.Up} />
             </div>
 

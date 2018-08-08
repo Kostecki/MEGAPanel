@@ -43,7 +43,6 @@ const DailyBarGraph = (props) => {
       <p className={styles.p}>Dagen i detaljer</p>
       <Bar
         data={data}
-        width={630}
         options={{
           maintainAspectRatio: false,
           tooltips: {
