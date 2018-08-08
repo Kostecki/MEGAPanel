@@ -155,12 +155,14 @@ class Statistics extends Component {
               <UsageInterval period="Uge" upload={this.getUpDownWeek().up} download={this.getUpDownWeek().down} />
             </div>
 
+            <div className={styles.wrapper}>
             <div className={styles.row}>
               <DailyBarGraph data={this.state.status.DataWeek[this.getToday()]} />
             </div>
 
             <div className={styles.row}>
               <VoltageGraph data={this.state.status.BatteryWeek} />
+            </div>
             </div>
           </CardDefault>
         </div>

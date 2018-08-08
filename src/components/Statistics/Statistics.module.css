@@ -7,8 +7,11 @@
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  margin-left: 15px;
-  margin-right: 15px;
+}
+
+.wrapper {
+  padding: 15px;
+  width: 100%;
 }
 
 .row:not(:last-of-type) {
