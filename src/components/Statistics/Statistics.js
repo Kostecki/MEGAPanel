@@ -143,11 +143,13 @@ class Statistics extends Component {
           <CardDefault title='Statistik' showRefresh clickAction={this.fetchFromApi} extraClass={styles.widthAlignment}>
             <div className={styles.row}>
               <BatteryVoltage data={this.getCurrentBattery()} />
-              <div className={styles.divider} />
+              <div className={styles.dividerV} />
               <BatteriesLastSeen data={this.state.batteries} />
-              <div className={styles.divider} />
+              <div className={styles.dividerV} />
               <AvgSpeed download={this.state.status.Avg.Down} upload={this.state.status.Avg.Up} />
             </div>
+
+            <div className={styles.dividerH} />
 
             <div className={styles.row}>
               <UsageInterval period="Time" upload={this.getUpDownHour().up} download={this.getUpDownHour().down} />
@@ -155,8 +157,10 @@ class Statistics extends Component {
               <UsageInterval period="Uge" upload={this.getUpDownWeek().up} download={this.getUpDownWeek().down} />
             </div>
 
+            <div className={styles.dividerH} />
+
             <div className={styles.wrapper}>
-            <div className={styles.row}>
+            <div className={`${styles.row} ${styles.dailyBarGraph}`}>
               <DailyBarGraph data={this.state.status.DataWeek[this.getToday()]} />
             </div>
 

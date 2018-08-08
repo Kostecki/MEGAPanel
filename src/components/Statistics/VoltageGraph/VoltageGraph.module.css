@@ -2,10 +2,5 @@
   position: relative;
   height: 250px;
   width: 100%;
-}
-
-@media (min-width: 768px) {
-  .container:last-of-type {
-    padding-bottom: 30px;
-  }
+  padding-bottom: 30px;
 }
