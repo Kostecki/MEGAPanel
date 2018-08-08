@@ -21,7 +21,7 @@ class Lights extends Component {
     this.fetchFromApi();
     this.interval = setInterval(() => {
       this.fetchFromApi();
-    }, 3000);
+    }, 5000);
   }
 
   componentWillUnmount = () => {
