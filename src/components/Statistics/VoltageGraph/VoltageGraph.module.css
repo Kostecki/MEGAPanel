@@ -6,6 +6,6 @@
 
 @media (min-width: 768px) {
   .container:last-of-type {
-    padding-bottom: 50px;
+    padding-bottom: 30px;
   }
 }
