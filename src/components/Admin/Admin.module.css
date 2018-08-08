@@ -1,18 +1,13 @@
-.adminContainer {
-  display: flex;
-  flex-direction: column;
-  margin: 5px auto 35px auto;
-  width: auto;
+.container {
+    padding: 15px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
 }
 
-.adminContainer form {
-  display: inline-grid;
-}
-
-.adminContainer form input {
-  margin-top: 20px;
-}
-
-.adminContainer button {
-  margin-top: 35px;
+@media (min-width: 768px) {
+    .container {
+        flex-direction: row;
+    }
 }

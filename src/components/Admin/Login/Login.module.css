@@ -1,0 +1,13 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+}
+
+.form {
+  display: inline-grid;
+}
+
+.container button {
+  margin-top: 20px;
+}
