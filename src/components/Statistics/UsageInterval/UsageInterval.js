@@ -2,6 +2,8 @@ import React from 'react';
 import { defaults, Doughnut } from 'react-chartjs-2';
 import Moment from 'moment';
 import 'moment/locale/da';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faLongArrowAltUp, faLongArrowAltDown } from '@fortawesome/free-solid-svg-icons'
 
 import formatSizeUnits from '../../../utils/formatSizeUnits';
 
@@ -68,7 +70,7 @@ const UsageInterval = (props) => {
   return (
     <div className={`${styles.usageInterval} ${props.period.toLowerCase()}`}>
       <p>{usageIntervalPeriod(props.period)}</p>
-      <p className={styles.textInsideDoughnut}><i className="fas fa-long-arrow-alt-up"></i>{formatSizeUnits(props.upload * 1024)} <br /> <i className="fas fa-long-arrow-alt-down"></i>{formatSizeUnits(props.download * 1024)}</p>
+      <p className={styles.textInsideDoughnut}><FontAwesomeIcon className={styles.icon} icon={faLongArrowAltUp} />{formatSizeUnits(props.upload * 1024)} <br /> <FontAwesomeIcon className={styles.icon} icon={faLongArrowAltDown} />{formatSizeUnits(props.download * 1024)}</p>
       <Doughnut data={data} options={options} />
     </div>
   )

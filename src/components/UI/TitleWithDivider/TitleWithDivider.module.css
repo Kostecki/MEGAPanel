@@ -9,7 +9,7 @@
   align-items: center;
 }
 
-.cardTitle span {
+.refresh { /* TODO: Animate(rotate) on click */
   cursor: pointer;
 }
 
