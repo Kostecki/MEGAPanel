@@ -25,9 +25,13 @@ class Statistics extends Component {
 
   componentWillMount = () => {
     this.fetchFromApi();
-    this.interval = setInterval(() => {
-      this.fetchFromApi();
-    }, 5000);
+
+    //Only fetch new data when in production
+    if (process.env.NODE_ENV === "production") {
+      this.interval = setInterval(() => {
+        this.fetchFromApi();
+      }, 5000);
+    }
   }
 
   componentWillUnmount = () => (
