@@ -20,7 +20,7 @@ class Statistics extends Component {
     status: {},
     batteries: {},
     isLoading: true,
-    firstLoad: false
+    isFirstLoad: true
   }
 
   componentWillMount = () => {
@@ -35,6 +35,11 @@ class Statistics extends Component {
   )
 
   fetchFromApi = () => {
+    if (this.state.isFirstLoad) {
+      this.setState({ isLoading: true });
+      this.setState({ isFirstLoad: false });
+    }
+
     Axios.get('/getstatus')
       .then((response) => {
         this.setState({ status: response.data });

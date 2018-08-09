@@ -14,7 +14,7 @@ class Lights extends Component {
   state = {
     lights: {},
     isLoading: true,
-    firstLoad: false
+    isFirstLoad: false
   }
 
   componentWillMount = () => {
@@ -29,9 +29,9 @@ class Lights extends Component {
   }
 
   fetchFromApi = () => {
-    if (!this.state.firstLoad) {
-      this.setState({ loader: true });
-      this.setState({ firstLoad: true });
+    if (this.state.isFirstLoad) {
+      this.setState({ isLoading: true });
+      this.setState({ isFirstLoad: false });
     }
 
     Axios.get('/getlit')
