@@ -1,21 +1,21 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import { HuePicker, AlphaPicker } from 'react-color';
+import { AlphaPicker, SliderPicker } from 'react-color';
 
 import SolidColorPreset from './SolidColorPreset/SolorColorPreset';
 
 import styles from './SolidColors.module.css';
 
-// const objectKeysToLowerCase = (obj) => {
-//   Object.keys(obj).forEach(function (key) {
-//     var k = key.toLowerCase();
-//     if (k !== key) {
-//       obj[k] = obj[key];
-//       delete obj[key];
-//     }
-//   });
-//   return (obj);
-// }
+const objectKeysToLowerCase = (obj) => {
+  Object.keys(obj).forEach(function (key) {
+    var k = key.toLowerCase();
+    if (k !== key) {
+      obj[k] = obj[key];
+      delete obj[key];
+    }
+  });
+  return (obj);
+}
 
 const setBrightness = (brightness) => {
   let brightnessObject = {
@@ -46,9 +46,9 @@ const SolidColors = (props) => (
 
     <Grid item xs={12} md={6}>
       <p>Farvevælger RGB({props.currentSelection.Color.R}, {props.currentSelection.Color.G}, {props.currentSelection.Color.B})</p>
-      <HuePicker
-        className={styles.huePicker}
-        color={props.currentSelection.Color}
+      <SliderPicker
+        className={styles.sliderPicker}
+        color={objectKeysToLowerCase(props.currentSelection.Color)}
         onChangeComplete={props.hueChangeHandler} />
     </Grid>
 

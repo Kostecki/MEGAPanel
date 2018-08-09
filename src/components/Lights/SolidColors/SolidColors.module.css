@@ -37,6 +37,10 @@ p {
   width: inherit !important;
 }
 
+.sliderPicker > div:nth-child(2) > div {
+  margin-top: 10px !important;
+}
+
 .alphaPicker {
   margin-top: 10px;
   width: inherit !important;
