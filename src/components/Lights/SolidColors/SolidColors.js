@@ -34,21 +34,21 @@ const SolidColors = (props) => (
       <div className={styles.colorPreview} style={{ backgroundColor: props.createRgbStringHandler(props.currentSelection.Color) }}></div>
     </Grid>
     <Grid item xs={8} className={styles.colorPresets}>
-      <SolidColorPreset backgroundColor='#ff0000' onClickHandler={props.presetClickHandler} />
-      <SolidColorPreset backgroundColor='#ffffff' onClickHandler={props.presetClickHandler} />
-      <SolidColorPreset backgroundColor='#ffff00' onClickHandler={props.presetClickHandler} />
-      <SolidColorPreset backgroundColor='#008000' onClickHandler={props.presetClickHandler} />
-      <SolidColorPreset backgroundColor='#40e0d0' onClickHandler={props.presetClickHandler} />
-      <SolidColorPreset backgroundColor='#0000ff' onClickHandler={props.presetClickHandler} />
-      <SolidColorPreset backgroundColor='#FF5000' onClickHandler={props.presetClickHandler} />
-      <SolidColorPreset backgroundColor='#800080' onClickHandler={props.presetClickHandler} />
+      <SolidColorPreset backgroundColor='#f44336' onClickHandler={props.presetClickHandler} />
+      <SolidColorPreset backgroundColor='#e91e63' onClickHandler={props.presetClickHandler} />
+      <SolidColorPreset backgroundColor='#9c27b0' onClickHandler={props.presetClickHandler} />
+      <SolidColorPreset backgroundColor='#3f51b5' onClickHandler={props.presetClickHandler} />
+      <SolidColorPreset backgroundColor='#04a9f4' onClickHandler={props.presetClickHandler} />
+      <SolidColorPreset backgroundColor='#009688' onClickHandler={props.presetClickHandler} />
+      <SolidColorPreset backgroundColor='#8bc34a' onClickHandler={props.presetClickHandler} />
+      <SolidColorPreset backgroundColor='#ffeb3b' onClickHandler={props.presetClickHandler} />
     </Grid>
 
     <Grid item xs={12} md={6}>
       <p>Farvevælger RGB({props.currentSelection.Color.R}, {props.currentSelection.Color.G}, {props.currentSelection.Color.B})</p>
       <SliderPicker
         className={styles.sliderPicker}
-        color={objectKeysToLowerCase(props.currentSelection.Color)}
+        color={objectKeysToLowerCase(props.currentSelection.Color)} //The color picker only accepts lowercase RGB ¯\_(ツ)_/¯
         onChangeComplete={props.hueChangeHandler} />
     </Grid>
 
