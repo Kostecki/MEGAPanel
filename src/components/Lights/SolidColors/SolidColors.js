@@ -31,7 +31,7 @@ const setBrightness = (brightness) => {
 const SolidColors = (props) => (
   <React.Fragment>
     <Grid item xs={4} md={4}>
-      <div className={styles.colorPreview} style={{ background: props.createRgbaStringHandler(props.currentSelection.Color) }}></div>
+      <div className={styles.colorPreview} style={{ backgroundColor: props.createRgbStringHandler(props.currentSelection.Color) }}></div>
     </Grid>
     <Grid item xs={8} className={styles.colorPresets}>
       <SolidColorPreset backgroundColor='#ff0000' onClickHandler={props.presetClickHandler} />
