@@ -70,17 +70,19 @@ class Lights extends Component {
   }
 
   handleBrightnessChangeComplete = (color) => {
+    let currentState = this.state.lights;
     let brightness = color.rgb.a;
+
     let newLights = {
       Color: {
-        R: this.state.lights.Color.R,
-        G: this.state.lights.Color.G,
-        B: this.state.lights.Color.B
+        R: currentState.Color.r, //This is lowercase r, g and b because it's what the color picker returns
+        G: currentState.Color.g,
+        B: currentState.Color.b
       }
     };
 
     newLights.Brightness = brightness;
-    newLights.Animation = this.state.lights.Animation;
+    newLights.Animation = currentState.Animation;
 
     this.setState({ lights: newLights }, () => this.postColorChange());
   }
