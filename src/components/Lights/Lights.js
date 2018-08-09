@@ -78,6 +78,7 @@ class Lights extends Component {
         B: this.state.lights.Color.B
       }
     };
+
     newLights.Brightness = brightness;
     newLights.Animation = this.state.lights.Animation;
 
@@ -125,7 +126,7 @@ class Lights extends Component {
               alphaChangeHandler={this.handleColorChangeComplete}
               presetClickHandler={this.handlePresetClick}
               brightnessChangeHandler={this.handleBrightnessChangeComplete}
-              createRgbStringHandler={this.createRgbaString} />
+              createRgbStringHandler={this.createRgbString} />
           </CardDefault>
           <CardDefault title='Animationer'>
             <Animations
