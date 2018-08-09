@@ -6,16 +6,16 @@ import SolidColorPreset from './SolidColorPreset/SolorColorPreset';
 
 import styles from './SolidColors.module.css';
 
-const objectKeysToLowerCase = (obj) => {
-  Object.keys(obj).forEach(function (key) {
-    var k = key.toLowerCase();
-    if (k !== key) {
-      obj[k] = obj[key];
-      delete obj[key];
-    }
-  });
-  return (obj);
-}
+// const objectKeysToLowerCase = (obj) => {
+//   Object.keys(obj).forEach(function (key) {
+//     var k = key.toLowerCase();
+//     if (k !== key) {
+//       obj[k] = obj[key];
+//       delete obj[key];
+//     }
+//   });
+//   return (obj);
+// }
 
 const setBrightness = (brightness) => {
   let brightnessObject = {
@@ -48,7 +48,7 @@ const SolidColors = (props) => (
       <p>Farvevælger RGB({props.currentSelection.Color.R}, {props.currentSelection.Color.G}, {props.currentSelection.Color.B})</p>
       <HuePicker
         className={styles.huePicker}
-        color={objectKeysToLowerCase(props.currentSelection.Color)}
+        color={props.currentSelection.Color}
         onChangeComplete={props.hueChangeHandler} />
     </Grid>
 
