@@ -9,7 +9,7 @@
   align-items: center;
 }
 
-.refresh { /* TODO: Animate(rotate) on click */
+.refresh {
   cursor: pointer;
 }
 
