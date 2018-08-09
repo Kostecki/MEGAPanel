@@ -102,8 +102,13 @@ class Lights extends Component {
   )
 
   postColorChange = () => {
-    console.log(this.state.lights);
-    Axios.post('/setlights', this.state.lights);
+    Axios.post('/setlights', this.state.lights)
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error)
+    })
   }
 
   render() {
