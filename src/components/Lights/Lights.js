@@ -73,9 +73,9 @@ class Lights extends Component {
     let brightness = color.rgb.a;
     let newLights = {
       Color: {
-        R: this.state.lights.Color.r,
-        G: this.state.lights.Color.g,
-        B: this.state.lights.Color.b
+        R: this.state.lights.Color.R,
+        G: this.state.lights.Color.G,
+        B: this.state.lights.Color.B
       }
     };
     newLights.Brightness = brightness;
@@ -96,11 +96,12 @@ class Lights extends Component {
     this.setState({ lights: newLights }, () => this.postColorChange());
   }
 
-  createRgbaString = () => (
-    `rgba(${this.state.lights.Color.R}, ${this.state.lights.Color.G}, ${this.state.lights.Color.B})`
+  createRgbString = () => (
+    `rgb(${this.state.lights.Color.R}, ${this.state.lights.Color.G}, ${this.state.lights.Color.B})`
   )
 
   postColorChange = () => {
+    console.log(this.state.lights);
     Axios.post('/setlights', this.state.lights);
   }
 
@@ -124,7 +125,7 @@ class Lights extends Component {
               alphaChangeHandler={this.handleColorChangeComplete}
               presetClickHandler={this.handlePresetClick}
               brightnessChangeHandler={this.handleBrightnessChangeComplete}
-              createRgbaStringHandler={this.createRgbaString} />
+              createRgbStringHandler={this.createRgbaString} />
           </CardDefault>
           <CardDefault title='Animationer'>
             <Animations
