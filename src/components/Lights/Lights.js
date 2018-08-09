@@ -85,15 +85,15 @@ class Lights extends Component {
   }
 
   handleAnimationSelection = (animationName, toggle) => {
-    let lights = this.state.lights;
+    let newLights = this.state.lights;
 
     if (toggle) {
-      lights.Animation = animationName;
+      newLights.Animation = animationName;
     } else {
-      lights.Animation = null;
+      newLights.Animation = null;
     }
 
-    this.setState({ lights: lights }, () => this.postColorChange());
+    this.setState({ lights: newLights }, () => this.postColorChange());
   }
 
   createRgbaString = () => (
