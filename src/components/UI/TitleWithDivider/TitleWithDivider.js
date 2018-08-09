@@ -17,7 +17,7 @@ class TitleWithDivider extends Component {
       <React.Fragment>
       <h3 className={styles.cardTitle}>{this.props.title} {this.showRefresh > 0 && <FontAwesomeIcon onTransitionEnd={() => this.setState({animate: false})}
                                                                                                     onClick={(event) => { this.props.clickAction(); this.setState({animate: true}) }}
-                                                                                                    className={`${styles.refresh} ${this.state.animate ? 'animate' : null }`}
+                                                                                                    className={`${styles.refresh} ${this.state.animate ? 'refreshAnimation' : null }`}
                                                                                                     icon={faSyncAlt} />}</h3>
       <Divider className={styles.divider} />
     </React.Fragment>

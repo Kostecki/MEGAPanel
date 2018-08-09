@@ -9,7 +9,7 @@ const Loader = (props) => {
   return (
     <CardDefault title={props.title}>
       <Grid item xs={12} className={styles.loading}>
-        <div className="lds-dual-ring"></div>
+        <div className="loadingAnimation"></div>
       </Grid>
     </CardDefault>
   )
