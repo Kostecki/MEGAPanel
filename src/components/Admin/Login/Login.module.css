@@ -4,10 +4,23 @@
   width: auto;
 }
 
-.form {
-  display: inline-grid;
+@media (min-width: 768px) {
+  .container {
+      width: 96%;
+      float: right;
+  }
 }
 
 .container button {
   margin-top: 20px;
+  display: block;
+  width: 100%;
+}
+
+.form {
+  display: inline-grid;
+}
+
+.input:first-of-type {
+  padding-top: 0;
 }
