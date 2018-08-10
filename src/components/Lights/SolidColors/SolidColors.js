@@ -45,7 +45,7 @@ const SolidColors = (props) => (
     </Grid>
 
     <Grid item xs={12} md={6}>
-      <p>Farvevælger RGB({props.currentSelection.Color.R}, {props.currentSelection.Color.G}, {props.currentSelection.Color.B})</p>
+      <p className={styles.p}>Farvevælger RGB({props.currentSelection.Color.R}, {props.currentSelection.Color.G}, {props.currentSelection.Color.B})</p>
       <SliderPicker
         className={styles.sliderPicker}
         color={objectKeysToLowerCase(props.currentSelection.Color)} //The color picker only accepts lowercase RGB ¯\_(ツ)_/¯
@@ -53,7 +53,7 @@ const SolidColors = (props) => (
     </Grid>
 
     <Grid item xs={12} md={6} className={styles.brightnessSlider}>
-      <p>Lysstyrke ({Math.trunc(props.currentSelection.Brightness * 100)}%)</p>
+      <p className={styles.p}>Lysstyrke ({Math.trunc(props.currentSelection.Brightness * 100)}%)</p>
       <AlphaPicker
         className={styles.alphaPicker}
         color={setBrightness(props.currentSelection.Brightness)}

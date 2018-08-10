@@ -42,7 +42,7 @@ const VoltageGraph = (props) => {
 
   return (
     <div className={styles.container}>
-      <p>Batterierne i løbet af ugen</p>
+      <p className={styles.p}>Batterierne i løbet af ugen</p>
       <Line
         data={data}
         options={options} />

@@ -69,7 +69,7 @@ const UsageInterval = (props) => {
 
   return (
     <div className={`${styles.usageInterval} ${props.period.toLowerCase()}`}>
-      <p>{usageIntervalPeriod(props.period)}</p>
+      <p className={styles.p}>{usageIntervalPeriod(props.period)}</p>
       <p className={styles.textInsideDoughnut}><FontAwesomeIcon className={styles.icon} icon={faLongArrowAltUp} />{formatSizeUnits(props.upload * 1024)} <br /> <FontAwesomeIcon className={styles.icon} icon={faLongArrowAltDown} />{formatSizeUnits(props.download * 1024)}</p>
       <Doughnut data={data} options={options} />
     </div>
