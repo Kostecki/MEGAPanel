@@ -37,7 +37,7 @@ class OTAUpload extends Component {
     handleRestoreFW = () => {
         swal({
             title: 'Er du HELT sikker?',
-            text: "Det bliver noget lort at frotryde ude på en fucking mark",
+            text: "Det bliver noget lort at fortryde ude på en fucking mark",
             type: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -47,7 +47,7 @@ class OTAUpload extends Component {
             if (result.value) {
               swal(
                 'Got it!',
-                "Controlleren bliver gendannet",
+                'Controlleren bliver gendannet.. <br> (🤞)',
                 'success'
               )
               axios.get('') //This needs an actual endpoint
