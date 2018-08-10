@@ -11,6 +11,7 @@
 
 .refresh {
   cursor: pointer;
+  opacity: .5;
 }
 
 .divider {
