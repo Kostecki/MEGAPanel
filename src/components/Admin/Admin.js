@@ -16,7 +16,7 @@ const Admin = () => {
                     <Grid item xs={12}>
                         <OTAUpload />
                     </Grid>
-                    <Grid item xs={12}>
+                    <Grid item xs={12} className={styles.admin}>
                         <Login />
                     </Grid>
                 </div>

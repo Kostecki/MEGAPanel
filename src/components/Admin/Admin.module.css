@@ -11,3 +11,11 @@
         flex-direction: row;
     }
 }
+
+@media (min-width: 768px) {
+    .admin {
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+    }
+}
