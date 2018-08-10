@@ -18,7 +18,8 @@ const byPropKey = (propertyName, value) => () => ({
 const INITIAL_STATE = {
   username: '',
   password: '',
-  error: null
+  error: null,
+  isLoading: false
 };
 
 class Login extends Component {
@@ -38,15 +39,17 @@ class Login extends Component {
       history
     } = this.props;
 
-    auth.doSignInWithEmailAndPassword(username, password)
-      .then(() => {
-        this.setState(() => ({ ...INITIAL_STATE }));
-        history.push(this.props.location.state.from);
-      })
-      .catch(error => {
-        this.setState(byPropKey('error', error));
-        Swal('Oops..', error.message, 'error')
-      });
+    this.setState({ isLoading: true }, () => {
+      auth.doSignInWithEmailAndPassword(username, password)
+        .then(() => {
+          this.setState(() => ({ ...INITIAL_STATE }));
+          history.push(this.props.location.state.from);
+        })
+        .catch(error => {
+          this.setState(byPropKey('error', error));
+          Swal('Oops..', error.message, 'error')
+        });
+    })
 
     event.preventDefault();
   }
@@ -62,32 +65,39 @@ class Login extends Component {
     return (
       <React.Fragment>
         <CardDefault title="login">
-          <div className={styles.loginContainer}>
-            <AuthUserContext.Consumer>
-              {authUser => authUser ?
-                <React.Fragment>
-                  <h2>Allerede logget ind..</h2>
-                  <Button onClick={auth.doSignOut} variant="contained" color="secondary">Log ud</Button>
-                </React.Fragment> :
-                <form onSubmit={this.onSubmit}>
-                <Input
-                    value={username}
-                    onChange={event => this.setState(byPropKey('username', event.target.value))}
-                    type="text"
-                    placeholder="Brugernavn"
-                  />
-                  <Input
-                    value={password}
-                    onChange={event => this.setState(byPropKey('password', event.target.value))}
-                    type="password"
-                    placeholder="Password"
-                  />
-                  <Button disabled={isInvalid} type="submit" variant="contained" color="primary">
-                    Log ind
+          <div className={styles.container}>
+            {this.state.isLoading &&
+              <div className={styles.loading}>
+                <div className="loadingAnimation"></div>
+              </div>
+            }
+            {!this.state.isLoading &&
+              <AuthUserContext.Consumer>
+                {authUser => authUser ?
+                  <React.Fragment>
+                    <h2>Allerede logget ind..</h2>
+                    <Button onClick={auth.doSignOut} variant="contained" color="secondary">Log ud</Button>
+                  </React.Fragment> :
+                  <form onSubmit={this.onSubmit} className={styles.form}>
+                    <Input
+                      value={username}
+                      onChange={event => this.setState(byPropKey('username', event.target.value))}
+                      type="text"
+                      placeholder="Brugernavn"
+                    />
+                    <Input
+                      value={password}
+                      onChange={event => this.setState(byPropKey('password', event.target.value))}
+                      type="password"
+                      placeholder="Password"
+                    />
+                    <Button disabled={isInvalid} type="submit" variant="contained" color="primary">
+                      Log ind
                   </Button>
-                </form>
-              }
-            </AuthUserContext.Consumer>
+                  </form>
+                }
+              </AuthUserContext.Consumer>
+            }
           </div>
         </CardDefault>
         <Navigation />
