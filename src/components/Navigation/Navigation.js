@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import LightsIcon from '@material-ui/icons/ColorLens'
@@ -9,10 +10,17 @@ import AdminIcon from '@material-ui/icons/Settings';
 
 import styles from './Navigation.module.css';
 
+const theme = createMuiTheme({
+  palette: {
+    primary: { main: '#FF3D02' },
+    secondary: { main: '#3d5afe' },
+  },
+});
+
 class Navigation extends Component {
   state = {
     value: null
-  }
+  };
 
   componentWillMount() {
     //I'm sorry. This is gross..
@@ -40,42 +48,22 @@ class Navigation extends Component {
   }
 
   handleChange = (event, value) => {
-    switch (value) {
-      case 0:
-        this.props.history.push('/')
-        break;
-
-      case 1:
-        this.props.history.push('/lights')
-        break;
-
-      case 2:
-        this.props.history.push('/qr')
-        break;
-
-      case 3:
-        this.props.history.push('/admin')
-        break;
-
-      default:
-        break;
-    }
-  }
+    this.setState({ value });
+  };
 
   render() {
+    const { value } = this.state;
+
     return (
-      <BottomNavigation
-        onChange={this.handleChange}
-        showLabels
-        className={styles.bottomNav}
-        value={this.state.value}
-      >
-        <BottomNavigationAction label="Statistik" icon={<StatisticsIcon />} />
-        <BottomNavigationAction label="Lys" icon={<LightsIcon />} />
-        <BottomNavigationAction label="QR" icon={<CameraIcon />} />
-        <BottomNavigationAction label="Admin" icon={<AdminIcon />} />
-      </BottomNavigation>
-    )
+      <MuiThemeProvider theme={theme}>
+        <BottomNavigation showLabels value={value} onChange={this.handleChange} className={styles.bottomNav}>
+          <BottomNavigationAction label="Statistik" component={Link} to="/" icon={<StatisticsIcon />} />
+          <BottomNavigationAction label="Lys" component={Link} to="/lights" icon={<LightsIcon />} />
+          <BottomNavigationAction label="QR" component={Link} to="/qr" icon={<CameraIcon />} />
+          <BottomNavigationAction label="Admin" component={Link} to="/admin" icon={<AdminIcon />} />
+        </BottomNavigation>
+      </MuiThemeProvider>
+    );
   }
 }
 
