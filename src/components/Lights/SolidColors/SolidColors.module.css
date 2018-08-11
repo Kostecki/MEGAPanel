@@ -37,17 +37,28 @@
   width: inherit !important;
 }
 
-.sliderPicker > div:nth-child(2) > div {
-  margin-top: 10px !important;
+.sliderPicker > div {
+  height: 25px !important;
+}
+
+.sliderPicker > div > div > div > div > div {
+  height: 27px !important;
+  width: 27px !important;
+  border-radius: 50% !important;
+}
+
+.sliderPicker:nth-child(2) > div > div > div > div {
+  height: 18px !important;
 }
 
 .alphaPicker {
   margin-top: 10px;
+  height: 25px !important;
   width: inherit !important;
 }
 
-.brightnessIcons {
-  display: flex;
-  justify-content: space-between;
-  padding-top: 10px;
+.alphaPicker > div > div > div > div {
+  height: 27px !important;
+  width: 27px !important;
+  border-radius: 50% !important;
 }
