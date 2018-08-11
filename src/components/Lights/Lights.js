@@ -49,44 +49,55 @@ class Lights extends Component {
 
   handleColorChangeComplete = (color) => {
     let newLights = this.state.lights;
-    let newColors = {
+    let newColor = {
       R: color.rgb.r,
       G: color.rgb.g,
       B: color.rgb.b
     }
     
-    newLights.Color = newColors;
+    newLights.Color = newColor;
+
+    if (!this.state.lights.Animation) {
+      newLights.Animation = "solid"
+    } else {
+      newLights.Animation = this.state.lights.Animation;
+    }
+
     this.setState({ lights: this.state.lights }, () => this.postColorChange())
   }
 
   handlePresetClick = (color) => {
+    let newLights = this.state.lights;
     let newColor = {
       R: parseInt(color.substring(1, 3), 16),
       G: parseInt(color.substring(3, 5), 16),
       B: parseInt(color.substring(5, 7), 16)
     }
 
-    let lights = this.state.lights;
-    lights.Color = newColor;
-    lights.Animation = this.state.lights.Animation;
+    newLights.Color = newColor;
 
-    this.setState({ lights: lights }, () => this.postColorChange());
+    if (!this.state.lights.Animation) {
+      newLights.Animation = "solid"
+    } else {
+      newLights.Animation = this.state.lights.Animation;
+    }
+
+    this.setState({ lights: newLights }, () => this.postColorChange());
   }
 
   handleBrightnessChangeComplete = (color) => {
-    let currentState = this.state.lights;
-    let brightness = color.rgb.a;
+    let brightness = color.rgb.a; //Brightness value from color picker
+    let newLights = this.state.lights;
 
-    let newLights = {
-      Color: {
-        R: currentState.Color.r, //This is lowercase r, g and b because it's what the color picker returns
-        G: currentState.Color.g,
-        B: currentState.Color.b
-      }
+    let newColor = {
+      R: newLights.Color.r,
+      G: newLights.Color.g,
+      B: newLights.Color.b
     };
 
+    newLights.Color = newColor;
     newLights.Brightness = brightness;
-    newLights.Animation = currentState.Animation;
+    newLights.Animation = this.state.lights.Animation;
 
     this.setState({ lights: newLights }, () => this.postColorChange());
   }
@@ -94,10 +105,18 @@ class Lights extends Component {
   handleAnimationSelection = (animationName, toggle) => {
     let newLights = this.state.lights;
 
+    let newColor = {
+      R: newLights.Color.r,
+      G: newLights.Color.g,
+      B: newLights.Color.b
+    };
+
+    newLights.Color = newColor;
+
     if (toggle) {
       newLights.Animation = animationName;
     } else {
-      newLights.Animation = null;
+      newLights.Animation = "solid";
     }
 
     this.setState({ lights: newLights }, () => this.postColorChange());
@@ -108,6 +127,7 @@ class Lights extends Component {
   )
 
   postColorChange = () => {
+    console.log(this.state.lights);
     Axios.post('/setlights', this.state.lights)
     .then(function (response) {
       console.log(response);

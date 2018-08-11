@@ -14,7 +14,7 @@ class Animations extends Component {
     this.setState(prevState => ({selected: prevState.selected === selected ? '' : selected}))
   };
 
-  animationTypes = ['pulse', 'fade'];
+  animationTypes = ['bpm', 'candy cane', 'confetti', 'cyclon rainbow', 'dots', 'fire', 'glitter', 'juggle', 'lightning', 'police all', 'police one', 'rainbow', 'ripple', 'rainbow with glitter', 'sinelon', 'twinkle', 'noise'];
 
   render() {
     return (
