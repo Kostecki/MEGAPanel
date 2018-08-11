@@ -6,7 +6,17 @@
   font-size: .8rem;
   text-align: center;
   padding: 15px 30px;
-  margin: 0 15px 15px 0;
+  margin-bottom: 15px;
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .animation {
+    width: 23%;
+  }
 }
 
 .animation:hover {
