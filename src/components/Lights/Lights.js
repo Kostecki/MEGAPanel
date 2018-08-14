@@ -120,10 +120,6 @@ class Lights extends Component {
     this.setState({ lights: newLights }, () => this.handlePostToApi());
   }
 
-  createRGBString = () => (
-    `rgb(${this.state.lights.Color.R}, ${this.state.lights.Color.G}, ${this.state.lights.Color.B})`
-  )
-
   handlePostToApi = () => {
     Axios.post('/setlights', this.state.lights)
       .then(function (response) {
@@ -163,8 +159,7 @@ class Lights extends Component {
               currentSelection={this.state.lights}
               presetColorClick={this.handlePresetColorClick}
               colorChange={this.handleColorChange}
-              brightnessChange={this.handleBrightnessChange}
-              createRGBString={this.createRGBString} />
+              brightnessChange={this.handleBrightnessChange} />
           </CardDefault>
           <CardDefault title="Animationer">
             <Animations
