@@ -6,17 +6,6 @@ import SolidColorPreset from './SolidColorPreset/SolorColorPreset';
 
 import styles from './SolidColors.module.css';
 
-const objectKeysToLowerCase = (obj) => {
-  Object.keys(obj).forEach(function (key) {
-    var k = key.toLowerCase();
-    if (k !== key) {
-      obj[k] = obj[key];
-      delete obj[key];
-    }
-  });
-  return (obj);
-}
-
 const setBrightness = (brightness) => {
   let brightnessObject = {
     r: null,
