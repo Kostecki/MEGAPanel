@@ -12,18 +12,27 @@ import styles from './Lights.module.css';
 
 class Lights extends Component {
   state = {
-    lights: {},
-    isLoading: true,
+    lights: {
+      "Animation": "solid",
+      "Brightness": 0.37,
+      "Color": {
+        "R": 255,
+        "G": 0,
+        "B": 255
+      },
+      "Speed": 30
+    },
+    isLoading: false,
     isFirstLoad: false
   }
 
   componentWillMount = () => {
-    this.fetchFromApi();
+    //this.handleFetchFromApi();
 
-    //Only fetch new data when in production
+    //Only fetch new data automatically when in production
     if (process.env.NODE_ENV === "production") {
       this.interval = setInterval(() => {
-        this.fetchFromApi();
+        this.handleFetchFromApi();
       }, 5000);
     }
   }
@@ -32,7 +41,7 @@ class Lights extends Component {
     clearInterval(this.interval);
   }
 
-  fetchFromApi = () => {
+  handleFetchFromApi = () => {
     if (this.state.isFirstLoad) {
       this.setState({ isLoading: true });
       this.setState({ isFirstLoad: false });
@@ -40,78 +49,59 @@ class Lights extends Component {
 
     Axios.get('/getlit')
       .then((response) => {
-        this.setState({ lights: response.data, isLoading: false});
+        if (!response.data.Animation) {
+          this.setState({ lights: "error", isLoading: false, isFirstLoad: true });
+        } else {
+          this.setState({ lights: response.data, isLoading: false });
+        }
       })
       .catch((error) => {
         console.log(error);
       })
   }
 
-  handleColorChangeComplete = (color) => {
+  handleColorChange = (color) => {
     let newLights = this.state.lights;
-    let newColor = {
-      R: color.rgb.r,
-      G: color.rgb.g,
-      B: color.rgb.b
+
+    newLights.Color.R = color.rgb.r;
+    newLights.Color.G = color.rgb.g;
+    newLights.Color.B = color.rgb.b;
+
+    if (!this.state.lights.Animation) {
+      newLights.Animation = "solid";
+    } else {
+      newLights.Animation = this.state.lights.Animation;
     }
+
+    this.setState({ lights: newLights }, () => this.handlePostToApi())
+  }
+
+  handlePresetColorClick = (color) => {
+    let newLights = this.state.lights;
+
+    newLights.Color.R = parseInt(color.substring(1, 3), 16);
+    newLights.Color.G = parseInt(color.substring(3, 5), 16);
+    newLights.Color.B = parseInt(color.substring(5, 7), 16);
+
+    if (!this.state.lights.Animation) {
+      newLights.Animation = "solid";
+    } else {
+      newLights.Animation = this.state.lights.Animation;
+    }
+
+    this.setState({ lights: newLights }, () => this.handlePostToApi());
+  }
+
+  handleBrightnessChange = (color) => {
+    let newLights = this.state.lights;
     
-    newLights.Color = newColor;
+    newLights.Brightness = color.rgb.a; //Brightness value from color picker
 
-    if (!this.state.lights.Animation) {
-      newLights.Animation = "solid"
-    } else {
-      newLights.Animation = this.state.lights.Animation;
-    }
-
-    this.setState({ lights: this.state.lights }, () => this.postColorChange())
+    this.setState({ lights: newLights }, () => this.handlePostToApi());
   }
 
-  handlePresetClick = (color) => {
+  handleAnimationClick = (animationName, toggle) => {
     let newLights = this.state.lights;
-    let newColor = {
-      R: parseInt(color.substring(1, 3), 16),
-      G: parseInt(color.substring(3, 5), 16),
-      B: parseInt(color.substring(5, 7), 16)
-    }
-
-    newLights.Color = newColor;
-
-    if (!this.state.lights.Animation) {
-      newLights.Animation = "solid"
-    } else {
-      newLights.Animation = this.state.lights.Animation;
-    }
-
-    this.setState({ lights: newLights }, () => this.postColorChange());
-  }
-
-  handleBrightnessChangeComplete = (color) => {
-    let brightness = color.rgb.a; //Brightness value from color picker
-    let newLights = this.state.lights;
-
-    let newColor = {
-      R: newLights.Color.r,
-      G: newLights.Color.g,
-      B: newLights.Color.b
-    };
-
-    newLights.Color = newColor;
-    newLights.Brightness = brightness;
-    newLights.Animation = this.state.lights.Animation;
-
-    this.setState({ lights: newLights }, () => this.postColorChange());
-  }
-
-  handleAnimationSelection = (animationName, toggle) => {
-    let newLights = this.state.lights;
-
-    let newColor = {
-      R: newLights.Color.r,
-      G: newLights.Color.g,
-      B: newLights.Color.b
-    };
-
-    newLights.Color = newColor;
 
     if (toggle) {
       newLights.Animation = animationName;
@@ -119,29 +109,47 @@ class Lights extends Component {
       newLights.Animation = "solid";
     }
 
-    this.setState({ lights: newLights }, () => this.postColorChange());
+    this.setState({ lights: newLights }, () => this.handlePostToApi());
+  }
+  
+  handleAnimationSpeedChange = (speed) => {
+    let newLights = this.state.lights;
+
+    newLights.Speed = speed;
+
+    this.setState({ lights: newLights }, () => this.handlePostToApi());
   }
 
-  createRgbString = () => (
+  createRGBString = () => (
     `rgb(${this.state.lights.Color.R}, ${this.state.lights.Color.G}, ${this.state.lights.Color.B})`
   )
 
-  postColorChange = () => {
-    console.log(this.state.lights);
+  handlePostToApi = () => {
     Axios.post('/setlights', this.state.lights)
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error)
-    })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
   }
 
   render() {
     if (this.state.isLoading) {
       return (
         <React.Fragment>
-          <Loader title='Farver' />
+          <Loader title="Farver" />
+          <Navigation />
+        </React.Fragment>
+      )
+    }
+
+    if (this.state.lights === "error") {
+      return (
+        <React.Fragment>
+          <CardDefault title="Farver" showRefresh clickAction={this.handleFetchFromApi}>
+            <p className={`${styles.shitsfucked} ${styles.rotating}`}>Noget er i stykker.. <br /> ¯\_(ツ)_/¯</p>
+          </CardDefault>
           <Navigation />
         </React.Fragment>
       )
@@ -149,20 +157,20 @@ class Lights extends Component {
 
     return (
       <React.Fragment>
-        <div className={styles.lightsContainer}>
-          <CardDefault title='Farver' showRefresh clickAction={this.fetchFromApi}>
+        <div className={styles.container}>
+          <CardDefault title="Farver" showRefresh clickAction={this.handleFetchFromApi}>
             <SolidColors
               currentSelection={this.state.lights}
-              hueChangeHandler={this.handleColorChangeComplete}
-              alphaChangeHandler={this.handleColorChangeComplete}
-              presetClickHandler={this.handlePresetClick}
-              brightnessChangeHandler={this.handleBrightnessChangeComplete}
-              createRgbStringHandler={this.createRgbString} />
+              presetColorClick={this.handlePresetColorClick}
+              colorChange={this.handleColorChange}
+              brightnessChange={this.handleBrightnessChange}
+              createRGBString={this.createRGBString} />
           </CardDefault>
-          <CardDefault title='Animationer'>
+          <CardDefault title="Animationer">
             <Animations
-              activeAnimation={this.state.lights.animation}
-              animationClickHandler={this.handleAnimationSelection} />
+              currentSelection={this.state.lights}
+              animationClick={this.handleAnimationClick}
+              animationSpeedChange={this.handleAnimationSpeedChange} />
           </CardDefault>
         </div>
         <Navigation />

@@ -28,38 +28,46 @@ const setBrightness = (brightness) => {
   return brightnessObject;
 }
 
-const SolidColors = (props) => (
-  <React.Fragment>
-    <Grid item xs={4} md={4}>
-      <div className={styles.colorPreview} style={{ backgroundColor: props.createRgbStringHandler(props.currentSelection.Color) }}></div>
-    </Grid>
-    <Grid item xs={8} className={styles.colorPresets}>
-      <SolidColorPreset backgroundColor='#f44336' onClickHandler={props.presetClickHandler} />
-      <SolidColorPreset backgroundColor='#e91e63' onClickHandler={props.presetClickHandler} />
-      <SolidColorPreset backgroundColor='#9c27b0' onClickHandler={props.presetClickHandler} />
-      <SolidColorPreset backgroundColor='#3f51b5' onClickHandler={props.presetClickHandler} />
-      <SolidColorPreset backgroundColor='#04a9f4' onClickHandler={props.presetClickHandler} />
-      <SolidColorPreset backgroundColor='#009688' onClickHandler={props.presetClickHandler} />
-      <SolidColorPreset backgroundColor='#8bc34a' onClickHandler={props.presetClickHandler} />
-      <SolidColorPreset backgroundColor='#ffeb3b' onClickHandler={props.presetClickHandler} />
-    </Grid>
+function rgbToHex(r, g, b) {
+  return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+}
 
-    <Grid item xs={12} md={6}>
-      <p className={styles.p}>Farvevælger RGB({props.currentSelection.Color.R}, {props.currentSelection.Color.G}, {props.currentSelection.Color.B})</p>
-      <SliderPicker
-        className={styles.sliderPicker}
-        color={objectKeysToLowerCase(props.currentSelection.Color)} //The color picker only accepts lowercase RGB ¯\_(ツ)_/¯
-        onChangeComplete={props.hueChangeHandler} />
-    </Grid>
+const SolidColors = (props) => {
+  let hexString = rgbToHex(props.currentSelection.Color.R, props.currentSelection.Color.G, props.currentSelection.Color.B);
 
-    <Grid item xs={12} md={6} className={styles.brightnessSlider}>
-      <p className={styles.p}>Lysstyrke ({Math.trunc(props.currentSelection.Brightness * 100)}%)</p>
-      <AlphaPicker
-        className={styles.alphaPicker}
-        color={setBrightness(props.currentSelection.Brightness)}
-        onChangeComplete={props.brightnessChangeHandler} />
-    </Grid>
-  </React.Fragment>
-)
+  return (
+    <React.Fragment>
+      <Grid item xs={4} md={4}>
+        <div className={styles.colorPreview} style={{ backgroundColor: hexString }}></div>
+      </Grid>
+      <Grid item xs={8} className={styles.colorPresets}>
+        <SolidColorPreset backgroundColor='#f44336' onClickHandler={props.presetColorClick} />
+        <SolidColorPreset backgroundColor='#e91e63' onClickHandler={props.presetColorClick} />
+        <SolidColorPreset backgroundColor='#9c27b0' onClickHandler={props.presetColorClick} />
+        <SolidColorPreset backgroundColor='#3f51b5' onClickHandler={props.presetColorClick} />
+        <SolidColorPreset backgroundColor='#04a9f4' onClickHandler={props.presetColorClick} />
+        <SolidColorPreset backgroundColor='#009688' onClickHandler={props.presetColorClick} />
+        <SolidColorPreset backgroundColor='#8bc34a' onClickHandler={props.presetColorClick} />
+        <SolidColorPreset backgroundColor='#ffeb3b' onClickHandler={props.presetColorClick} />
+      </Grid>
+
+      <Grid item xs={12} md={6}>
+        <p className={styles.p}>Farvevælger RGB({props.currentSelection.Color.R}, {props.currentSelection.Color.G}, {props.currentSelection.Color.B})</p>
+        <SliderPicker
+          className={styles.sliderPicker}
+          color={hexString}
+          onChangeComplete={props.colorChange} />
+      </Grid>
+
+      <Grid item xs={12} md={6} className={styles.brightnessSlider}>
+        <p className={styles.p}>Lysstyrke ({Math.trunc(props.currentSelection.Brightness * 100)}%)</p>
+        <AlphaPicker
+          className={styles.alphaPicker}
+          color={setBrightness(props.currentSelection.Brightness)}
+          onChangeComplete={props.brightnessChange} />
+      </Grid>
+    </React.Fragment>
+  )
+}
 
 export default SolidColors;
