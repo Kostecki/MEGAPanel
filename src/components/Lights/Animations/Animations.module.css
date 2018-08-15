@@ -14,21 +14,3 @@
   margin-top: 0;
   cursor: pointer;
 }
-
-/* Slider back */
-.speedSlider div:first-child {
-  height: 5px;
-}
-
-/* Slider front */
-.speedSlider div:nth-child(3) {
-  background: #6B6B6B;
-  height: 5px;
-}
-
-/* Slider button */
-.speedSlider button {
-  box-shadow: rgba(0, 0, 0, 0.37) 0px 1px 4px 0px;
-  background: white;
-  top: 1px;
-}
