@@ -12,11 +12,13 @@ class Animations extends Component {
     speed: 30
   }
 
-  handleSpeedChange = (event, speed) => {
-    this.setState({ speed }, () => {
-      this.props.animationSpeedChange(speed);
-    });
+  handleSpeedOnChange = (event, speed) => {
+    this.setState({ speed });
   };
+
+  handleSpeedDragEnd = (speed) => {
+    this.props.animationSpeedChange(speed);
+  }
 
   toggleSelected = (selected) => {
     this.setState(prevState => ({ selected: prevState.selected === selected ? null : selected }))
@@ -46,7 +48,7 @@ class Animations extends Component {
         <Grid item xs={12} sm={4}>
           <div className={styles.speed}>
             <p className={styles.p} onClick={() => {this.setState({speed: 30})}}>Animationshastighed ({this.state.speed})</p>
-            <Slider style={{padding: 0}} value={this.state.speed} min={10} max={200} step={10} onChange={this.handleSpeedChange} />
+            <Slider className={styles.speedSlider} style={{padding: 0}} value={this.state.speed} min={10} max={200} step={10} onChange={this.handleSpeedOnChange} onDragEnd={this.handleSpeedDragEnd} />
           </div>
         </Grid>
         <Grid item xs={12} className={styles.animations}>
