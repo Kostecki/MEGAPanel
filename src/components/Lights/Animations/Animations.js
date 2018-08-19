@@ -24,8 +24,13 @@ class Animations extends Component {
     });
   };
 
+  handleSpeedClick = () => {
+    this.setState({ speed: 30}, () => {
+      this.props.animationSpeedChange(this.state.speed);
+    })
+  }
+
   toggleSelected = (selected) => {
-    console.log("toggleSelected");
     this.setState(prevState => ({ selected: prevState.selected === selected ? null : selected }))
   };
 
@@ -52,7 +57,7 @@ class Animations extends Component {
       <React.Fragment>
         <Grid item xs={12} sm={4}>
           <div className={styles.speed}>
-            <p className={styles.p} onClick={() => {this.setState({speed: 30})}}>Animationshastighed ({this.state.speed})</p>
+            <p className={styles.p} onClick={this.handleSpeedClick}>Animationshastighed ({this.state.speed})</p>
             <Slider className={styles.speedSlider} style={{padding: 0}} value={this.state.speed} min={10} max={200} step={10} onChange={this.handleSpeedOnChange} />
           </div>
         </Grid>
