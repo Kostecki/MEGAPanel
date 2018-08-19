@@ -9,12 +9,16 @@ import styles from './Animations.module.css';
 class Animations extends Component {
   state = {
     selected: null,
-    speed: 30
+    speed: 0
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.selected !== this.props.currentSelection.Animation) {
       this.setState({ selected: this.props.currentSelection.Animation })
+    }
+
+    if (prevState.speed !== this.props.currentSelection.Speed) {
+      this.setState({ speed: this.props.currentSelection.Speed })
     }
   }
 
