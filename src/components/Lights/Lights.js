@@ -13,21 +13,21 @@ import styles from './Lights.module.css';
 class Lights extends Component {
   state = {
     lights: {
-      "Animation": "solid",
-      "Brightness": 0.37,
+      "Animation": null,
+      "Brightness": null,
       "Color": {
-        "R": 255,
-        "G": 0,
-        "B": 255
+        "R": null,
+        "G": null,
+        "B": null
       },
-      "Speed": 30
+      "Speed": null
     },
     isLoading: false,
     isFirstLoad: false
   }
 
   componentWillMount = () => {
-    //this.handleFetchFromApi();
+    this.handleFetchFromApi();
 
     //Only fetch new data automatically when in production
     if (process.env.NODE_ENV === "production") {
