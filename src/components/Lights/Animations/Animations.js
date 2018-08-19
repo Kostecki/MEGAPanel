@@ -8,19 +8,24 @@ import styles from './Animations.module.css';
 
 class Animations extends Component {
   state = {
-    selected: this.props.currentSelection.Animation,
+    selected: null,
     speed: 30
   }
 
-  handleSpeedOnChange = (event, speed) => {
-    this.setState({ speed });
-  };
-
-  handleSpeedDragEnd = (speed) => {
-    this.props.animationSpeedChange(speed);
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.selected !== this.props.currentSelection.Animation) {
+      this.setState({ selected: this.props.currentSelection.Animation })
+    }
   }
 
+  handleSpeedOnChange = (event, speed) => {
+    this.setState({ speed }, () => {
+      this.props.animationSpeedChange(this.state.speed);
+    });
+  };
+
   toggleSelected = (selected) => {
+    console.log("toggleSelected");
     this.setState(prevState => ({ selected: prevState.selected === selected ? null : selected }))
   };
 
@@ -48,7 +53,7 @@ class Animations extends Component {
         <Grid item xs={12} sm={4}>
           <div className={styles.speed}>
             <p className={styles.p} onClick={() => {this.setState({speed: 30})}}>Animationshastighed ({this.state.speed})</p>
-            <Slider className={styles.speedSlider} style={{padding: 0}} value={this.state.speed} min={10} max={200} step={10} onChange={this.handleSpeedOnChange} onDragEnd={this.handleSpeedDragEnd} />
+            <Slider className={styles.speedSlider} style={{padding: 0}} value={this.state.speed} min={10} max={200} step={10} onChange={this.handleSpeedOnChange} />
           </div>
         </Grid>
         <Grid item xs={12} className={styles.animations}>
