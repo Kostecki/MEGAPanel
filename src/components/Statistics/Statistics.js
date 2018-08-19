@@ -105,19 +105,19 @@ class Statistics extends Component {
   getUpDownWeek = () => {
     const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
     let today = Moment().isoWeekday();
-    
+
     let week = this.state.status.DataWeek;
     let data = {
       up: 0,
       down: 0
     }
-    
+
     for (let i = 0; i < today; i++) {
       for (const j of Object.keys(week[days[i]])) {
         if (week[days[i]][j].Up !== 0 || week[days[i]][j].Down !== 0) {
           data.up += week[days[i]][j].Up;
           data.down += week[days[i]][j].Down;
-        } 
+        }
       }
     }
 
@@ -169,13 +169,13 @@ class Statistics extends Component {
             <div className={styles.dividerH} />
 
             <div className={styles.wrapper}>
-            <div className={`${styles.row} ${styles.dailyBarGraph}`}>
-              <DailyBarGraph data={this.state.status.DataWeek[this.getToday()]} />
-            </div>
+              <div className={`${styles.row} ${styles.dailyBarGraph}`}>
+                <DailyBarGraph data={this.state.status.DataWeek[this.getToday()]} />
+              </div>
 
-            <div className={styles.row}>
-              <VoltageGraph data={this.state.status.BatteryWeek} />
-            </div>
+              <div className={styles.row}>
+                <VoltageGraph data={this.state.status.BatteryWeek} />
+              </div>
             </div>
           </CardDefault>
         </div>

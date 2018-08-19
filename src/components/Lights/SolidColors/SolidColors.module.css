@@ -29,36 +29,41 @@
   cursor: pointer;
 }
 
-.brightnessSlider {
-  display: inline-block;
-}
-
-.huePicker {
-  width: inherit !important;
-}
-
 .sliderPicker > div {
-  height: 25px !important;
+  height: 16px !important;
 }
 
 .sliderPicker > div > div > div > div > div {
-  height: 27px !important;
-  width: 27px !important;
-  border-radius: 50% !important;
-}
-
-.sliderPicker:nth-child(2) > div > div > div > div {
   height: 18px !important;
-}
-
-.alphaPicker {
-  margin-top: 10px;
-  height: 25px !important;
-  width: inherit !important;
-}
-
-.alphaPicker > div > div > div > div {
-  height: 27px !important;
-  width: 27px !important;
+  width: 18px !important;
   border-radius: 50% !important;
+}
+
+/* Only make the sliders larger for fat figners on mobile */
+@media (max-width: 767px) {
+  .sliderPicker > div {
+    height: 25px !important;
+  }
+
+  .sliderPicker > div > div > div > div > div {
+    height: 27px !important;
+    width: 27px !important;
+    border-radius: 50% !important;
+  }
+
+  .sliderPicker:nth-child(2) > div > div > div > div {
+    height: 18px !important;
+  }
+
+  .alphaPicker {
+    margin-top: 10px;
+    height: 25px !important;
+    width: inherit !important;
+  }
+
+  .alphaPicker > div > div > div > div {
+    height: 27px !important;
+    width: 27px !important;
+    border-radius: 50% !important;
+  }
 }
