@@ -1,7 +1,6 @@
 import React from 'react';
 
 import styles from './BatteryVoltage.module.css';
-import './BatteryVoltage.css';
 
 const BatteryVoltage = (props) => {
   const chargeStatus = () => {
@@ -9,11 +8,11 @@ const BatteryVoltage = (props) => {
     let health = '';
 
     if (voltage >= 12.10) {
-      health = 'chargeGood'
+      health = 'good'
     } else if (voltage > 11.5) {
-      health = 'chargeOkay'
+      health = 'okay'
     } else {
-      health = 'chargeBad'
+      health = 'bad'
     }
 
     return health;
@@ -56,11 +55,13 @@ const BatteryVoltage = (props) => {
       return "0";
     }
   }
+
+  const status = styles[chargeStatus()];
   
   return (
     <div className={styles.container}>
       <p className={styles.p}>Batteri ({props.data.BatteryId})</p>
-      <div className={`${styles.voltageStatus} ${chargeStatus()}`}>
+      <div className={`${styles.voltageStatus} ${status}`}>
         <h2 className={styles.h2}>{props.data.Voltage} Volt ({chargeLevel()}%)</h2>
       </div>
     </div>
