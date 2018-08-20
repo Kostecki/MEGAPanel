@@ -1,0 +1,21 @@
+.toastbar {
+    text-align: center;
+    padding: 15px 0;
+    color: white;
+    font-weight: 500;
+    width: 100vw;
+    left: calc(-50vw + 50%);
+    position: relative;
+}
+
+.danger {
+    background: #F43636;
+}
+
+.warning {
+    background: #F5BB18;
+}
+
+.success {
+    background: #06BA95;
+}
