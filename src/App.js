@@ -17,6 +17,10 @@ import './App.css';
 ReactGA.initialize('UA-39781810-11');
 
 class App extends Component {
+  state = {
+    toastVisible: false
+  }
+
   componentDidMount = () => {
     ReactGA.pageview(window.location.pathname + window.location.search)
 
@@ -27,8 +31,8 @@ class App extends Component {
   fetchFromApi = () => {
     Axios.get('/ping')
       .then((response) => {
-        if (response.data.response !== "pong") {
-          this.visible = true; //Show danger toast if controller doesn't response to our ping/pong
+        if (response.data.response !== "pongg") {
+          this.setState({ toastVisible: true }) //Show danger toast if controller doesn't response to our ping/pong
         }
       })
       .catch((error) => {
@@ -38,8 +42,8 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        {this.visible && ( <Toast type="success" text="Oops.. Controlleren svarer ikke. Den er nok offline!" /> )}
+      <div className={`App ${this.state.toastVisible && ("toastVisible") }`}>
+        {this.state.toastVisible && (<Toast type="danger" text="Oops.. Controlleren svarer ikke. Den er nok offline!" />)}
         <Switch>
           <Route exact path='/' component={Stats} />
           <Route path='/lights' component={Lights} />
