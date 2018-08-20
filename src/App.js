@@ -31,7 +31,7 @@ class App extends Component {
   fetchFromApi = () => {
     Axios.get('/ping')
       .then((response) => {
-        if (response.data.response !== "pongg") {
+        if (response.data.response !== "pong") {
           this.setState({ toastVisible: true }) //Show danger toast if controller doesn't response to our ping/pong
         }
       })
