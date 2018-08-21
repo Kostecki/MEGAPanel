@@ -42,7 +42,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className={`App ${this.state.toastVisible && ("toastVisible") }`}>
+      <div className={`App ${this.state.toastVisible && ("toastVisible")}`}>
         {this.state.toastVisible && (<Toast type="danger" text="Oops.. Controlleren svarer ikke. Den er nok offline!" />)}
         <Switch>
           <Route exact path='/' component={Stats} />
