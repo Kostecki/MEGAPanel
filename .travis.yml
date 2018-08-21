@@ -25,4 +25,4 @@ script:
 - npm run build
 
 after_success:
-- $DOCKER_HUB_TRIGGER
+- "curl -H 'Content-Type: application/json' --data '{\"build\": true}' -X POST https://registry.hub.docker.com/u/kostecki/megapanel/trigger/62ace418-1bb4-405c-832a-b20e289fb35c/"
