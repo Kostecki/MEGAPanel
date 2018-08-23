@@ -2,10 +2,6 @@ notifications:
   email: false
   slack: thunderducks:$SLACK_TOKEN
 
-stages:
-  - "Build Project"
-  - "Build Docker Image"
-
 sudo: required
 
 branches:
@@ -23,18 +19,13 @@ cache:
   directories:
   - node_modules
 
-jobs:
-  include:
-    - stage: "Build Project"
-      install:
-      - npm install
+install:
+  - npm install
       
-      script:
-      - npm run build
-    
-    - stage: "Build Docker Image"
-      script: docker build -t kostecki/megapanel .
+script:
+  - npm run build
+  - docker build -t kostecki/megapanel .
 
 after_success:
-  echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  docker push kostecki/megapanel
+- docker login -u $DOCKER_USER -p $DOCKER_PASS
+- docker push kostecki/megapanel
