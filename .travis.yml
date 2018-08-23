@@ -10,20 +10,8 @@ branches:
 
 services:
   - docker
-
-language: node_js
-node_js:
-  - stable
-
-cache:
-  directories:
-  - node_modules
-
-install:
-  - npm install
       
 script:
-  - npm run build
   - docker build -t kostecki/megapanel .
 
 after_success:
