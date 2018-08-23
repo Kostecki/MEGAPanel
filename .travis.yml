@@ -35,8 +35,6 @@ jobs:
     - stage: "Build Docker Image"
       script: docker build -t kostecki/megapanel .
 
-before_deploy:
+after_success:
   echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-
-deploy:
   docker push kostecki/megapanel
