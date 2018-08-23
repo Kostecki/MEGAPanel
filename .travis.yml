@@ -1,28 +1,42 @@
 notifications:
   email: false
-  slack: thunderducks:LC3z1hKqrNtlFLtF9AsXZjVF
+  slack: thunderducks:$SLACK_TOKEN
 
-language: node_js
-node_js:
-- stable
+stages:
+  - "Build Project"
+  - "Build Docker Image"
 
-addons:
-  ssh_known_hosts:
-  - israndom.win:123
+sudo: required
 
 branches:
   only:
-  - master
+  - feature/docker_in_travis
+
+services:
+  - docker
+
+language: node_js
+node_js:
+  - stable
 
 cache:
   directories:
   - node_modules
 
-install:
-- npm install
+jobs:
+  include:
+    - stage: "Build Project"
+      install:
+      - npm install
+      
+      script:
+      - npm run build
+    
+    - stage: "Build Docker Image"
+      script: docker build -t kostecki/megapanel .
 
-script:
-- npm run build
+before_deploy:
+  echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
-after_success:
-- "curl -H 'Content-Type: application/json' --data '{\"build\": true}' -X POST https://registry.hub.docker.com/u/kostecki/megapanel/trigger/62ace418-1bb4-405c-832a-b20e289fb35c/"
+deploy:
+  docker push kostecki/megapanel
