@@ -1,0 +1,17 @@
+version: '3.7'
+
+services:
+  dev:
+    container_name: MEGAPanel
+    build:
+      context: .
+      dockerfile: dev.Dockerfile
+    volumes:
+      - '.:/usr/src/app'
+      - '/usr/src/app/node_modules'
+    ports:
+      - '3000:3000'
+    environment:
+      - NODE_ENV=development
+      - REACT_APP_API_USER
+      - REACT_APP_API_PASS
