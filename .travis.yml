@@ -6,7 +6,7 @@ sudo: required
 
 branches:
   only:
-  - feature/docker_in_travis
+  - master
 
 services:
   - docker
