@@ -8,10 +8,6 @@ WORKDIR /usr/src/app
 # Add `/usr/src/app/node_modules/.bin` to $PATH
 ENV PATH /usr/src/app/node_modules/.bin:$PATH
 
-# Set API credentials
-ENV REACT_APP_API_USER=$REACT_APP_API_USER
-ENV REACT_APP_API_PASS=$REACT_APP_API_PASS
-
 # Install and cache app dependencies
 COPY package.json /usr/src/app/package.json
 RUN npm install
