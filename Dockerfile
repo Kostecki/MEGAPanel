@@ -8,6 +8,7 @@ WORKDIR /usr/src/app
 # Add `/usr/src/app/node_modules/.bin` to $PATH
 ENV PATH /usr/src/app/node_modules/.bin:$PATH
 
+# Set API credentials
 ARG api_user
 ENV REACT_APP_API_USER="$api_user"
 ARG api_pass
