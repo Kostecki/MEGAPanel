@@ -1,18 +1,19 @@
 notifications:
   email: false
   slack: thunderducks:$SLACK_TOKEN
-env:
-  global:
-  - secure: R8FT13CS6IiISrWMAhICz+eVzCyLPpgrTcgNR3+0MSoYQN6xcCmDK26xxGnKz2s88ZFQ2yrFcxM6fbLHVh1FPsZdHnjAecF6lO/UB0oIETtJ1s7mP0/slU03UiS0F3LLLiJmlkbBZBVPhaC+VCQk+P6rOBZUkhXdAbFlYg+TVIZFbo+lg9xFaRjXRB4XCoUkzItvyYiU/AWzP4+DVMCNfFMU9iFI8vZOmchJYCFkC8gfzxfR6t4MhKJvMnTsa2mEHQLVAylKyMZ4l2X6yPstT3aYXFIq1rmY9sSMrT56N8FCx4LW+Rd9uP/EKQgKue8LASjQ1hx9J3mvdLx5Rl/WcfmqOjGHqyUacHquY9gWa1Gk7bTavW2oVmXLVuMXrdyKrsCgEkU2gBaaj5orvZc+3s/qXtq1pXy+r/dZsQhLjRI15ueD5/lY2Gphpnv4IZwBt1jwlweG9zT4T1WlKI2rS7bZfGdq+8it3UnNuPguTRRtN8WSzYmPrZPiOF2QHVx6TBjqiT6/Z1meKif/LTLxRAZf8EREcvNe3ZB3h9XG0Q7zzmMDZq0woN6qFQpWlMau6VSpESgIrYFKc7RxRdbhWePHAc79DRDyA+X3sIWJexc9AkiPF8NtLR0hwRoz/XZeoLjPKypZXdyVQdwnQZdzaTbbdNw210I7XJZBF4iBJ3c=
-  - secure: RiTaQBcdx/+Bvx0ZxTzzo5U5gauHx6iM1V4nwbxGXrXmClK9OWecmAQoZau5Js+EBZRHLmrollaDXVLAYdC6sUfjVRMp6P7O1Jnbpmal89BdFNY++yvuaM16EoDq/ZfPRRdHpoPwooE1hocC/qvO6hcFijTwwfeAn3Z0hyFrCSg594hXVn0bRyMJ0p5vAHeuQrDxhg0t0lA4a5CeX6/hZxFiqUUSQVmlXk89l53bz0zP9oAmAEB7DSw4v+f49FE0BJUjCFbcF6z6eAGmp6AuLneKTdG81GiqVCwIu8g43Pigms/9YveAlt6immM45aVO7rejM5JPqaPCCfpO1/RKt7y+gIsEDtEgUizDkOnZn/H/QNI1xh9W8DG0z4n6StCrGD5z+BU1CFPAdc9M66cvr6tvbRqkAVX6ZjCRSf+E/xGSLXumDoCuttDs6DiWBRitpfEmGRYt7Uhc5d8aA5gG5rvyRavRb/0MQYnBzxO7WlDal69GGtUPmPNSu9OtNVJXAlBQ/AwO/OwRLZ4gmH9BeANCTwOpPwkLuENcVPQQ60V8kWvLnpDok03u1c4R81jJMzPJlWYvhWpYIwg9kVskEeHMFGQxt3g7MXv9JSkhjR4aES5WGlmXhy8uJAf3CcTOHQD4w1CPWbhJKwzzKDNOVgbFrwvCRas7ZjgVXH9gXoY=
+
 sudo: required
+
 branches:
   only:
   - master
+
 services:
-- docker
+  - docker
+      
 script:
-- docker build -t kostecki/megapanel .
+  - docker build --build-arg api_user=$REACT_APP_API_USER --build-arg api_pass=$REACT_APP_API_PASS -t kostecki/megapanel .
+
 after_success:
 - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 - docker push kostecki/megapanel

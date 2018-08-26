@@ -8,6 +8,11 @@ WORKDIR /usr/src/app
 # Add `/usr/src/app/node_modules/.bin` to $PATH
 ENV PATH /usr/src/app/node_modules/.bin:$PATH
 
+ARG api_user
+ENV API_USER="$api_user"
+ARG api_pass
+ENV API_PASS="$api_pass"
+
 # Install and cache app dependencies
 COPY package.json /usr/src/app/package.json
 RUN npm install
