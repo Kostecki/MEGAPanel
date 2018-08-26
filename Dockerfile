@@ -9,9 +9,9 @@ WORKDIR /usr/src/app
 ENV PATH /usr/src/app/node_modules/.bin:$PATH
 
 ARG api_user
-ENV API_USER="$api_user"
+ENV REACT_APP_API_USER="$api_user"
 ARG api_pass
-ENV API_PASS="$api_pass"
+ENV REACT_APP_API_PASS="$api_pass"
 
 # Install and cache app dependencies
 COPY package.json /usr/src/app/package.json
