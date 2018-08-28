@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   dev:
-    container_name: MEGAPanel[Dev]
+    container_name: MEGAPanel-DEV
     build:
       context: .
       dockerfile: dev.Dockerfile
