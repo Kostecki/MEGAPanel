@@ -18,7 +18,7 @@ ReactGA.initialize('UA-39781810-11');
 
 class App extends Component {
   state = {
-    toastVisible: false
+    toastVisible: true
   }
 
   componentDidMount = () => {
@@ -43,7 +43,7 @@ class App extends Component {
   render() {
     return (
       <div className={`App ${this.state.toastVisible && ("toastVisible")}`}>
-        {this.state.toastVisible && (<Toast type="danger" text="Oops.. Controlleren svarer ikke. Den er nok offline!" />)}
+        {this.state.toastVisible && (<Toast type="danger" text="Oops.. ESP'en svarer ikke. Den er nok offline!" />)}
         <Switch>
           <Route exact path='/' component={Stats} />
           <Route path='/lights' component={Lights} />
