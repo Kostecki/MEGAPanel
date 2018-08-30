@@ -1,11 +1,9 @@
 import json
 import requests
-import time
+import sys
 
-time.sleep(30)
-
-url = "https://rancher.mega.re/v3/projects/$RANCHER_PROJECT/workloads/$RANCHER_WORKLOAD"
-auth_token = "$RANCHER_TOKEN"
+url = "https://rancher.mega.re/v3/projects/" + sys.argv[1] + "/workloads/"+ sys.argv[2]
+auth_token = sys.argv[3]
 headers = {"Authorization": "Bearer " + auth_token}
 
 getResponse = requests.get(url, headers=headers)

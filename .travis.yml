@@ -14,4 +14,4 @@ script:
 after_success:
 - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 - docker push kostecki/megapanel
-- python rancher_upgrade.py
+- python rancher_upgrade.py $RANCHER_PROJECT $RANCHER_WORKLOAD $RANCHER_TOKEN
