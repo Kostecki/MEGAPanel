@@ -24,4 +24,4 @@ contentType = {"content-type": "application/json"}
 headers.update(**contentType)
 
 putResponse = requests.put(url, data=json.dumps(jsonobject), headers=headers)
-print(putResponse.content)
+print(putResponse)
