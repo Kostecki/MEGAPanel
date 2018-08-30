@@ -1,5 +1,8 @@
 import json
 import requests
+import time
+
+time.sleep(30)
 
 url = "https://rancher.mega.re/v3/projects/$RANCHER_PROJECT/workloads/$RANCHER_WORKLOAD"
 auth_token = "$RANCHER_TOKEN"

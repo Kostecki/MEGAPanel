@@ -11,11 +11,7 @@ services:
 - docker
 script:
 - docker build --build-arg api_user=$REACT_APP_API_USER --build-arg api_pass=$REACT_APP_API_PASS -t kostecki/megapanel .
-deploy:
-  provider: script
-  script:
-    - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-    - docker push kostecki/megapanel
 after_success:
-  script:
-    - python rancher_upgrade.py
+- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+- docker push kostecki/megapanel
+- python rancher_upgrade.py
