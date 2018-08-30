@@ -18,7 +18,7 @@ ReactGA.initialize('UA-39781810-11');
 
 class App extends Component {
   state = {
-    toastVisible: true
+    toastVisible: false
   }
 
   componentDidMount = () => {
