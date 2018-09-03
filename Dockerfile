@@ -1,5 +1,5 @@
 # Build environment
-FROM node:10-alpine as builder
+FROM node:alpine as builder
 
 # Set working directory
 RUN mkdir -p /usr/src/app
@@ -22,7 +22,7 @@ COPY . /usr/src/app
 RUN npm run build
 
 # production environment
-FROM nginx:1.15.2-alpine
+FROM nginx:mainline-alpine
 COPY --from=builder /usr/src/app/build /usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
