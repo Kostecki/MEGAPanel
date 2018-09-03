@@ -123,7 +123,7 @@ class Lights extends Component {
   handlePostToApi = () => {
     Axios.post('/setlights', this.state.lights)
       .then(function (response) {
-        console.log(response);
+        console.log("Response:", response.data.response);
       })
       .catch(function (error) {
         console.log(error)

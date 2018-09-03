@@ -26,7 +26,7 @@ class OTAUpload extends Component {
 
             axios.post('', data) //This needs an actual endpoint
                 .then((response) => {
-                    console.log(response); //Update state.status
+                    console.log("Response:", response.data.response); //Update state.status
                 })
                 .catch((error) => {
                     console.log(error); //Update state.status
@@ -52,7 +52,7 @@ class OTAUpload extends Component {
               )
               axios.get('') //This needs an actual endpoint
                 .then((response) => {
-                    console.log(response); //Upate state.status
+                    console.log("Response:", response.data.response); //Upate state.status
                 })
                 .catch((error) => {
                     console.log(error); //Update state.status
