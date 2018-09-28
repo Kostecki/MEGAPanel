@@ -18,7 +18,7 @@ ReactGA.initialize('UA-39781810-11');
 
 class App extends Component {
   state = {
-    toastVisible: false
+    showToast: false
   }
 
   componentDidMount = () => {
@@ -32,7 +32,7 @@ class App extends Component {
     Axios.get('/ping')
       .then((response) => {
         if (response.data.response !== "pong") {
-          this.setState({ toastVisible: true }) //Show danger toast if controller doesn't response to our ping/pong
+          this.setState({ showToast: true })
         }
       })
       .catch((error) => {
@@ -42,8 +42,8 @@ class App extends Component {
 
   render() {
     return (
-      <div className={`App ${this.state.toastVisible && ("toastVisible")}`}>
-        {this.state.toastVisible && (<Toast type="danger" text="Oops.. ESP'en svarer ikke. Den er nok offline!" />)}
+      <div className={`App ${this.state.showToast && ("toastVisible")}`}>
+        {this.state.showToast && (<Toast type="danger" text="Controlleren svarer ikke. Den er nok offline ¯\_(ツ)_/¯" />)}
         <Switch>
           <Route exact path='/' component={Stats} />
           <Route path='/lights' component={Lights} />
