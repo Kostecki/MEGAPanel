@@ -15,10 +15,10 @@ ARG api_pass
 ENV REACT_APP_API_PASS="$api_pass"
 
 # Install and cache app dependencies
-COPY package.json /usr/src/app/package.json
+COPY /megapanel/package.json /usr/src/app/package.json
 RUN npm install
 RUN npm install @babel/runtime@7.0.0-beta.55
-COPY . /usr/src/app
+COPY /megapanel /usr/src/app
 RUN npm run build
 
 # production environment
