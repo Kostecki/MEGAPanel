@@ -9,7 +9,7 @@ WORKDIR /usr/src/app
 ENV PATH /usr/src/app/node_modules/.bin:$PATH
 
 # Install and cache app dependencies
-COPY /megapanel/package.json /usr/src/app/package.json
+COPY /app/package.json /usr/src/app/package.json
 RUN npm install
 
 # start app

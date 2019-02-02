@@ -15,7 +15,7 @@ ARG api_pass
 ENV REACT_APP_API_PASS="$api_pass"
 
 # Install and cache app dependencies
-COPY /megapanel /usr/src/app
+COPY /app /usr/src/app
 RUN npm install
 RUN npm run build
 
