@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import Home from './components/Home.vue'
 import Lights from './components/Lights/Lights.vue'
 
 Vue.use(Router)
