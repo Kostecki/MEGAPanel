@@ -17,7 +17,7 @@ export default new Router({
       path: '/lights',
       name: 'Lights',
       component: Lights
-    },
+    }
     // {
     //   path: '/about',
     //   name: 'about',

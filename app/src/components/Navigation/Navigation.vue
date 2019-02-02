@@ -18,18 +18,18 @@
 </template>
 
 <script>
-  export default {
-    data () {
-      return {
-        bottomNav: 'recent',
-        menuItems: [
-          { icon: 'color_lens', title: 'Lights', value: 'lights', link: '/lights' },
-          { icon: 'bar_chart', title: 'Statistics', value: 'statistics', link: '/statistics' },
-          { icon: 'settings', title: 'Settings', value: 'settings', link: '/settings' }
-        ]
-      }
+export default {
+  data () {
+    return {
+      bottomNav: 'recent',
+      menuItems: [
+        { icon: 'color_lens', title: 'Lights', value: 'lights', link: '/lights' },
+        { icon: 'bar_chart', title: 'Statistics', value: 'statistics', link: '/statistics' },
+        { icon: 'settings', title: 'Settings', value: 'settings', link: '/settings' }
+      ]
     }
   }
+}
 </script>
 
 <style lang="scss">
