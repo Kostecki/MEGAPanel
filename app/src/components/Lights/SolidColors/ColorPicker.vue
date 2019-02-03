@@ -23,16 +23,16 @@ export default {
   },
   methods: {
     updateValue (value) {
-      let newLightsConf = { ...this.lightsConf }
-      newLightsConf.color = {
-        r: value.rgba.r,
-        g: value.rgba.g,
-        b: value.rgba.b,
-        a: value.rgba.a
-      }
-      newLightsConf.brightness = value.rgba.a
-
-      this.$store.dispatch('updateLightsConf', newLightsConf)
+      this.$store.dispatch('updateLightsConf', {
+        ...this.lightsConf,
+        brightness: value.rgba.a,
+        color: {
+          r: value.rgba.r,
+          g: value.rgba.g,
+          b: value.rgba.b,
+          a: value.rgba.a
+        }
+      })
     }
   },
   computed: {

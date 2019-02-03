@@ -104,9 +104,12 @@ export default new Vuex.Store({
         })
     },
     updateLightsConf ({ commit }, payload) {
-      let lightsConf = payload
-      lightsConf['brightness'] = payload.color.a
-      // TODO: POST to API)
+      let lightsConf = {
+        ...payload,
+        brightness: payload.color.a
+      }
+      // TODO: POST to API
+      console.log(payload)
       commit('updateLightsConf', lightsConf)
     }
   }

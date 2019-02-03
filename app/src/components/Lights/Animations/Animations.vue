@@ -64,10 +64,10 @@ export default {
   },
   methods: {
     speedChanged () {
-      let newLightsConf = { ...this.lightsConf }
-      newLightsConf.speed = this.speed
-
-      this.$store.dispatch('updateLightsConf', newLightsConf)
+      this.$store.dispatch('updateLightsConf', {
+        ...this.lightsConf,
+        speed: this.speed
+      })
     },
     animationClicked (animation) {
       if (!this.animations.find(e => e.value === animation && e.speedControl)) {
@@ -84,10 +84,10 @@ export default {
         this.selectedAnimation = animation
       }
 
-      let newLightsConf = { ...this.lightsConf }
-      newLightsConf.animation = this.selectedAnimation
-
-      this.$store.dispatch('updateLightsConf', newLightsConf)
+      this.$store.dispatch('updateLightsConf', {
+        ...this.lightsConf,
+        animation: this.selectedAnimation
+      })
     }
   },
   computed: {

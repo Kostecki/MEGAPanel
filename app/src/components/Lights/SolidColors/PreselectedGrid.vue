@@ -37,10 +37,10 @@ export default {
   },
   methods: {
     presetClicked (color) {
-      let newLightsConf = { ...this.lightsConf }
-      newLightsConf.color = this.hexToRGBA(color, this.lightsConf.color.a)
-
-      this.$store.dispatch('updateLightsConf', newLightsConf)
+      this.$store.dispatch('updateLightsConf', {
+        ...this.lightsConf,
+        color: this.hexToRGBA(color, this.lightsConf.color.a)
+      })
     },
     isActiveColor (color) {
       let selected = JSON.stringify(this.hexToRGBA(color, this.lightsConf.color.a))
