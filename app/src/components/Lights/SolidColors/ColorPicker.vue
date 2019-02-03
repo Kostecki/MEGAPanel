@@ -60,6 +60,10 @@ export default {
 
     .vc-chrome-saturation-wrap {
       padding-bottom: 30%;
+
+      @media screen and (max-width: 662px) {
+        display: none;
+      }
     }
 
     .vc-chrome-hue-wrap,
