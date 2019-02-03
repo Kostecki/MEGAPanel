@@ -91,6 +91,12 @@ export default {
       height: 100%;
       display: flex;
       justify-content: center;
+
+      @media screen and (max-width: 662px){
+        .material-icons {
+          font-size: 20px !important;
+        }
+      }
     }
   }
 </style>
