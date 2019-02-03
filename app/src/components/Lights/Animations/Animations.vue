@@ -8,7 +8,7 @@
 
     <v-container fluid>
       <v-layout row wrap>
-        <v-flex xs4>
+        <v-flex xs12 sm4>
           <span
             class="left body-2 font-weight-light text-uppercase font-italic"
             @click="() => speed = 0"
@@ -117,6 +117,7 @@ export default {
 <style lang="scss" scoped>
   .speed-slider {
     margin: 0;
+    width: 100%;
   }
 
   .animation-cards-container {
