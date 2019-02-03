@@ -37,7 +37,7 @@ export default {
     }
   },
   methods: {
-    hexToRGBA(colorHex, a) {
+    hexToRGBA (colorHex) {
       let hex = colorHex.replace('#', '')
 
       let rgbObj = {
@@ -50,12 +50,12 @@ export default {
       return rgbObj
     },
     presetClicked (color) {
-      let colorConf = JSON.parse(JSON.stringify(this.colorConf))
+      let colorConf = { ...this.colorConf }
       colorConf.color = this.hexToRGBA(color)
 
       this.setActiveColorConfigHandler(colorConf)
     },
-    isActiveColor(color) {
+    isActiveColor (color) {
       let selected = JSON.stringify(this.hexToRGBA(color))
       let current = JSON.stringify(this.colorConf.color)
 

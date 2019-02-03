@@ -19,13 +19,12 @@ export default {
   },
   data () {
     return {
-      colors: Object.assign({}, this.colorConf.color)
+      colors: { ...this.colorConf.color }
     }
   },
   methods: {
     updateValue (value) {
-      console.log(this.colorConf)
-      let colorConf = JSON.parse(JSON.stringify(this.colorConf))
+      let colorConf = { ...this.colorConf }
       colorConf.color = {
         r: value.rgba.r,
         g: value.rgba.g,

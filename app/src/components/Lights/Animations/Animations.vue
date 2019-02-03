@@ -76,7 +76,7 @@ export default {
   },
   methods: {
     speedChanged() {
-      let colorConf = JSON.parse(JSON.stringify(this.colorConf))
+      let colorConf = { ...this.colorConf }
       colorConf.speed = this.speed
 
       this.setActiveColorConfigHandler(colorConf)
@@ -95,7 +95,7 @@ export default {
         this.selectedAnimation = animation
       }      
 
-      let colorConf = JSON.parse(JSON.stringify(this.colorConf))
+      let colorConf = { ...this.colorConf}
       colorConf.animation = this.selectedAnimation
 
       this.setActiveColorConfigHandler(colorConf)
