@@ -71,13 +71,13 @@ export default {
     }
   },
   methods: {
-    speedChanged() {
+    speedChanged () {
       let newLightsConf = { ...this.lightsConf }
       newLightsConf.speed = this.speed
 
       this.$store.dispatch('updateLightsConf', newLightsConf)
     },
-    animationClicked(animation) {
+    animationClicked (animation) {
       if (!this.animations.find(e => e.value === animation && e.speedControl)) {
         this.disableSpeedControl = true
         this.speed = 0
@@ -90,7 +90,7 @@ export default {
         this.speed = 0
       } else {
         this.selectedAnimation = animation
-      }      
+      }
 
       let newLightsConf = { ...this.lightsConf }
       newLightsConf.animation = this.selectedAnimation

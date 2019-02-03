@@ -1,9 +1,7 @@
 export default {
   methods: {
     hexToRGBA (colorHex, brightness) {
-      console.log(brightness)
       let hex = colorHex.replace('#', '')
-
       let rgbObj = {
         a: brightness,
         r: parseInt(hex.substring(0, 2), 16),

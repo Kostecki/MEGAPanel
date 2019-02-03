@@ -2,9 +2,9 @@
   <v-card flat>
     <v-bottom-nav :active.sync="bottomNav" :value="true" fixed color="white">
       <v-btn
-        v-for="(item, index) in menuItems"
+        v-for="(item, index) in navItems"
         :key="index"
-        color="#FF3D02"
+        color="primary"
         flat
         :value="item.value"
         router
@@ -21,12 +21,28 @@
 export default {
   data () {
     return {
-      bottomNav: 'recent',
-      menuItems: [
-        { icon: 'color_lens', title: 'Lights', value: 'lights', link: '/lights' },
+      bottomNav: 'recent'
+    }
+  },
+  computed: {
+    navItems () {
+      let navItems = [
         { icon: 'bar_chart', title: 'Statistics', value: 'statistics', link: '/statistics' },
-        { icon: 'settings', title: 'Settings', value: 'settings', link: '/settings' }
+        { icon: 'settings', title: 'Settings', value: 'settings', link: '/signin'}
       ]
+
+      if (this.userIsAuthenticated) {
+        navItems = [
+          { icon: 'color_lens', title: 'Lights', value: 'lights', link: '/lights' },
+          { icon: 'bar_chart', title: 'Statistics', value: 'statistics', link: '/statistics' },
+          { icon: 'settings', title: 'Settings', value: 'settings', link: '/settings' }
+        ]
+      }
+
+      return navItems
+    },
+    userIsAuthenticated () {
+      return this.$store.getters.user !== null && this.$store.getters.user !== undefined
     }
   }
 }
