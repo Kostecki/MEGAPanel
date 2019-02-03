@@ -7,7 +7,11 @@
           :color="color"
           max-width="100"
           @click="presetClicked(color)"
-        />
+        >
+          <div v-if="isActiveColor(color)" class="current-color">
+            <v-icon x-large>check_circle_outline</v-icon>
+          </div>
+        </v-card>
       </v-flex>
     </v-layout>
   </v-container>
@@ -33,18 +37,29 @@ export default {
     }
   },
   methods: {
-    presetClicked (color) {
-      let colorConf = JSON.parse(JSON.stringify(this.colorConf))
+    hexToRGBA(colorHex, a) {
+      let hex = colorHex.replace('#', '')
 
-      let hex = color.replace('#', '')
-      colorConf.color = {
-        a: this.colorConf.color.a,
+      let rgbObj = {
+        a: this.colorConf.brightness,
         r: parseInt(hex.substring(0, 2), 16),
         g: parseInt(hex.substring(2, 4), 16),
         b: parseInt(hex.substring(4, 6), 16)
       }
 
+      return rgbObj
+    },
+    presetClicked (color) {
+      let colorConf = JSON.parse(JSON.stringify(this.colorConf))
+      colorConf.color = this.hexToRGBA(color)
+
       this.setActiveColorConfigHandler(colorConf)
+    },
+    isActiveColor(color) {
+      let selected = JSON.stringify(this.hexToRGBA(color))
+      let current = JSON.stringify(this.colorConf.color)
+
+      return selected === current
     }
   }
 }
@@ -68,6 +83,14 @@ export default {
       content: "";
       display: block;
       padding-bottom: 100%;
+    }
+
+    .current-color {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
     }
   }
 </style>

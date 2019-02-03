@@ -46,7 +46,7 @@ export default {
       this.colorConf = payload
     },
     updateLights () {
-      // console.log(this.colorConf)
+      console.log("updateLights()", this.colorConf)
       // this.axios.post('/setlights', this.colorConf)
       //   .then(response => console.log('Response:', response.data.response))
       //   .catch(error => console.log('Error', error))
