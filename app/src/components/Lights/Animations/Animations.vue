@@ -28,6 +28,16 @@
     </v-container>
 
     <v-container fluid style="padding-top:0">
+      <v-layout v-if="loading" row wrap>
+        <v-flex class="text-xs-center">
+          <v-progress-circular
+            indeterminate
+            color="primary"
+            :width="3"
+            class="spinner"
+          ></v-progress-circular>
+        </v-flex>
+      </v-layout>
       <v-layout row wrap class="animation-cards-container">
         <v-flex v-for="(animation, index) in animations" :key="index">
           <v-card
@@ -49,25 +59,7 @@ export default {
     return {
       speed: 0,
       selectedAnimation: 'solid',
-      disableSpeedControl: true,
-      animations: [
-        { name: 'BPM', value: 'bpm', speedControl: false },
-        { name: 'Candy Cane', value: 'candycane', speedControl: false },
-        { name: 'Confetti', value: 'confetti', speedControl: true },
-        { name: 'Dots', value: 'dots', speedControl: false },
-        { name: 'Fire', value: 'fire', speedControl: false },
-        { name: 'Glitter', value: 'glitter', speedControl: true },
-        { name: 'Juggle', value: 'juggle', speedControl: false },
-        { name: 'Lightning', value: 'lightning', speedControl: false },
-        { name: 'Noise', value: 'noise', speedControl: false },
-        { name: 'Police All', value: 'policeall', speedControl: true },
-        { name: 'Police One', value: 'policeone', speedControl: true },
-        { name: 'Rainbow', value: 'rainbow', speedControl: false },
-        { name: 'Rainbow With Glitter', value: 'rainbowwithglitter', speedControl: true },
-        { name: 'Ripple', value: 'ripple', speedControl: true },
-        { name: 'Sinelon', value: 'sinelon', speedControl: false },
-        { name: 'Twinkle', value: 'twinkle', speedControl: false }
-      ]
+      disableSpeedControl: true
     }
   },
   methods: {
@@ -99,6 +91,12 @@ export default {
     }
   },
   computed: {
+    loading () {
+      return this.$store.getters.loading
+    },
+    animations () {
+      return this.$store.getters.animations
+    },
     lightsConf () {
       return this.$store.getters.lightsConf
     }
@@ -117,6 +115,10 @@ export default {
   .speed-slider {
     margin: 0;
     width: 100%;
+  }
+
+  .spinner {
+    margin-bottom: 20px;
   }
 
   .animation-cards-container {

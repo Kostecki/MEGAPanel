@@ -32,5 +32,7 @@ new Vue({
       projectId: 'megapanel-3439e',
       storageBucket: 'megapanel-3439e.appspot.com'
     })
+
+    this.$store.dispatch('loadAnimations')
   }
 }).$mount('#app')

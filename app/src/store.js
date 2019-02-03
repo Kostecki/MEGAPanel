@@ -6,6 +6,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    animations: null,
     lightsConf: {
       animation: 'solid',
       color: {
@@ -30,6 +31,9 @@ export default new Vuex.Store({
     user (state) {
       return state.user
     },
+    animations (state) {
+      return state.animations
+    },
     lightsConf (state) {
       return state.lightsConf
     }
@@ -46,6 +50,9 @@ export default new Vuex.Store({
     },
     setUser (state, payload) {
       state.user = payload
+    },
+    setLoadedAnimations (state, payload) {
+      state.animations = payload
     },
     updateLightsConf (state, payload) {
       state.lightsConf = payload
@@ -71,6 +78,29 @@ export default new Vuex.Store({
         .catch(error => {
           commit('setLoading', false)
           commit('setError', error)
+        })
+    },
+    loadAnimations ({ commit }) {
+      commit('setLoading', true)
+      firebase.database().ref('animations').once('value')
+        .then(data => {
+          const animations = []
+          const obj = data.val()
+          for (let key in obj) {
+            animations.push({
+              id: key,
+              name: obj[key].name,
+              value: obj[key].value,
+              speedControl: obj[key].speedControl
+            })
+          }
+
+          commit('setLoadedAnimations', animations)
+          commit('setLoading', false)
+        })
+        .catch(error => {
+          console.log(error)
+          commit('setLoading', false)
         })
     },
     updateLightsConf ({ commit }, payload) {
