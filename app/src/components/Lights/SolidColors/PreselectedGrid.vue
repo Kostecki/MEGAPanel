@@ -52,8 +52,8 @@ export default {
 
 <style lang="scss" scoped>
   .container-preselected {
-    margin-top: 10px;
-    padding: 16px 0;
+    padding: 0;
+    margin: 10px 0 25px 0;
   }
 
   .preselected-grid-color {
@@ -61,7 +61,7 @@ export default {
     cursor: pointer;
 
     &:hover {
-      opacity: 0.9;
+      opacity: 0.7;
     }
 
     &:after {

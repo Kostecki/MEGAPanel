@@ -1,7 +1,7 @@
 <template>
   <v-card color="white">
     <v-card-title>
-      <span class="title font-weight-regular text-uppercase">Colors {{colorConf.color}}</span>
+      <span class="title font-weight-light text-uppercase">Colors</span>
       <v-spacer></v-spacer>
       <v-icon right medium class="refresh">
         refresh
@@ -13,13 +13,13 @@
     <v-container fluid>
       <v-layout row wrap>
         <v-flex xs12>
-          <ColorPicker
+          <PreselectedGrid
             :colorConf="colorConf"
             :setActiveColorConfigHandler="setActiveColorConfigHandler"
           />
         </v-flex>
         <v-flex xs12>
-          <PreselectedGrid
+          <ColorPicker
             :colorConf="colorConf"
             :setActiveColorConfigHandler="setActiveColorConfigHandler"
           />

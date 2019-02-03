@@ -46,16 +46,16 @@ export default {
       this.colorConf = payload
     },
     updateLights () {
-      this.axios.post('/setlights', this.state.lights)
-        .then(response => console.log('Response:', response.data.response))
-        .catch(error => console.log('Error', error))
+      // console.log(this.colorConf)
+      // this.axios.post('/setlights', this.colorConf)
+      //   .then(response => console.log('Response:', response.data.response))
+      //   .catch(error => console.log('Error', error))
     }
   },
   watch: {
     colorConf: {
       handler: function (newVal, oldVal) {
-        //this.updateLights()
-        console.log(newVal)
+        this.updateLights()
       },
       deep: true
     }

@@ -56,6 +56,7 @@ export default {
 <style lang="scss">
   .chrome-color-select {
     width: 100% !important;
+    box-shadow: 0 0 2px rgba(0,0,0,.1), 0 4px 8px rgba(0,0,0,.1) !important;
 
     .vc-chrome-saturation-wrap {
       padding-bottom: 30%;
