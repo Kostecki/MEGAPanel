@@ -13,16 +13,10 @@
     <v-container fluid>
       <v-layout row wrap>
         <v-flex xs12>
-          <PreselectedGrid
-            :colorConf="colorConf"
-            :setActiveColorConfigHandler="setActiveColorConfigHandler"
-          />
+          <PreselectedGrid />
         </v-flex>
         <v-flex xs12>
-          <ColorPicker
-            :colorConf="colorConf"
-            :setActiveColorConfigHandler="setActiveColorConfigHandler"
-          />
+          <ColorPicker />
         </v-flex>
       </v-layout>
     </v-container>
@@ -34,17 +28,9 @@ import PreselectedGrid from './PreselectedGrid.vue'
 import ColorPicker from './ColorPicker.vue'
 
 export default {
-  props: [
-    'colorConf',
-    'setActiveColorConfigHandler'
-  ],
   components: {
     PreselectedGrid,
     ColorPicker
-  },
-  data () {
-    return {
-    }
   }
 }
 </script>

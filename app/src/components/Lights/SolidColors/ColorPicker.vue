@@ -1,7 +1,7 @@
 <template>
   <v-layout row wrap>
     <v-flex xs12>
-      <Chrome :value="colors" @input="updateValue" class="chrome-color-select" />
+      <Chrome v-if="colors" v-model="colors" @input="updateValue" class="chrome-color-select" />
     </v-flex>
   </v-layout>
 </template>
@@ -10,43 +10,39 @@
 import { Chrome } from 'vue-color'
 
 export default {
-  props: [
-    'colorConf',
-    'setActiveColorConfigHandler'
-  ],
   components: {
     Chrome
   },
+  created () {
+    this.colors = this.lightsConf.color
+  },
   data () {
     return {
-      colors: { ...this.colorConf.color }
+      colors: null
     }
   },
   methods: {
     updateValue (value) {
-      let colorConf = { ...this.colorConf }
-      colorConf.color = {
+      let newLightsConf = { ...this.lightsConf }
+      newLightsConf.color = {
         r: value.rgba.r,
         g: value.rgba.g,
         b: value.rgba.b,
         a: value.rgba.a
       }
-      colorConf.brightness = value.rgba.a
+      newLightsConf.brightness = value.rgba.a
 
-      this.setActiveColorConfigHandler(colorConf)
+      this.$store.dispatch('updateLightsConf', newLightsConf)
+    }
+  },
+  computed: {
+    lightsConf () {
+      return this.$store.getters.lightsConf
     }
   },
   watch: {
-    colorConf: {
-      handler: function (newVal) {
-        this.colors = {
-          r: newVal.color.r,
-          g: newVal.color.g,
-          b: newVal.color.b,
-          a: newVal.color.a
-        }
-      },
-      deep: true
+    lightsConf (newLightsConf, oldLightsConf) {
+      this.colors = newLightsConf.color
     }
   }
 }

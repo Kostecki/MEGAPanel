@@ -45,10 +45,6 @@
 
 <script>
 export default {
-  props: [
-    'colorConf',
-    'setActiveColorConfigHandler'
-  ],
   data () {
     return {
       speed: 0,
@@ -76,10 +72,10 @@ export default {
   },
   methods: {
     speedChanged() {
-      let colorConf = { ...this.colorConf }
-      colorConf.speed = this.speed
+      let newLightsConf = { ...this.lightsConf }
+      newLightsConf.speed = this.speed
 
-      this.setActiveColorConfigHandler(colorConf)
+      this.$store.dispatch('updateLightsConf', newLightsConf)
     },
     animationClicked(animation) {
       if (!this.animations.find(e => e.value === animation && e.speedControl)) {
@@ -91,18 +87,21 @@ export default {
 
       if (this.selectedAnimation === animation) {
         this.selectedAnimation = 'solid'
+        this.speed = 0
       } else {
         this.selectedAnimation = animation
       }      
 
-      let colorConf = { ...this.colorConf}
-      colorConf.animation = this.selectedAnimation
+      let newLightsConf = { ...this.lightsConf }
+      newLightsConf.animation = this.selectedAnimation
 
-      this.setActiveColorConfigHandler(colorConf)
+      this.$store.dispatch('updateLightsConf', newLightsConf)
     }
   },
-  filteredAnimations() {
-
+  computed: {
+    lightsConf () {
+      return this.$store.getters.lightsConf
+    }
   }
 }
 </script>

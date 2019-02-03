@@ -18,11 +18,10 @@
 </template>
 
 <script>
+import hexToRGBA from '../../../mixins/hexToRGBA.js'
+
 export default {
-  props: [
-    'colorConf',
-    'setActiveColorConfigHandler'
-  ],
+  mixins: [hexToRGBA],
   data () {
     return {
       preselectedColors: [
@@ -37,29 +36,22 @@ export default {
     }
   },
   methods: {
-    hexToRGBA (colorHex) {
-      let hex = colorHex.replace('#', '')
-
-      let rgbObj = {
-        a: this.colorConf.brightness,
-        r: parseInt(hex.substring(0, 2), 16),
-        g: parseInt(hex.substring(2, 4), 16),
-        b: parseInt(hex.substring(4, 6), 16)
-      }
-
-      return rgbObj
-    },
     presetClicked (color) {
-      let colorConf = { ...this.colorConf }
-      colorConf.color = this.hexToRGBA(color)
+      let newLightsConf = { ...this.lightsConf }
+      newLightsConf.color = this.hexToRGBA(color, this.lightsConf.color.a)
 
-      this.setActiveColorConfigHandler(colorConf)
+      this.$store.dispatch('updateLightsConf', newLightsConf)
     },
     isActiveColor (color) {
-      let selected = JSON.stringify(this.hexToRGBA(color))
-      let current = JSON.stringify(this.colorConf.color)
+      let selected = JSON.stringify(this.hexToRGBA(color, this.lightsConf.color.a))
+      let current = JSON.stringify(this.lightsConf.color)
 
       return selected === current
+    }
+  },
+  computed: {
+    lightsConf () {
+      return this.$store.getters.lightsConf
     }
   }
 }
