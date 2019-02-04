@@ -6,7 +6,7 @@ import * as firebase from 'firebase'
 
 import App from './App.vue'
 import router from './router'
-import store from './store'
+import { store } from './store'
 
 import Alert from './components/Shared/Alert.vue'
 
@@ -32,7 +32,11 @@ new Vue({
       projectId: 'megapanel-3439e',
       storageBucket: 'megapanel-3439e.appspot.com'
     })
-
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.$store.dispatch('autoSignIn', user)
+      }
+    })
     this.$store.dispatch('loadAnimations')
   }
 }).$mount('#app')

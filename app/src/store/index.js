@@ -4,7 +4,7 @@ import * as firebase from 'firebase'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+export const store = new Vuex.Store({
   state: {
     animations: null,
     lightsConf: {
@@ -79,6 +79,13 @@ export default new Vuex.Store({
           commit('setLoading', false)
           commit('setError', error)
         })
+    },
+    autoSignIn ({ commit }, payload) {
+      commit('setUser', { id: payload.uid })
+    },
+    logout ({ commit }) {
+      firebase.auth().signOut()
+      commit('setUser', null)
     },
     loadAnimations ({ commit }) {
       commit('setLoading', true)
