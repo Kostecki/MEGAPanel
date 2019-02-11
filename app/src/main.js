@@ -26,11 +26,11 @@ new Vue({
   render: h => h(App),
   created () {
     firebase.initializeApp({
-      apiKey: 'AIzaSyAio1DTLRtg4x0J9M9yRq3DTQK688Z6toc',
-      authDomain: 'megapanel-3439e.firebaseapp.com',
-      databaseURL: 'https://megapanel-3439e.firebaseio.com',
-      projectId: 'megapanel-3439e',
-      storageBucket: 'megapanel-3439e.appspot.com'
+      apiKey: 'AIzaSyDnheuTGZwZAXzOYA6UwEF6EVrlostKl1o',
+      authDomain: 'megaboominator.firebaseapp.com',
+      databaseURL: 'https://megaboominator.firebaseio.com',
+      projectId: 'megaboominator',
+      storageBucket: 'megaboominator.appspot.com'
     })
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
