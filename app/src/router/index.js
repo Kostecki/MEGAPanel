@@ -2,8 +2,10 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import AuthGuard from './auth-guard'
-import Lights from '@/components/Lights/Lights.vue'
 import SignIn from '@/components/User/SignIn.vue'
+
+import Lights from '@/components/Lights/Lights.vue'
+import Settings from '@/components/Settings/Settings.vue'
 
 Vue.use(Router)
 
@@ -11,6 +13,11 @@ export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
+    {
+      path: '/signin',
+      name: 'Sign In',
+      component: SignIn
+    },
     {
       path: '/',
       redirect: '/lights'
@@ -22,9 +29,10 @@ export default new Router({
       beforeEnter: AuthGuard
     },
     {
-      path: '/signin',
-      name: 'Sign In',
-      component: SignIn
+      path: '/settings',
+      name: 'Settings',
+      component: Settings,
+      beforeEnter: AuthGuard
     }
     // {
     //   path: '/about',
