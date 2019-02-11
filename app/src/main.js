@@ -18,7 +18,11 @@ Vue.config.productionTip = false
 Vue.component('AppAlert', Alert)
 
 // Vuetify
-Vue.use(Vuetify)
+Vue.use(Vuetify, {
+  theme: {
+    primary: '#FF3D02'
+  }
+})
 
 new Vue({
   router,
