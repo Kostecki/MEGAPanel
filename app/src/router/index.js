@@ -29,7 +29,7 @@ export default new Router({
       beforeEnter: AuthGuard
     },
     {
-      path: '/settings',
+      path: '/settings/:tab?',
       name: 'Settings',
       component: Settings,
       beforeEnter: AuthGuard
