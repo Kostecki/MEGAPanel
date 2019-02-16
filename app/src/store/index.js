@@ -95,7 +95,7 @@ export const store = new Vuex.Store({
           const obj = data.val()
           for (let key in obj) {
             animations.push({
-              id: key,
+              key: key,
               name: obj[key].name,
               value: obj[key].value,
               speedControl: obj[key].speedControl
@@ -118,6 +118,27 @@ export const store = new Vuex.Store({
       // TODO: POST to API
       console.log(payload)
       commit('updateLightsConf', lightsConf)
+    },
+    addNewAnimation ({ commit, dispatch }, payload) {
+      return new Promise((resolve, reject) => {
+        firebase.database().ref('animations').push(payload)
+          .then(() => {
+            resolve()
+            dispatch('loadAnimations')
+          })
+          .catch(error => reject(error))
+      })
+    },
+    updateAnimation ({ commit, dispatch }, payload) {
+      let animation = payload.animation
+      delete animation['key']
+
+      firebase.database().ref('animations').child(payload.key).set(animation)
+        .then(() => dispatch('loadAnimations'))
+    },
+    deleteAnimation ({ commit, dispatch }, payload) {
+      firebase.database().ref('animations').child(payload).remove()
+        .then(() => dispatch('loadAnimations'))
     }
   }
 })

@@ -1,5 +1,5 @@
 <template>
-  <v-container text-xs-center>
+  <v-container class="settings-container">
     <v-layout row wrap>
       <v-flex xs12 align-center>
         <v-card>
@@ -26,7 +26,7 @@
 
 <script>
 import GeneralTab from './GeneralTab.vue'
-import AnimationsTab from './AnimationsTab.vue'
+import AnimationsTab from './AnimationsTab/AnimationsTab.vue'
 
 export default {
   components: {
@@ -65,9 +65,11 @@ export default {
 </script>
 
 <style>
-
+  .settings-container {
+    margin-bottom: 75px;
+  }
 </style>
 
 <style lang="scss" scoped>
-
+  
 </style>
