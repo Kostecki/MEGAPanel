@@ -28,7 +28,7 @@ export default {
     navItems () {
       let navItems = [
         { icon: 'bar_chart', title: 'Statistics', value: 'statistics', link: '/statistics' },
-        { icon: 'settings', title: 'Settings', value: 'settings', link: '/signin'}
+        { icon: 'settings', title: 'Settings', value: 'settings', link: '/signin' }
       ]
 
       if (this.userIsAuthenticated) {

@@ -46,18 +46,18 @@ export default {
       let theTab = null
       tab ? theTab = tab.toLowerCase() : theTab = 'general'
 
-      this.$router.push({ name: 'Settings', params: {tab: theTab} })
-      
+      this.$router.push({ name: 'Settings', params: { tab: theTab } })
+
       switch (theTab) {
         case 'general':
           this.active = 0
-          break;
+          break
         case 'animations':
           this.active = 1
-          break;
-      
+          break
+
         default:
-          break;
+          break
       }
     }
   }
@@ -71,5 +71,5 @@ export default {
 </style>
 
 <style lang="scss" scoped>
-  
+
 </style>

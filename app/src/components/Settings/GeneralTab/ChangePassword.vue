@@ -7,9 +7,9 @@
     />
 
     <div class="subheading">Change Password</div>
-    
+
     <v-divider class="my-3" />
-    
+
     <v-form ref="form" v-model="valid" lazy-validation class="change-pass-form">
       <v-text-field
         v-model="updatedPassword['passwordOne']"
@@ -55,7 +55,7 @@ export default {
         required: value => !!value || 'Password is required.',
         match: value => value === this.updatedPassword.passwordOne || 'Password fields must match.'
       },
-      updatedPassword: {},
+      updatedPassword: {}
     }
   },
   methods: {
