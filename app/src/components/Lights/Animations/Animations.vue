@@ -70,12 +70,10 @@ export default {
       })
     },
     animationClicked (animation) {
-      if (!this.animations.find(e => e.value === animation && e.speedControl)) {
-        this.disableSpeedControl = true
-        this.speed = 0
-      } else {
-        this.disableSpeedControl = false
-      }
+      this.speed = 0
+      this.disableSpeedControl = !this.animations.find(e => {
+        return e.value === animation && e.speedControl
+      })
 
       if (this.selectedAnimation === animation) {
         this.selectedAnimation = 'solid'
@@ -86,7 +84,8 @@ export default {
 
       this.$store.dispatch('updateLightsConf', {
         ...this.lightsConf,
-        animation: this.selectedAnimation
+        animation: this.selectedAnimation,
+        speed: this.speed
       })
     }
   },

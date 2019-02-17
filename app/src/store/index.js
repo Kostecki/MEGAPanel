@@ -17,9 +17,9 @@ export const store = new Vuex.Store({
       },
       speed: 0
     },
-    user: null,
     loading: false,
-    error: null
+    error: null,
+    user: null
   },
   getters: {
     loading (state) {
