@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import * as firebase from 'firebase'
+import router from '../router'
 
 Vue.use(Vuex)
 
@@ -70,7 +71,8 @@ export const store = new Vuex.Store({
           user => {
             commit('setLoading', false)
             const newUser = {
-              id: user.uid
+              id: user.uid,
+              email: user.email
             }
             commit('setUser', newUser)
           }
@@ -80,12 +82,31 @@ export const store = new Vuex.Store({
           commit('setError', error)
         })
     },
+    changePassword ({ commit }, payload) {
+      commit('setLoading', true)
+      commit('clearError')
+      return new Promise((resolve, reject) => {
+        firebase.auth().currentUser.updatePassword(payload)
+          .then(() => {
+            commit('setLoading', false)
+            resolve()
+          })
+          .catch(error => {
+            commit('setLoading', false)
+            reject(error)
+          })
+      })
+    },
     autoSignIn ({ commit }, payload) {
-      commit('setUser', { id: payload.uid })
+      commit('setUser', {
+        id: payload.uid,
+        email: payload.email
+      })
     },
     logout ({ commit }) {
       firebase.auth().signOut()
       commit('setUser', null)
+      router.push({ path: '/' })
     },
     loadAnimations ({ commit }) {
       commit('setLoading', true)

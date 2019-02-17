@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import GeneralTab from './GeneralTab.vue'
+import GeneralTab from './GeneralTab/GeneralTab.vue'
 import AnimationsTab from './AnimationsTab/AnimationsTab.vue'
 
 export default {
