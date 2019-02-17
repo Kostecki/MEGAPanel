@@ -26,10 +26,14 @@
     </v-flex>
       <v-flex xs1>
         <v-layout justify-end>
-          <v-icon
-            class="add-icon"
+          <v-btn
+            flat icon
+            color="grey"
             @click="addNew"
-          >add_circle_outline</v-icon>
+            style="margin: 0"
+          >
+            <v-icon>add_circle_outline</v-icon>
+          </v-btn>
         </v-layout>
       </v-flex>
   </v-layout>
@@ -52,8 +56,8 @@ export default {
     },
     updateValue () {
       this.newAnimation['value'] = this.newAnimation['name']
-                                    .replace(/[^a-z0-9]/gi, '')
-                                    .toLowerCase()
+        .replace(/[^a-z0-9]/gi, '')
+        .toLowerCase()
     },
     clear () {
       this.newAnimation = {}
@@ -69,16 +73,6 @@ export default {
     .v-input__control {
       .v-input__slot {
         margin-bottom: 0;
-      }
-    }
-
-    .add-icon {
-      margin-top: 12px;
-      user-select: none;
-      cursor: pointer;
-
-      &:hover {
-        opacity: 0.8;
       }
     }
   }

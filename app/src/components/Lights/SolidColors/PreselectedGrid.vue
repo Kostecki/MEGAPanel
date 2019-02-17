@@ -6,6 +6,7 @@
           class="preselected-grid-color"
           :color="color"
           max-width="100"
+          v-ripple
           @click="presetClicked(color)"
         >
           <div v-if="isActiveColor(color)" class="current-color">

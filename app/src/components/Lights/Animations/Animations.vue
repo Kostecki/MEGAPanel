@@ -41,6 +41,7 @@
       <v-layout row wrap class="animation-cards-container">
         <v-flex v-for="(animation, index) in animations" :key="index">
           <v-card
+            v-ripple
             class="animation-card"
             :class="selectedAnimation === animation.value ? 'selected' : null"
             @click="animationClicked(animation.value)"

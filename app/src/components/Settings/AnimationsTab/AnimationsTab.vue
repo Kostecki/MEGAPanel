@@ -5,7 +5,7 @@
         <CreateNew />
 
         <v-divider />
-        
+
         <Animations />
       </v-card>
     </v-flex>
@@ -28,5 +28,5 @@ export default {
 </style>
 
 <style lang="scss" scoped>
-  
+
 </style>

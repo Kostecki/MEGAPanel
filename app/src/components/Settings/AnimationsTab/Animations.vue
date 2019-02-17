@@ -33,10 +33,14 @@
         </v-flex>
         <v-flex xs1>
           <v-layout justify-end>
-            <v-icon
-              class="add-icon"
+            <v-btn
+              flat icon
+              color="grey"
               @click="deleteAnimation(animation.key)"
-            >remove_circle_outline</v-icon>
+              style="margin: 0"
+            >
+              <v-icon>remove_circle_outline</v-icon>
+            </v-btn>
           </v-layout>
         </v-flex>
       </v-layout>
