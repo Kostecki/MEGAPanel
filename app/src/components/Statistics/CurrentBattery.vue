@@ -1,28 +1,28 @@
 <template>
-  <div>
+  <div class="current-battery">
     <div class="caption font-weight-light font-italic text-uppercase">Battery ({{battery}})</div>
-    <div class="headline font-weight-bold mt-1" :class="setState">{{voltage}} Volt ({{chargeLevel}}%)</div>
-</div>
+    <div class="headline font-weight-bold mt-1 current-voltage" :class="setState">{{voltage}} Volt ({{chargeLevel}}%)</div>
+  </div>
 </template>
 
 <script>
 export default {
   data () {
     return {
-      voltage: 12.71,
-      battery: 'ThunderDucks'
+      voltage: 12.71, // TODO: get this from the store
+      battery: 'ThunderDucks' // TODO: get this from the store
     }
   },
   computed: {
     setState () {
-      const voltage = this.voltage //TODO: get this from the store
+      const voltage = this.voltage
 
       if (voltage >= 12.10) { return 'good' }
       if (voltage > 11.50) { return 'okay' }
       if (voltage <= 11.50) { return 'bad' }
     },
     chargeLevel () {
-      const voltage = this.voltage //TODO: get this from the store
+      const voltage = this.voltage
 
       if (voltage >= 12.73) { return "100"; }
       if (voltage >= 12.62) { return "90"; } 
@@ -40,12 +40,20 @@ export default {
 }
 </script>
 
-<style>
-
-</style>
-
 <style lang="scss" scoped>
-  .good { color: green; }
-  .okay { color: #FFAB00; }
-  .bad { color: red; }
+  .current-battery {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .current-voltage {
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+
+    .good { color: green; }
+    .okay { color: #FFAB00; }
+    .bad { color: red; }
+  }
 </style>
