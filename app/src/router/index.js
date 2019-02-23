@@ -5,6 +5,7 @@ import AuthGuard from './auth-guard'
 import SignIn from '@/components/User/SignIn.vue'
 
 import Lights from '@/components/Lights/Lights.vue'
+import Statistics from '@/components/Statistics/Statistics.vue'
 import Settings from '@/components/Settings/Settings.vue'
 
 Vue.use(Router)
@@ -27,6 +28,11 @@ export default new Router({
       name: 'Lights',
       component: Lights,
       beforeEnter: AuthGuard
+    },
+    {
+      path: '/statistics',
+      name: 'Statistics',
+      component: Statistics
     },
     {
       path: '/settings/:tab?',
