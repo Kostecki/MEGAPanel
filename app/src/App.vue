@@ -17,7 +17,11 @@ export default {
 
 <style lang="scss">
 body {
-  background: #FAFAFA;
+  background: #ECEEEE;
+}
+
+.application--wrap {
+  background: #ECEEEE;
 }
 
 .main-container {
