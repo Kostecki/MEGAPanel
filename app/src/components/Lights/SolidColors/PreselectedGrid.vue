@@ -61,7 +61,7 @@ export default {
 <style lang="scss" scoped>
   .container-preselected {
     padding: 0;
-    margin: 10px 0 25px 0;
+    margin: 0 0 25px 0;
   }
 
   .preselected-grid-color {
