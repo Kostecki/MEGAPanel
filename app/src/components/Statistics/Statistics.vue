@@ -13,15 +13,15 @@
 
           <v-divider />
 
-          <v-container grid-list-md>
-            <v-layout row class="mb-2">
-              <v-flex xs12 sm4>
+          <v-container>
+            <v-layout row wrap justify-space-between class="mb-2">
+              <v-flex xs12 sm3 class="mb-3">
                 <CurrentBattery />
               </v-flex>
-              <v-flex xs12 sm4>
+              <v-flex xs12 sm3 class="mb-3">
                 <Batteries />
               </v-flex>
-              <v-flex xs12 sm4>
+              <v-flex xs12 sm3>
                 <AvgSpeeds />
               </v-flex>
             </v-layout>

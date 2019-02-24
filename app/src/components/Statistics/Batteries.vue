@@ -35,10 +35,6 @@ export default {
 </style>
 
 <style lang="scss" scoped>
-  .batteries {
-    padding-right: 25px;
-  }
-
   .single-battery {
     display: flex;
     justify-content: space-between;

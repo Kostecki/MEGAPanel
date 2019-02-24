@@ -1,7 +1,7 @@
 <template>
   <div class="current-battery">
     <div class="caption font-weight-light font-italic text-uppercase">Battery ({{battery}})</div>
-    <div class="headline font-weight-bold mt-1 current-voltage" :class="setState">{{voltage}} Volt ({{chargeLevel}}%)</div>
+    <div class="title font-weight-bold mt-1 current-voltage" :class="setState">{{voltage}} Volt ({{chargeLevel}}%)</div>
   </div>
 </template>
 
@@ -45,11 +45,13 @@ export default {
     display: flex;
     flex-direction: column;
     height: 100%;
-
-    .current-voltage {
-      display: flex;
-      align-items: center;
-      height: 100%;
+      
+    @media (min-width: 600px) { // XS Breakpoint
+      .current-voltage {
+        display: flex;
+        align-items: center;
+        height: 100%;
+      }
     }
 
     .good { color: green; }
