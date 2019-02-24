@@ -9,9 +9,8 @@ WORKDIR /usr/src/app
 ENV PATH /usr/src/app/node_modules/.bin:$PATH
 
 # Install and cache app dependencies
-COPY package.json /usr/src/app/package.json
+COPY /app/package.json /usr/src/app/package.json
 RUN npm install
-RUN npm install @babel/runtime@7.0.0-beta.55
 
 # start app
-CMD ["npm", "start"]
+CMD ["npm", "run", "serve"]
