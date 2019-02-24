@@ -50,8 +50,12 @@ export default {
 
     @media (min-width: 600px) { // Larger than XS breakpoint
       display: flex;
-      align-items: center;
       height: 100%;
+    }
+
+    .current-voltage {
+      display: flex;
+      align-items: center;
     }
 
     .good { color: green; }
