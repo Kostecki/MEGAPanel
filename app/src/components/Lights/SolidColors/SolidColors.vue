@@ -3,7 +3,14 @@
     <v-card-title>
       <span class="title font-weight-light text-uppercase">Colors</span>
       <v-spacer></v-spacer>
-      <v-icon right medium class="refresh">
+      <v-icon
+        right
+        medium
+        class="refresh"
+        :class="animated ? 'refreshAnimation' : null"
+        @transitionend="animated = false"
+        @animationend="animated = false"
+        @click="() => animated = true">
         refresh
       </v-icon>
     </v-card-title>
@@ -31,6 +38,16 @@ export default {
   components: {
     PreselectedGrid,
     ColorPicker
+  },
+  data () {
+    return {
+      animated: false
+    }
+  },
+  methods: {
+    animate() {
+      this.animated = true
+    }
   }
 }
 </script>

@@ -32,19 +32,16 @@ body {
 /* refresh styling */
 .refresh {
   cursor: pointer;
+  user-select: none;
 }
  /* Animation for refresh button */
 .refreshAnimation {
-  -webkit-transition-duration: 0.8s;
-  -moz-transition-duration: 0.8s;
-  -o-transition-duration: 0.8s;
-  transition-duration: 0.8s;
-
-  -webkit-transition-property: -webkit-transform;
-  -moz-transition-property: -moz-transform;
-  -o-transition-property: -o-transform;
-  transition-property: transform;
-
-  transform: rotate(360deg);
+  display: inline-block;
+  animation: spin 0.5s linear;
+  
+  @keyframes spin {
+    0%  {-webkit-transform: rotate(0deg)}
+    100% {-webkit-transform: rotate(360deg)}
+  }
 }
 </style>
