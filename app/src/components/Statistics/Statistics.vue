@@ -13,7 +13,7 @@
 
           <v-divider />
 
-          <v-container>
+          <v-container style="margin-bottom: 75px">
             <v-layout row wrap justify-space-between class="mb-2">
               <v-flex xs12 sm3 class="mb-3">
                 <CurrentBattery />
@@ -44,7 +44,7 @@
 
             <v-divider />
 
-            <v-layout row class="mt-3">
+            <v-layout row class="mt-3 weekly-battery-data-container">
               <v-flex xs12>
                 <WeeklyBatteryData />
               </v-flex>
@@ -77,9 +77,10 @@ export default {
 </script>
 
 <style>
-
 </style>
 
 <style lang="scss" scoped>
-
+  // .weekly-battery-data-container {
+  //   margin-bottom: 75px;
+  // }
 </style>
