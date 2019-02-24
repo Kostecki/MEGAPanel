@@ -28,19 +28,23 @@
 
             <v-divider />
 
-            <v-layout row class="my-2">
+            <v-layout row class="my-4">
               <v-flex xs12>
                 <DataUsageGraphs />
               </v-flex>
             </v-layout>
 
-            <v-layout row class="my-2">
+            <v-divider />
+
+            <v-layout row class="my-4">
               <v-flex xs12>
                 <DataUsageToday />
               </v-flex>
             </v-layout>
 
-            <v-layout row class="mt-2">
+            <v-divider />
+
+            <v-layout row class="mt-4">
               <v-flex xs12>
                 <WeeklyBatteryData />
               </v-flex>
@@ -50,14 +54,13 @@
       </v-flex>
     </v-layout>
   </v-container>
-  
 </template>
 
 <script>
 import CurrentBattery from './CurrentBattery.vue'
 import Batteries from './Batteries.vue'
 import AvgSpeeds from './AvgSpeeds.vue'
-import DataUsageGraphs from './DataUsageGraphs.vue'
+import DataUsageGraphs from './DataUsageGraphs/DataUsageGraphs.vue'
 import DataUsageToday from './DataUsageToday.vue'
 import WeeklyBatteryData from './WeeklyBatteryData.vue'
 

@@ -17,12 +17,12 @@ export default {
         {
           BatteryId: 'ThunderDucks',
           Voltage: 12.8,
-          CurrentBattery: true,
+          CurrentBattery: true
         },
         {
           BatteryId: 'LightningGoose',
           Voltage: 11.7,
-          CurrentBattery: false,
+          CurrentBattery: false
         }
       ]
     }

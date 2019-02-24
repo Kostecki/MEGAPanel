@@ -14,6 +14,7 @@ export default {
     }
   },
   computed: {
+    // eslint-disable-next-line
     setState () {
       const voltage = this.voltage
 
@@ -21,20 +22,21 @@ export default {
       if (voltage > 11.50) { return 'okay' }
       if (voltage <= 11.50) { return 'bad' }
     },
+    // eslint-disable-next-line
     chargeLevel () {
       const voltage = this.voltage
 
-      if (voltage >= 12.73) { return "100"; }
-      if (voltage >= 12.62) { return "90"; } 
-      if (voltage >= 12.50) { return "80"; }
-      if (voltage >= 12.37) { return "70"; }
-      if (voltage >= 12.24) { return "60"; }
-      if (voltage >= 12.10) { return "50"; }
-      if (voltage >= 11.96) { return "40"; }
-      if (voltage >= 11.81) { return "30"; }
-      if (voltage >= 11.66) { return "20"; }
-      if (voltage >= 11.51) { return "10"; }
-      if (voltage < 11.51) { return "0"; }
+      if (voltage >= 12.73) { return '100' }
+      if (voltage >= 12.62) { return '90' }
+      if (voltage >= 12.50) { return '80' }
+      if (voltage >= 12.37) { return '70' }
+      if (voltage >= 12.24) { return '60' }
+      if (voltage >= 12.10) { return '50' }
+      if (voltage >= 11.96) { return '40' }
+      if (voltage >= 11.81) { return '30' }
+      if (voltage >= 11.66) { return '20' }
+      if (voltage >= 11.51) { return '10' }
+      if (voltage < 11.51) { return '0' }
     }
   }
 }
@@ -45,7 +47,7 @@ export default {
     display: flex;
     flex-direction: column;
     height: 100%;
-      
+
     @media (min-width: 600px) { // XS Breakpoint
       .current-voltage {
         display: flex;

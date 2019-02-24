@@ -14,8 +14,8 @@ export default {
   data () {
     return {
       avg: { // TODO: get this from the store
-        download: 214.76,
-        upload: 120.13
+        upload: 120.13,
+        download: 214.76
       }
     }
   },
