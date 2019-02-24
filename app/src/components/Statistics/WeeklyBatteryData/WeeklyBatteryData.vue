@@ -10,71 +10,69 @@
 </template>
 
 <script>
-import WeeklyBatteryDataChart from "./WeeklyBatteryDataChart"
-import * as moment from "moment";
+import WeeklyBatteryDataChart from './WeeklyBatteryDataChart'
+import * as moment from 'moment'
 
 export default {
   components: {
     WeeklyBatteryDataChart
   },
-  data() {
+  data () {
     return {
       chartData: {
         labels: [
-          "04:00",
-          "08:00",
-          "12:00",
-          "16:00",
-          "20:00",
-          "00:00",
-          "04:00",
-          "08:00",
-          "12:00",
-          "16:00",
-          "20:00",
-          "00:00",
-          "04:00",
-          "08:00",
-          "12:00",
-          "16:00",
-          "20:00",
-          "00:00",
-          "04:00",
-          "08:00",
-          "12:00",
-          "16:00",
-          "20:00",
-          "00:00",
-          "04:00",
-          "08:00",
-          "12:00",
-          "16:00",
-          "20:00",
-          "00:00",
-          "04:00",
-          "08:00",
-          "12:00",
-          "16:00",
-          "20:00",
-          "00:00",
-          "04:00",
-          "08:00",
-          "12:00",
-          "16:00",
-          "20:00",
-          "00:00"
+          '04:00',
+          '08:00',
+          '12:00',
+          '16:00',
+          '20:00',
+          '00:00',
+          '04:00',
+          '08:00',
+          '12:00',
+          '16:00',
+          '20:00',
+          '00:00',
+          '04:00',
+          '08:00',
+          '12:00',
+          '16:00',
+          '20:00',
+          '00:00',
+          '04:00',
+          '08:00',
+          '12:00',
+          '16:00',
+          '20:00',
+          '00:00',
+          '04:00',
+          '08:00',
+          '12:00',
+          '16:00',
+          '20:00',
+          '00:00',
+          '04:00',
+          '08:00',
+          '12:00',
+          '16:00',
+          '20:00',
+          '00:00',
+          '04:00',
+          '08:00',
+          '12:00',
+          '16:00',
+          '20:00',
+          '00:00'
         ],
         datasets: [
           {
             data: null,
             label: 'Voltage',
             yAxisID: 'left-y-axis',
-            borderColor: '#46BFBD',
             borderWidth: 5,
             fill: false,
             borderColor: '#ff6702', // Almost primary theme color but nice on the eyes..
             pointHoverBackgroundColor: '#ff6702' // Almost primary theme color but nice on the eyes..
-            
           }
         ]
       },
@@ -105,11 +103,11 @@ export default {
   },
   computed: {
     // TODO: this is getting repeated
-    today() {
+    today () {
       return moment.weekdays(moment().weekday())
     }
   }
-};
+}
 </script>
 
 <style>

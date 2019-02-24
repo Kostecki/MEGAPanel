@@ -45,7 +45,7 @@ export default {
     }
   },
   methods: {
-    animate() {
+    animate () {
       this.animated = true
     }
   }
