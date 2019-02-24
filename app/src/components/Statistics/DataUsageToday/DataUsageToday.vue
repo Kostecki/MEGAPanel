@@ -53,7 +53,7 @@ export default {
           },
           {
             label: 'Download',
-            backgroundColor: '#46BFBD',
+            backgroundColor: '#ff6702', // Almost primary theme color but nice on the eyes..
             hoverBorderColor: '#5AD3D1',
             data: null
           }

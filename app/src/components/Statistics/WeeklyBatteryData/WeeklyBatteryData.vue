@@ -71,7 +71,9 @@ export default {
             yAxisID: 'left-y-axis',
             borderColor: '#46BFBD',
             borderWidth: 5,
-            fill: false
+            fill: false,
+            borderColor: '#ff6702', // Almost primary theme color but nice on the eyes..
+            pointHoverBackgroundColor: '#ff6702' // Almost primary theme color but nice on the eyes..
             
           }
         ]

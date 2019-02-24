@@ -56,6 +56,7 @@ export default {
     .current-voltage {
       display: flex;
       align-items: center;
+      height: 100%;
     }
 
     .good { color: green; }

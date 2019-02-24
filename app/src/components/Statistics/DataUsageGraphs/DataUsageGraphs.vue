@@ -44,11 +44,11 @@ export default {
             data: [],
             backgroundColor: [
               '#616774',
-              '#46BFBD'
+              '#ff6702' // Almost primary theme color but nice on the eyes..
             ],
             hoverBackgroundColor: [
               '#6a707f',
-              '#5AD3D1'
+              '#FF6824'
             ]
           }
         ]
