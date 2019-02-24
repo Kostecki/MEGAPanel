@@ -21,7 +21,7 @@ export default new Router({
     },
     {
       path: '/',
-      redirect: '/lights'
+      redirect: '/statistics'
     },
     {
       path: '/lights',

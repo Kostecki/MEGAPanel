@@ -33,8 +33,8 @@ export default {
 
       if (this.userIsAuthenticated) {
         navItems = [
-          { icon: 'color_lens', title: 'Lights', value: 'lights', link: '/lights' },
           { icon: 'bar_chart', title: 'Statistics', value: 'statistics', link: '/statistics' },
+          { icon: 'color_lens', title: 'Lights', value: 'lights', link: '/lights' },
           { icon: 'settings', title: 'Settings', value: 'settings', link: '/settings' }
         ]
       }
