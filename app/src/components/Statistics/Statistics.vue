@@ -28,7 +28,7 @@
 
             <v-divider />
 
-            <v-layout row class="my-4">
+            <v-layout row class="mt-4">
               <v-flex xs12>
                 <DataUsageGraphs />
               </v-flex>
