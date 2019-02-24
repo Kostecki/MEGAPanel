@@ -48,12 +48,10 @@ export default {
     flex-direction: column;
     height: 100%;
 
-    @media (min-width: 600px) { // XS Breakpoint
-      .current-voltage {
-        display: flex;
-        align-items: center;
-        height: 100%;
-      }
+    @media (min-width: 600px) { // Larger than XS breakpoint
+      display: flex;
+      align-items: center;
+      height: 100%;
     }
 
     .good { color: green; }

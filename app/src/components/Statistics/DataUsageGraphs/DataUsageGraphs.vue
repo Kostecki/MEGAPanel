@@ -347,7 +347,7 @@ export default {
     right: 0;
     text-align: center;
 
-    @media (max-width: 599px) {
+    @media (max-width: 599px) { // Only XS breakpoint
       bottom: 35px;
     }
   }
