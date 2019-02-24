@@ -8,14 +8,21 @@ import App from './App.vue'
 import router from './router'
 import { store } from './store'
 
+// Global Custom Components
 import Alert from './components/Shared/Alert.vue'
+
+// Global Mixins
+import { formatDataUnit } from './mixins/formatDataUnit'
 
 import './registerServiceWorker'
 
 Vue.config.productionTip = false
 
-// Custom global alert component
+// Global Custom Components
 Vue.component('AppAlert', Alert)
+
+// Global Mixins
+Vue.mixin(formatDataUnit)
 
 // Vuetify
 Vue.use(Vuetify, {
