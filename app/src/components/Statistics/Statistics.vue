@@ -28,7 +28,7 @@
 
             <v-divider />
 
-            <v-layout row class="mt-4">
+            <v-layout row class="mt-3">
               <v-flex xs12>
                 <DataUsageGraphs />
               </v-flex>
@@ -36,7 +36,7 @@
 
             <v-divider />
 
-            <v-layout row class="my-4">
+            <v-layout row class="my-3">
               <v-flex xs12>
                 <DataUsageToday />
               </v-flex>
@@ -44,7 +44,7 @@
 
             <v-divider />
 
-            <v-layout row class="mt-4">
+            <v-layout row class="mt-3">
               <v-flex xs12>
                 <WeeklyBatteryData />
               </v-flex>
@@ -61,8 +61,8 @@ import CurrentBattery from './CurrentBattery.vue'
 import Batteries from './Batteries.vue'
 import AvgSpeeds from './AvgSpeeds.vue'
 import DataUsageGraphs from './DataUsageGraphs/DataUsageGraphs.vue'
-import DataUsageToday from './DataUsageToday.vue'
-import WeeklyBatteryData from './WeeklyBatteryData.vue'
+import DataUsageToday from './DataUsageToday/DataUsageToday.vue'
+import WeeklyBatteryData from './WeeklyBatteryData/WeeklyBatteryData.vue'
 
 export default {
   components: {
