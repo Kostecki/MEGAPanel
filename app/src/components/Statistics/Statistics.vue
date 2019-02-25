@@ -93,11 +93,5 @@ export default {
 }
 </script>
 
-<style>
-</style>
-
-<style lang="scss" scoped>
-  // .weekly-battery-data-container {
-  //   margin-bottom: 75px;
-  // }
+<style lang="scss">
 </style>

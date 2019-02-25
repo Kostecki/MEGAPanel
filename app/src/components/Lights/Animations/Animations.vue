@@ -104,7 +104,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
   .animations-container {
     margin-top: 25px;
     margin-bottom: 75px;

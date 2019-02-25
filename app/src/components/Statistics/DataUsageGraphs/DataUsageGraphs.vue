@@ -329,9 +329,6 @@ export default {
 }
 </script>
 
-<style>
-</style>
-
 <style lang="scss" scoped>
   .graph {
     max-height: 130px;
