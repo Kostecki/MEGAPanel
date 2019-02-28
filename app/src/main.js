@@ -10,7 +10,7 @@ import router from './router'
 import { store } from './store'
 
 // Global Custom Components
-import Alert from './components/Shared/Alert.vue'
+import Message from './components/Shared/Message.vue'
 
 // Global Mixins
 import { formatDataUnit } from './mixins/formatDataUnit'
@@ -20,7 +20,7 @@ import './registerServiceWorker'
 Vue.config.productionTip = false
 
 // Global Custom Components
-Vue.component('AppAlert', Alert)
+Vue.component('AppMessage', Message)
 
 // Global Mixins
 Vue.mixin(formatDataUnit)

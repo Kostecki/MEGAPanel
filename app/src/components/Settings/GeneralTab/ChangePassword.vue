@@ -1,11 +1,5 @@
 <template>
   <div>
-    <AppAlert
-      v-if="error"
-      @dismissed="onDismissed"
-      :text="error.message"
-    />
-
     <div class="subheading">Change Password</div>
 
     <v-divider class="my-3" />
@@ -69,9 +63,6 @@ export default {
     resetForm () {
       this.$refs.form.reset()
     },
-    onDismissed () {
-      this.$store.dispatch('clearError')
-    }
   },
   computed: {
     user () {
@@ -79,9 +70,6 @@ export default {
     },
     loading () {
       return this.$store.getters.loading
-    },
-    error () {
-      return this.$store.getters.error
     }
   }
 }

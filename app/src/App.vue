@@ -2,6 +2,12 @@
   <v-app class="main-container">
     <Navigation />
     <main>
+      <AppMessage
+        v-if="message"
+        @dismissed="onDismissed"
+        :text="message.text"
+        :type="message.type"
+      />
       <router-view></router-view>
     </main>
   </v-app>
@@ -11,7 +17,17 @@
 import Navigation from './components/Navigation/Navigation.vue'
 
 export default {
-  components: { Navigation }
+  components: { Navigation },
+  methods: {
+    onDismissed () {
+      this.$store.dispatch('clearMessage')
+    }
+  },
+  computed: {
+    message () {
+      return this.$store.getters.message
+    }
+  }
 }
 </script>
 

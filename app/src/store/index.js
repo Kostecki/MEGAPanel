@@ -21,15 +21,15 @@ export const store = new Vuex.Store({
       speed: 0
     },
     loading: false,
-    error: null,
+    message: null,
     user: null
   },
   getters: {
     loading (state) {
       return state.loading
     },
-    error (state) {
-      return state.error
+    message (state) {
+      return state.message
     },
     user (state) {
       return state.user
@@ -45,11 +45,11 @@ export const store = new Vuex.Store({
     setLoading (state, payload) {
       state.loading = payload
     },
-    setError (state, payload) {
-      state.error = payload
+    setMessage (state, payload) {
+      state.message = payload
     },
-    clearError (state) {
-      state.error = null
+    clearMessage (state) {
+      state.message = null
     },
     setUser (state, payload) {
       state.user = payload
@@ -62,12 +62,12 @@ export const store = new Vuex.Store({
     }
   },
   actions: {
-    clearError ({ commit }) {
-      commit('clearError')
+    clearMessage ({ commit }) {
+      commit('clearMessage')
     },
     signUserIn ({ commit }, payload) {
       commit('setLoading', true)
-      commit('clearError')
+      commit('clearMessage')
       firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
         .then(
           user => {
@@ -81,20 +81,31 @@ export const store = new Vuex.Store({
         )
         .catch(error => {
           commit('setLoading', false)
-          commit('setError', error)
+          commit('setMessage', {
+            text: error.message,
+            type: 'error'
+          })
         })
     },
     changePassword ({ commit }, payload) {
       commit('setLoading', true)
-      commit('clearError')
+      commit('clearMessage')
       return new Promise((resolve, reject) => {
         firebase.auth().currentUser.updatePassword(payload)
-          .then(() => {
+          .then(response => {
             commit('setLoading', false)
+            commit('setMessage', {
+              text: 'Password changed successfully',
+              type: 'success'
+            })
             resolve()
           })
           .catch(error => {
             commit('setLoading', false)
+            commit('setMessage', {
+              text: error.message,
+              type: 'error'
+            })
             reject(error)
           })
       })
@@ -112,6 +123,7 @@ export const store = new Vuex.Store({
     },
     loadAnimations ({ commit }) {
       commit('setLoading', true)
+      commit('clearMessage')
       firebase.database().ref('animations').once('value')
         .then(data => {
           const animations = []
@@ -129,7 +141,10 @@ export const store = new Vuex.Store({
           commit('setLoading', false)
         })
         .catch(error => {
-          console.log(error)
+          commit('setMessage', {
+            text: error.message,
+            type: 'error'
+          })
           commit('setLoading', false)
         })
     },
@@ -143,25 +158,59 @@ export const store = new Vuex.Store({
       commit('updateLightsConf', lightsConf)
     },
     addNewAnimation ({ commit, dispatch }, payload) {
+      commit('clearMessage')
+
       return new Promise((resolve, reject) => {
         firebase.database().ref('animations').push(payload)
           .then(() => {
             resolve()
             dispatch('loadAnimations')
+            commit('setMessage', {
+              text: 'Animation added successfully',
+              type: 'success'
+            })
           })
           .catch(error => reject(error))
       })
     },
     updateAnimation ({ commit, dispatch }, payload) {
+      commit('clearMessage')
+
       let animation = payload.animation
       delete animation['key']
 
       firebase.database().ref('animations').child(payload.key).set(animation)
-        .then(() => dispatch('loadAnimations'))
+        .then(() => {
+          dispatch('loadAnimations')
+          commit('setMessage', {
+            text: 'Animation updated successfully',
+            type: 'success'
+          })
+        })
+        .catch(error => {
+          commit('setMessage', {
+            text: error.message,
+            type: 'error'
+          })
+        })
     },
     deleteAnimation ({ commit, dispatch }, payload) {
+      commit('clearMessage')
+
       firebase.database().ref('animations').child(payload).remove()
-        .then(() => dispatch('loadAnimations'))
+        .then(() => {
+          dispatch('loadAnimations')
+          commit('setMessage', {
+            text: 'Animation deleted successfully',
+            type: 'success'
+          })
+        })
+        .catch(error => {
+          commit('setMessage', {
+            text: error.message,
+            type: 'error'
+          })
+        })
     }
   }
 })

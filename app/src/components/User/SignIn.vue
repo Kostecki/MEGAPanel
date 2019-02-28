@@ -6,11 +6,6 @@
           <v-toolbar dark color="primary">
             <v-toolbar-title>Sign In</v-toolbar-title>
           </v-toolbar>
-          <AppAlert
-            v-if="error"
-            @dismissed="onDismissed"
-            :text="error.message"
-          />
           <v-card-text>
             <v-form
               ref="form"
@@ -77,9 +72,6 @@ export default {
       if (this.$refs.form.validate()) {
         this.$store.dispatch('signUserIn', { email: this.email, password: this.password })
       }
-    },
-    onDismissed () {
-      this.$store.dispatch('clearError')
     }
   },
   computed: {
@@ -94,9 +86,6 @@ export default {
     },
     loading () {
       return this.$store.getters.loading
-    },
-    error () {
-      return this.$store.getters.error
     }
   },
   watch: {
