@@ -36,7 +36,7 @@
             <v-btn
               flat icon
               color="grey"
-              @click="deleteAnimation(animation.key)"
+              @click="triggerDeleteConfirm(animation.key)"
               style="margin: 0"
             >
               <v-icon>remove_circle_outline</v-icon>
@@ -45,6 +45,16 @@
         </v-flex>
       </v-layout>
     </div>
+
+    <v-dialog v-model="dialog" max-width="290">
+      <v-card>
+        <v-card-title class="headline">Delete animation?</v-card-title>
+        <v-card-actions>
+          <v-btn block @click="closeDialog">Cancel</v-btn>
+          <v-btn block color="error" @click="deleteAnimation">Delete</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </div>
 </template>
 
@@ -55,7 +65,9 @@ export default {
   },
   data () {
     return {
-      animationsClone: null
+      animationsClone: null,
+      dialog: false,
+      selected: null
     }
   },
   methods: {
@@ -65,8 +77,17 @@ export default {
         animation: this.animationsClone[index]
       })
     },
-    deleteAnimation (key) {
-      this.$store.dispatch('deleteAnimation', key)
+    triggerDeleteConfirm (key) {
+      this.selected = key
+      this.dialog = true
+    },
+    closeDialog () {
+      this.selected = null
+      this.dialog = false
+    },
+    deleteAnimation () {
+      this.$store.dispatch('deleteAnimation', this.selected)
+      this.closeDialog()
     }
   },
   computed: {
