@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="subheading">Change Password</div>
+    <div class="subheading page-title">Change Password</div>
 
     <v-divider class="my-3" />
 
@@ -72,7 +72,13 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+  @media (max-width: 599px) {
+    .page-title {
+      margin-top: 30px;
+    }
+  }
+
   .change-pass-form {
     .save-btn {
       float: right;

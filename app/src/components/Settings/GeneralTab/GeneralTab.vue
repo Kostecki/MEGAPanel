@@ -3,7 +3,7 @@
     <v-divider />
     <div class="container">
       <v-layout row wrap>
-        <v-flex xs6>
+        <v-flex xs12 sm6>
           <v-layout align-center justify-center column fill-height>
             <div class="headline">{{user.email}}</div>
             <v-btn
@@ -13,7 +13,7 @@
             >Log Out</v-btn>
           </v-layout>
         </v-flex>
-        <v-flex xs6>
+        <v-flex xs12 sm6>
           <ChangePassword />
         </v-flex>
       </v-layout>
