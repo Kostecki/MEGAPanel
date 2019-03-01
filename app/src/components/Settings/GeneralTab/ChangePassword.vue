@@ -62,12 +62,9 @@ export default {
     },
     resetForm () {
       this.$refs.form.reset()
-    },
+    }
   },
   computed: {
-    user () {
-      return this.$store.getters.user
-    },
     loading () {
       return this.$store.getters.loading
     }
