@@ -7,7 +7,7 @@ module.exports = {
   },
   configureWebpack: {
     plugins: [
-      new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en-IE/)
+      new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /en-IE/)
     ]
   }
 }
