@@ -51,7 +51,12 @@ export default {
       if (this.newAnimation.name && this.newAnimation.value) {
         this.$store.dispatch('addNewAnimation', this.newAnimation)
           .then(this.clear())
-          .catch(error => console.log(error))
+          .catch(error => {
+            this.$store.commit('setMessage', {
+              text: error,
+              type: 'error'
+            })
+          })
       }
     },
     updateValue () {
