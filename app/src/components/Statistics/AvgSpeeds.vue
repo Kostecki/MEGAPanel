@@ -29,14 +29,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
-</style>
-
 <style lang="scss" scoped>
-  .batteries {
-    padding-right: 25px;
-  }
-
   .single-speed {
     display: flex;
     justify-content: space-between;
