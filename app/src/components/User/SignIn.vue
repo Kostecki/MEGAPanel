@@ -92,7 +92,6 @@ export default {
     user (newVal) {
       const nextUrl = this.$route.params.nextUrl
       if (newVal !== null && newVal !== undefined) {
-        console.log(nextUrl)
         this.$router.push(nextUrl || '/')
       }
     }
