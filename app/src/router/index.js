@@ -1,16 +1,15 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import { store } from '../store'
 
-import AuthGuard from './auth-guard'
 import SignIn from '@/components/User/SignIn.vue'
-
 import Lights from '@/components/Lights/Lights.vue'
 import Statistics from '@/components/Statistics/Statistics.vue'
 import Settings from '@/components/Settings/Settings.vue'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -27,7 +26,9 @@ export default new Router({
       path: '/lights',
       name: 'Lights',
       component: Lights,
-      beforeEnter: AuthGuard
+      meta: {
+        authRequired: true
+      }
     },
     {
       path: '/statistics',
@@ -38,7 +39,26 @@ export default new Router({
       path: '/settings/:tab?',
       name: 'Settings',
       component: Settings,
-      beforeEnter: AuthGuard
+      meta: {
+        authRequired: true
+      }
     }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.authRequired)) {
+    if (!store.state.isAuthenticated) {
+      next({
+        name: 'Sign In',
+        params: { nextUrl: to.fullPath }
+      })
+    } else {
+      next()
+    }
+  } else {
+    next()
+  }
+})
+
+export default router

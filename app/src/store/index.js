@@ -22,7 +22,8 @@ export const store = new Vuex.Store({
     },
     loading: false,
     message: null,
-    user: null
+    user: null,
+    isAuthenticated: false
   },
   getters: {
     loading (state) {
@@ -33,6 +34,9 @@ export const store = new Vuex.Store({
     },
     user (state) {
       return state.user
+    },
+    isAuthenticated (state) {
+      return state.user !== null && state.user !== undefined
     },
     animations (state) {
       return state.animations
@@ -53,6 +57,9 @@ export const store = new Vuex.Store({
     },
     setUser (state, payload) {
       state.user = payload
+    },
+    isAuthenticated (state, payload) {
+      state.isAuthenticated = payload
     },
     setLoadedAnimations (state, payload) {
       state.animations = payload
@@ -77,9 +84,11 @@ export const store = new Vuex.Store({
               email: user.email
             }
             commit('setUser', newUser)
+            commit('isAuthenticated', true)
           }
         )
         .catch(error => {
+          commit('isAuthenticated', false)
           commit('setLoading', false)
           commit('setMessage', {
             text: error.message,
@@ -115,10 +124,12 @@ export const store = new Vuex.Store({
         id: payload.uid,
         email: payload.email
       })
+      commit('isAuthenticated', true)
     },
     logout ({ commit }) {
       firebase.auth().signOut()
       commit('setUser', null)
+      commit('isAuthenticated', false)
       router.push({ path: '/' })
     },
     loadAnimations ({ commit }) {

@@ -90,8 +90,9 @@ export default {
   },
   watch: {
     user (newVal) {
+      const nextUrl = this.$route.params.nextUrl
       if (newVal !== null && newVal !== undefined) {
-        this.$router.push('/')
+        this.$router.push(nextUrl ? nextUrl : '/')
       }
     }
   }
