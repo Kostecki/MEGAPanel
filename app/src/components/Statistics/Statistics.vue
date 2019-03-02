@@ -35,7 +35,7 @@
 
             <v-divider />
 
-            <v-layout row class="mt-3">
+            <v-layout row class="my-3">
               <v-flex xs12>
                 <DataUsageGraphs />
               </v-flex>

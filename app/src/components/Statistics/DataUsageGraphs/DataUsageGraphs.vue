@@ -1,30 +1,33 @@
 <template>
-  <v-layout row wrap justify-space-between>
-    <v-flex xs12 sm3 style="position: relative">
-      <div class="caption font-weight-light font-italic text-uppercase">{{ showDataInterval('hour') }}</div>
-      <DataUsageGraph class="graph" :chart-data="filterUpDownHour" range="hour" />
-      <div class="text-inside-doughnut">
-        <div class="caption font-italic font-weight-light"><v-icon small>arrow_upward</v-icon> {{ getUpDownValue('hour', 'upload') }}</div>
-        <div class="caption font-italic font-weight-light"><v-icon small>arrow_downward</v-icon> {{ getUpDownValue('hour', 'download') }}</div>
-      </div>
-    </v-flex>
-    <v-flex xs12 sm3 style="position: relative">
-      <div class="caption font-weight-light font-italic text-uppercase">{{showDataInterval('day')}}</div>
-      <DataUsageGraph class="graph" :chart-data="filterUpDownDay" range="day" />
-      <div class="text-inside-doughnut">
-        <div class="caption font-italic font-weight-light"><v-icon small>arrow_upward</v-icon> {{ getUpDownValue('day', 'upload') }}</div>
-        <div class="caption font-italic font-weight-light"><v-icon small>arrow_downward</v-icon> {{ getUpDownValue('day', 'download') }}</div>
-      </div>
-    </v-flex>
-    <v-flex xs12 sm3 style="position: relative">
-      <div class="caption font-weight-light font-italic text-uppercase">{{showDataInterval('week')}}</div>
-      <DataUsageGraph class="graph" :chart-data="filterUpDownWeek" range="week" />
-      <div class="text-inside-doughnut">
-        <div class="caption font-italic font-weight-light"><v-icon small>arrow_upward</v-icon> {{ getUpDownValue('week', 'upload') }}</div>
-        <div class="caption font-italic font-weight-light"><v-icon small>arrow_downward</v-icon> {{ getUpDownValue('week', 'download') }}</div>
-      </div>
-    </v-flex>
-  </v-layout>
+  <div>
+    <div class="caption font-weight-light font-italic text-uppercase">Data Usage</div>
+    <v-layout row wrap justify-space-between>
+      <v-flex xs12 sm3 style="position: relative">
+        <DataUsageGraph class="graph" :chart-data="filterUpDownHour" range="hour" />
+        <div class="text-inside-doughnut">
+          <div class="caption font-italic font-weight-light"><v-icon small>arrow_upward</v-icon> {{ getUpDownValue('hour', 'upload') }}</div>
+          <div class="caption font-italic font-weight-light"><v-icon small>arrow_downward</v-icon> {{ getUpDownValue('hour', 'download') }}</div>
+          <div class="caption font-weight-light font-italic mt-2">{{ showDataInterval('hour') }}</div>
+        </div>
+      </v-flex>
+      <v-flex xs12 sm3 style="position: relative">
+        <DataUsageGraph class="graph" :chart-data="filterUpDownDay" range="day" />
+        <div class="text-inside-doughnut">
+          <div class="caption font-italic font-weight-light"><v-icon small>arrow_upward</v-icon> {{ getUpDownValue('day', 'upload') }}</div>
+          <div class="caption font-italic font-weight-light"><v-icon small>arrow_downward</v-icon> {{ getUpDownValue('day', 'download') }}</div>
+          <div class="caption font-weight-light font-italic mt-2">{{showDataInterval('day')}}</div>
+        </div>
+      </v-flex>
+      <v-flex xs12 sm3 style="position: relative">
+        <DataUsageGraph class="graph" :chart-data="filterUpDownWeek" range="week" />
+        <div class="text-inside-doughnut">
+          <div class="caption font-italic font-weight-light"><v-icon small>arrow_upward</v-icon> {{ getUpDownValue('week', 'upload') }}</div>
+          <div class="caption font-italic font-weight-light"><v-icon small>arrow_downward</v-icon> {{ getUpDownValue('week', 'download') }}</div>
+          <div class="caption font-weight-light font-italic mt-2">{{showDataInterval('week')}}</div>
+        </div>
+      </v-flex>
+    </v-layout>
+  </div>
 </template>
 
 <script>
@@ -254,7 +257,7 @@ export default {
       }
 
       if (range === 'day') {
-        return moment().format('dddd, D. MMMM')
+        return moment().format('dddd, MMMM Do')
       }
 
       if (range === 'week') {
@@ -333,7 +336,7 @@ export default {
 
 <style lang="scss" scoped>
   .graph {
-    max-height: 130px;
+    max-height: 120px;
 
     @media (max-width: 599px) {
       margin-bottom: 25px;
@@ -342,13 +345,13 @@ export default {
 
   .text-inside-doughnut {
     position: absolute;
-    bottom: 28px;
+    bottom: 2px;
     left: -5px;
     right: 0;
     text-align: center;
 
     @media (max-width: 599px) { // Only XS breakpoint
-      bottom: 35px;
+      bottom: 30px;
     }
   }
 </style>
