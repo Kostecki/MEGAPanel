@@ -5,7 +5,7 @@
       <v-layout row wrap>
         <v-flex xs12 sm6>
           <v-layout align-center justify-center column fill-height>
-            <div class="headline">{{user.email}}</div>
+            <div class="headline">{{ user.email }}</div>
             <v-btn
               class="mt-3"
               color="primary"

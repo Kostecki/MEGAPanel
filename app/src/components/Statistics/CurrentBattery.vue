@@ -1,7 +1,7 @@
 <template>
   <div class="current-battery">
-    <div class="caption font-weight-light font-italic text-uppercase">Battery ({{battery}})</div>
-    <div class="title font-weight-bold mt-1 current-voltage" :class="setState">{{voltage}} Volt ({{chargeLevel}}%)</div>
+    <div class="caption font-weight-light font-italic text-uppercase">Battery ({{ battery }})</div>
+    <div class="title font-weight-bold mt-1 current-voltage" :class="setState">{{ voltage }} Volt ({{ chargeLevel }}%)</div>
   </div>
 </template>
 

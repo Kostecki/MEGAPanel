@@ -46,7 +46,7 @@
             :class="selectedAnimation === animation.value ? 'selected' : null"
             @click="animationClicked(animation.value)"
           >
-            {{animation.name}}
+            {{ animation.name }}
           </v-card>
         </v-flex>
       </v-layout>

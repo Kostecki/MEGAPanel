@@ -9,21 +9,21 @@ import App from './App.vue'
 import router from './router'
 import { store } from './store'
 
-// Global Custom Components
 import Message from './components/Shared/Message.vue'
-
-// Global Mixins
 import { formatDataUnit } from './mixins/formatDataUnit'
 
 import './registerServiceWorker'
 
-Vue.config.productionTip = false
-
-// Global Custom Components
 Vue.component('AppMessage', Message)
 
-// Global Mixins
 Vue.mixin(formatDataUnit)
+
+Vue.filter('capitalize', value => {
+  if (!value) return ''
+  value = value.toString()
+
+  return value.charAt(0).toUpperCase() + value.slice(1)
+})
 
 // Vuetify
 Vue.use(Vuetify, {
@@ -31,6 +31,8 @@ Vue.use(Vuetify, {
     primary: '#FF3D02'
   }
 })
+
+Vue.config.productionTip = false
 
 new Vue({
   router,

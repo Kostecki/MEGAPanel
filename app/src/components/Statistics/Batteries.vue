@@ -3,7 +3,7 @@
     <div class="caption font-weight-light font-italic text-uppercase">Batteries (Last Seen)</div>
     <div class="batteries-list mt-1">
       <div v-for="(battery, index) in batteries" :key="index" class="single-battery">
-        <span class="name font-weight-light">{{battery.BatteryId}}:</span> <span class="voltage font-weight-bold">{{battery.Voltage}} Volt</span>
+        <span class="name font-weight-light">{{ battery.BatteryId }}:</span> <span class="voltage font-weight-bold">{{ battery.Voltage }} Volt</span>
       </div>
     </div>
   </div>

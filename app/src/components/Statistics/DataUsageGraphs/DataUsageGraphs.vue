@@ -1,27 +1,27 @@
 <template>
   <v-layout row wrap justify-space-between>
     <v-flex xs12 sm3 style="position: relative">
-      <div class="caption font-weight-light font-italic text-uppercase">{{showDataInterval('hour')}}</div>
+      <div class="caption font-weight-light font-italic text-uppercase">{{ showDataInterval('hour') }}</div>
       <DataUsageGraph class="graph" :chart-data="filterUpDownHour" range="hour" />
       <div class="text-inside-doughnut">
-        <div class="caption font-italic font-weight-light"><v-icon small>arrow_upward</v-icon> {{getUpDownValue('hour', 'upload')}}</div>
-        <div class="caption font-italic font-weight-light"><v-icon small>arrow_downward</v-icon> {{getUpDownValue('hour', 'download')}}</div>
+        <div class="caption font-italic font-weight-light"><v-icon small>arrow_upward</v-icon> {{ getUpDownValue('hour', 'upload') }}</div>
+        <div class="caption font-italic font-weight-light"><v-icon small>arrow_downward</v-icon> {{ getUpDownValue('hour', 'download') }}</div>
       </div>
     </v-flex>
     <v-flex xs12 sm3 style="position: relative">
       <div class="caption font-weight-light font-italic text-uppercase">{{showDataInterval('day')}}</div>
       <DataUsageGraph class="graph" :chart-data="filterUpDownDay" range="day" />
       <div class="text-inside-doughnut">
-        <div class="caption font-italic font-weight-light"><v-icon small>arrow_upward</v-icon> {{getUpDownValue('day', 'upload')}}</div>
-        <div class="caption font-italic font-weight-light"><v-icon small>arrow_downward</v-icon> {{getUpDownValue('day', 'download')}}</div>
+        <div class="caption font-italic font-weight-light"><v-icon small>arrow_upward</v-icon> {{ getUpDownValue('day', 'upload') }}</div>
+        <div class="caption font-italic font-weight-light"><v-icon small>arrow_downward</v-icon> {{ getUpDownValue('day', 'download') }}</div>
       </div>
     </v-flex>
     <v-flex xs12 sm3 style="position: relative">
       <div class="caption font-weight-light font-italic text-uppercase">{{showDataInterval('week')}}</div>
       <DataUsageGraph class="graph" :chart-data="filterUpDownWeek" range="week" />
       <div class="text-inside-doughnut">
-        <div class="caption font-italic font-weight-light"><v-icon small>arrow_upward</v-icon> {{getUpDownValue('week', 'upload')}}</div>
-        <div class="caption font-italic font-weight-light"><v-icon small>arrow_downward</v-icon> {{getUpDownValue('week', 'download')}}</div>
+        <div class="caption font-italic font-weight-light"><v-icon small>arrow_upward</v-icon> {{ getUpDownValue('week', 'upload') }}</div>
+        <div class="caption font-italic font-weight-light"><v-icon small>arrow_downward</v-icon> {{ getUpDownValue('week', 'download') }}</div>
       </div>
     </v-flex>
   </v-layout>
@@ -29,11 +29,15 @@
 
 <script>
 import * as moment from 'moment'
+import 'moment/locale/en-ie'
 import DataUsageGraph from './DataUsageGraph'
 
 export default {
   components: {
     DataUsageGraph
+  },
+  created () {
+    moment.locale('en-ie')
   },
   data () {
     return {
@@ -44,7 +48,7 @@ export default {
             data: [],
             backgroundColor: [
               '#616774',
-              '#ff6702' // Almost primary theme color but nice on the eyes..
+              '#ff6702' // Almost primary theme color, but nice on the eyes..
             ],
             hoverBackgroundColor: [
               '#6a707f',
@@ -246,7 +250,7 @@ export default {
       const endOfWeek = moment().endOf('isoweek').format('D. MMMM')
 
       if (range === 'hour') {
-        return moment().format('HH:00') + '-' + moment().format('HH:59')
+        return moment().format('HH:00') + ' - ' + moment().format('HH:59')
       }
 
       if (range === 'day') {
@@ -254,10 +258,9 @@ export default {
       }
 
       if (range === 'week') {
-        return startOfWeek + '-' + endOfWeek
+        return startOfWeek + ' - ' + endOfWeek
       }
     },
-
     filterUpDownHour () {
       const upload = this.DataWeek[this.today][this.currentHour].Up
       const download = this.DataWeek[this.today][this.currentHour].Down
@@ -285,7 +288,6 @@ export default {
       return filtered
     },
     filterUpDownWeek () {
-      moment.locale('en-ie') // Force weekdays to start at 'monday' but keep it in english
       const weekdays = moment.weekdays(true)
       const week = this.DataWeek
 
