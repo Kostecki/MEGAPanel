@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-divider />
-    <div class="container">
+    <div class="container mt-1">
       <v-layout row wrap>
         <v-flex xs12 sm6>
           <v-layout align-center justify-center column fill-height>
