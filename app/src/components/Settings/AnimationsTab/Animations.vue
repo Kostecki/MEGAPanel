@@ -1,69 +1,68 @@
 <template>
   <div class="animations">
-    <div v-if="!animationsClone" class="text-xs-center">
-      <v-progress-circular
-        indeterminate
-        color="primary"
-        class="mb-4"
-      ></v-progress-circular>
-    </div>
-    <div v-else>
-      <div v-if="animationsClone && animationsClone.length === 0" class="text-xs-center" style="padding-bottom: 24px">
-        <h4>No Animations</h4>
+    <v-container>
+      <div v-if="!animationsClone" class="text-xs-center">
+        <v-progress-circular
+          indeterminate
+          color="primary"
+          class="mb-4"
+        ></v-progress-circular>
       </div>
-      <div v-else v-for="(animation, index) in animationsClone" :key="index" class="animation">
-        <v-layout align-center row class="create-new">
-          <v-flex xs11>
-            <v-layout align-end justify-space-between row class="create-new pa-0">
-              <v-flex xs4>
-                <v-text-field
-                  v-model="animationsClone[index]['name']"
-                  label="Name"
-                  @change="updateAnimation(animation.key, index)"
-                ></v-text-field>
-              </v-flex>
-              <v-flex xs4>
-                <v-text-field
-                  v-model="animationsClone[index]['value']"
-                  label="Value"
-                  @change="updateAnimation(animation.key, index)"
-                ></v-text-field>
-              </v-flex>
-              <v-flex xs3>
-                <v-checkbox
-                  v-model="animation.speedControl"
-                  label="Speed Control"
-                  color="primary"
-                  @change="updateAnimation(animation.key, index)"
-                ></v-checkbox>
-              </v-flex>
-            </v-layout>
-          </v-flex>
-          <v-flex xs1>
-            <v-layout justify-end>
-              <v-btn
-                flat icon
-                color="grey"
-                @click="triggerDeleteConfirm(animation.key)"
-                style="margin: 0"
-              >
-                <v-icon>remove_circle_outline</v-icon>
-              </v-btn>
-            </v-layout>
-          </v-flex>
-        </v-layout>
+      <div v-else>
+        <div class="subheading page-title">Existing Animations</div>
+        <div v-if="animationsClone && animationsClone.length === 0" class="text-xs-center" style="padding-bottom: 24px">
+          <h4>No Animations</h4>
+        </div>
+        <div v-else v-for="(animation, index) in animationsClone" :key="index" class="animation">
+          <v-layout align-center row>
+            <v-flex>
+              <v-layout align-end justify-space-between row wrap class="pa-0">
+                <v-flex xs12 sm5>
+                  <v-text-field
+                    v-model="animationsClone[index]['name']"
+                    label="Name"
+                    class="name-input"
+                    @change="updateAnimation(animation.key, index)"></v-text-field>
+                </v-flex>
+                <v-flex xs12 sm5>
+                  <v-text-field
+                    v-model="animationsClone[index]['value']"
+                    label="Value"
+                    class="value-input"
+                    @change="updateAnimation(animation.key, index)"></v-text-field>
+                </v-flex>
+                <v-flex xs6 sm1 class="speed-control-container">
+                  <span class="speed-control-label">Speed</span>
+                  <v-switch
+                    v-model="animation.speedControl"
+                    color="primary"
+                    class="speed-control-toggle"
+                    @change="updateAnimation(animation.key, index)"></v-switch>
+                </v-flex>
+                <v-flex xs6 sm1 class="delete-btn">
+                  <v-btn
+                    flat icon
+                    color="grey"
+                    @click="triggerDeleteConfirm(animation.key)">
+                    <v-icon>remove_circle_outline</v-icon>
+                  </v-btn>
+                </v-flex>
+              </v-layout>
+            </v-flex>
+          </v-layout>
+        </div>
       </div>
-    </div>
 
-    <v-dialog v-model="dialog" max-width="290">
-      <v-card>
-        <v-card-title class="headline">Delete animation?</v-card-title>
-        <v-card-actions>
-          <v-btn block @click="closeDialog">Cancel</v-btn>
-          <v-btn block color="error" @click="deleteAnimation">Delete</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
+      <v-dialog v-model="dialog" max-width="290">
+        <v-card>
+          <v-card-title class="headline">Delete animation?</v-card-title>
+          <v-card-actions>
+            <v-btn block @click="closeDialog">Cancel</v-btn>
+            <v-btn block color="error" @click="deleteAnimation">Delete</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
+    </v-container>
   </div>
 </template>
 
@@ -114,10 +113,67 @@ export default {
 
 <style lang="scss">
   .animations {
-    margin-top: 24px;
-
-    .v-input--selection-controls .v-input__slot {
+    .v-input--selection-controls:not(.v-input--hide-details) .v-input__slot {
       margin-bottom: 0;
+    }
+  }
+</style>
+
+<style lang="scss" scoped>
+  .animation {
+    @media (max-width: 599px) {
+      margin-bottom: 24px;
+    }
+
+    .v-input--selection-controls:not(.v-input--hide-details) .v-input__slot {
+      margin-bottom: 0;
+    }
+
+    @media (min-width: 600px) {
+      .name-input,
+      .value-input {
+        padding-right: 16px;
+      }
+    }
+
+    .speed-control-container {
+      position: relative;
+
+      .v-input--selection-controls {
+        margin-top: 28px;
+      }
+
+      .speed-control-label {
+        color: rgba(0,0,0,.54);
+        font-size: 12px;
+        position: absolute;
+        right: auto;
+        height: 120px;
+        line-height: 20px;
+
+        @media (min-width: 600px) {
+          left: 12px;
+        }
+      }
+
+      .speed-control-toggle {
+        .v-input__slot {
+          margin-bottom: 0;
+        }
+
+        @media (min-width: 600px) {
+          justify-content: flex-end;
+        }
+      }
+    }
+
+    .delete-btn {
+      display: flex;
+      justify-content: flex-end;
+
+      button {
+        margin-right: 0;
+      }
     }
   }
 </style>
