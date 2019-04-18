@@ -1,7 +1,7 @@
 <template>
   <div class="animations">
     <v-container>
-      <div v-if="!animationsClone" class="text-xs-center">
+      <div v-if="!animations" class="text-xs-center">
         <v-progress-circular
           indeterminate
           color="primary"
@@ -10,23 +10,23 @@
       </div>
       <div v-else>
         <div class="subheading page-title mb-3">Existing Animations</div>
-        <div v-if="animationsClone && animationsClone.length === 0" class="text-xs-center" style="padding-bottom: 24px">
+        <div v-if="animations && animations.length === 0" class="text-xs-center" style="padding-bottom: 24px">
           <h4>No Animations</h4>
         </div>
-        <div v-else v-for="(animation, index) in animationsClone" :key="index" class="animation">
+        <div v-else v-for="(animation, index) in animations" :key="index" class="animation">
           <v-layout align-center row>
             <v-flex>
               <v-layout align-end justify-space-between row wrap class="pa-0">
                 <v-flex xs12 sm5>
                   <v-text-field
-                    v-model="animationsClone[index]['name']"
+                    v-model="animations[index]['name']"
                     label="Name"
                     class="name-input"
                     @change="updateAnimation(animation.key, index)"></v-text-field>
                 </v-flex>
                 <v-flex xs12 sm5>
                   <v-text-field
-                    v-model="animationsClone[index]['value']"
+                    v-model="animations[index]['value']"
                     label="Value"
                     class="value-input"
                     @change="updateAnimation(animation.key, index)"></v-text-field>
@@ -43,7 +43,7 @@
                   <v-btn
                     flat icon
                     color="grey"
-                    @click="triggerDeleteConfirm(animation.key)">
+                    @click="deleteAnimation(animation.key)">
                     <v-icon>remove_circle_outline</v-icon>
                   </v-btn>
                 </v-flex>
@@ -52,64 +52,47 @@
           </v-layout>
         </div>
       </div>
-
-      <v-dialog v-model="dialog" max-width="290">
-        <v-card>
-          <v-card-title class="headline">Delete animation?</v-card-title>
-          <v-card-actions>
-            <v-btn block @click="closeDialog">Cancel</v-btn>
-            <v-btn block color="error" @click="deleteAnimation">Delete</v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-dialog>
     </v-container>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
+import Swal from 'sweetalert2'
 
 export default {
-  created () {
-    this.animationsClone = JSON.parse(JSON.stringify(this.animations))
-  },
   data () {
     return {
-      animationsClone: null,
-      dialog: false,
-      selected: null
+      dialog: false
     }
   },
   methods: {
     updateAnimation (key, index) {
       this.$store.dispatch('updateAnimation', {
         key: key,
-        animation: this.animationsClone[index]
+        animation: this.animations[index]
       })
     },
-    triggerDeleteConfirm (key) {
-      this.selected = key
-      this.dialog = true
+    deleteAnimation (key) {
+      Swal.fire({
+        title: 'Delete animation?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.value) {
+          this.$store.dispatch('deleteAnimation', key)
+        }
+      })
     },
-    closeDialog () {
-      this.selected = null
-      this.dialog = false
-    },
-    deleteAnimation () {
-      this.$store.dispatch('deleteAnimation', this.selected)
-      this.closeDialog()
-    }
   },
   computed: {
     ...mapState({
       animations: state => state.lights.animations
     })
-  },
-  watch: {
-    // TODO: Maybe remove?
-    animations (newVal, oldVal) {
-      this.animationsClone = JSON.parse(JSON.stringify(newVal))
-    }
   }
 }
 </script>

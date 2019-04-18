@@ -32,32 +32,37 @@ export default {
 </script>
 
 <style lang="scss">
-body {
-  background: #ECEEEE;
-}
-
-.application--wrap {
-  background: #ECEEEE;
-}
-
-.main-container {
-  max-width: 780px;
-  margin: 0 auto;
-}
-
-/* refresh styling */
-.refresh {
-  cursor: pointer;
-  user-select: none;
-}
- /* Animation for refresh button */
-.refreshAnimation {
-  display: inline-block;
-  animation: spin 0.5s linear;
-
-  @keyframes spin {
-    0%  {-webkit-transform: rotate(0deg)}
-    100% {-webkit-transform: rotate(360deg)}
+  body {
+    background: #ECEEEE;
   }
-}
+
+  .application--wrap {
+    background: #ECEEEE;
+  }
+
+  .main-container {
+    max-width: 780px;
+    margin: 0 auto;
+  }
+
+  /* refresh styling */
+  .refresh {
+    cursor: pointer;
+    user-select: none;
+  }
+  /* Animation for refresh button */
+  .refreshAnimation {
+    display: inline-block;
+    animation: spin 0.5s linear;
+
+    @keyframes spin {
+      0%  {-webkit-transform: rotate(0deg)}
+      100% {-webkit-transform: rotate(360deg)}
+    }
+  }
+
+  // Sweetalert2
+  .swal2-container {
+    font-family: Roboto;
+  }
 </style>

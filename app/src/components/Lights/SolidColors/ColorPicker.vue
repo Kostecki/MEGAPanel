@@ -40,12 +40,6 @@ export default {
     ...mapState({
       lightsConfig: state => state.lights.lightsConfig
     })
-  },
-  watch: {
-    // TODO: Maybe remove?
-    lightsConfig (newLightsConf, oldLightsConf) {
-      this.colors = newLightsConf.color
-    }
   }
 }
 </script>

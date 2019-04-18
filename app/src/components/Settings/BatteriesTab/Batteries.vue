@@ -44,7 +44,7 @@
                   <v-btn
                     flat icon
                     color="grey"
-                    @click="triggerDeleteConfirm(battery.key)">
+                    @click="deleteBattery(battery.key)">
                     <v-icon>remove_circle_outline</v-icon>
                   </v-btn>
                 </v-flex>
@@ -53,28 +53,18 @@
           </v-layout>
         </div>
       </div>
-
-      <v-dialog v-model="dialog" max-width="290">
-        <v-card>
-          <v-card-title class="headline">Delete battery?</v-card-title>
-          <v-card-actions>
-            <v-btn block @click="closeDialog">Cancel</v-btn>
-            <v-btn block color="error" @click="deleteBattery">Delete</v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-dialog>
     </v-container>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
+import Swal from 'sweetalert2'
 
 export default {
   data () {
     return {
-      dialog: false,
-      selected: null
+      dialog: false
     }
   },
   methods: {
@@ -84,17 +74,20 @@ export default {
         battery: this.batteries[index]
       })
     },
-    triggerDeleteConfirm (key) {
-      this.selected = key
-      this.dialog = true
-    },
-    closeDialog () {
-      this.selected = null
-      this.dialog = false
-    },
-    deleteBattery () {
-      this.$store.dispatch('deleteBattery', this.selected)
-      this.closeDialog()
+    deleteBattery (key) {
+      Swal.fire({
+        title: 'Delete battery?',
+        text: "You won't be able to revert this!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.value) {
+          this.$store.dispatch('deleteBattery', key)
+        }
+      })
     },
     noVoltage (input) {
       if (typeof input === 'string' || input instanceof String) {
@@ -106,7 +99,6 @@ export default {
     ...mapState({
       batteries: state => state.settings.batteries
     })
-    
   }
 }
 </script>
@@ -120,7 +112,7 @@ export default {
     .v-input--selection-controls__input {
       margin: 0;
     }
-    
+
     .battery input::placeholder {
       font-style: italic;
     }

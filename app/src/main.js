@@ -25,12 +25,7 @@ Vue.filter('capitalize', value => {
   return value.charAt(0).toUpperCase() + value.slice(1)
 })
 
-// Vuetify
-Vue.use(Vuetify, {
-  theme: {
-    primary: '#FF3D02'
-  }
-})
+Vue.use(Vuetify, { theme: { primary: '#FF3D02' } })
 
 Vue.config.productionTip = false
 
