@@ -1,8 +1,10 @@
 <template>
   <v-card color="white">
-    <v-card-title>
-      <span class="title font-weight-light text-uppercase">Colors</span>
-    </v-card-title>
+    <v-container class="py-0">
+      <v-card-title class="px-0">
+        <span class="title font-weight-light text-uppercase">Colors</span>
+      </v-card-title>
+    </v-container>
 
     <v-divider />
 
