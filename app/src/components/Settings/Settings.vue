@@ -6,17 +6,20 @@
           <v-tabs
             v-model="active"
             fixed-tabs
-            slider-color="primary"
-          >
-            <v-tab @click="setActiveTab('general')">General</v-tab>
-            <v-tab-item :transition="false" :reverse-transition="false">
-              <GeneralTab />
-            </v-tab-item>
-
-            <v-tab @click="setActiveTab('animations')">Animations</v-tab>
-            <v-tab-item :transition="false" :reverse-transition="false">
-              <AnimationsTab />
-            </v-tab-item>
+            slider-color="primary">
+              <v-tab
+                v-for="(tab, index) in tabs"
+                :key="index"
+                @click="setActiveTab(tab.name, index)">
+                  {{ tab.name}}
+              </v-tab>
+              <v-tab-item
+                v-for="(tab, index) in tabs"
+                :key="index"
+                :transition="false"
+                :reverse-transition="false">
+                  <component :is="`${tab.name}Tab`" />
+              </v-tab-item>
           </v-tabs>
         </v-card>
       </v-flex>
@@ -27,38 +30,41 @@
 <script>
 import GeneralTab from './GeneralTab/GeneralTab.vue'
 import AnimationsTab from './AnimationsTab/AnimationsTab.vue'
+import BatteriesTab from './BatteriesTab/BatteriesTab.vue'
 
 export default {
   components: {
     GeneralTab,
-    AnimationsTab
+    AnimationsTab,
+    BatteriesTab
   },
   created () {
     this.setActiveTab(this.$route.params.tab)
   },
   data () {
     return {
-      active: 0
+      active: 0,
+      tabs: [
+        { name: 'General' },
+        { name: 'Animations' },
+        { name: 'Batteries' }
+      ]
     }
   },
   methods: {
-    setActiveTab (tab) {
-      let theTab = null
-      tab ? theTab = tab.toLowerCase() : theTab = 'general'
-
-      this.$router.push({ name: 'Settings', params: { tab: theTab } })
-
-      switch (theTab) {
-        case 'general':
-          this.active = 0
-          break
-        case 'animations':
-          this.active = 1
-          break
-
-        default:
-          break
+    setActiveTab (tabName, tabIndex) {
+      if (tabName !== this.$route.params.tab) {
+        this.$router.push({
+          name: 'Settings',
+          params: {
+            tab: tabName.toLowerCase()
+          }
+        })
       }
+
+      this.active = this.tabs.indexOf(this.tabs.find(e => {
+        return e.name.toLowerCase() === tabName
+      }))
     }
   }
 }
