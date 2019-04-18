@@ -29,7 +29,7 @@ export default {
   data () {
     return {
       newBattery: {
-        voltage: null,
+        voltage: 'No voltage registered', // Firebase doesn't like updating null fields
         currentBattery: false
       }
     }
@@ -49,7 +49,7 @@ export default {
     },
     clear () {
       this.newBattery = {
-        voltage: null,
+        voltage: 'No voltage registered',
         currentBattery: false
       }
     }

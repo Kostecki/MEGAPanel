@@ -50,6 +50,39 @@ export default {
           })
           .catch(error => reject(error))
       })
+    },
+    updateBattery ({ commit, dispatch }, payload) {
+      commit('clearMessage')
+
+      let battery = Object.assign({}, payload.battery)
+      delete battery['key']
+
+      firebase.database().ref('batteries').child(payload.key).set(battery)
+        .then(() => {
+          dispatch('batteries')
+          commit('setMessage', {
+            text: 'Battery updated successfully',
+            type: 'success'
+          })
+        })
+        .catch(error => {
+          commit('setMessage', { text: error.message, type: 'error' })
+        })
+    },
+    deleteBattery ({ commit, dispatch }, payload) {
+      commit('clearMessage')
+
+      firebase.database().ref('batteries').child(payload).remove()
+        .then(() => {
+          dispatch('batteries')
+          commit('setMessage', {
+            text: 'Battery deleted successfully',
+            type: 'success'
+          })
+        })
+        .catch(error => {
+          commit('setMessage', { text: error.message, type: 'error' })
+        })
     }
   }
 }

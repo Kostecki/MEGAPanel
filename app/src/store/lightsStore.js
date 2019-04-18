@@ -74,7 +74,7 @@ export default {
     updateAnimation ({ commit, dispatch }, payload) {
       commit('clearMessage')
 
-      let animation = payload.animation
+      let animation = Object.assign({}, payload.animation)
       delete animation['key']
 
       firebase.database().ref('animations').child(payload.key).set(animation)

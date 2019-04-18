@@ -22,15 +22,15 @@
                     v-model="batteries[index]['batteryId']"
                     label="Battery ID"
                     class="batteryId-input"
-                    @change="updateAnimation(battery.key, index)" />
+                    @change="updateBattery(battery.key, index)" />
                 </v-flex>
                 <v-flex xs12 sm5>
                   <v-text-field
                     v-model="batteries[index]['voltage']"
                     label="Voltage"
                     class="voltage-input"
-                    placeholder="No voltage registered"
-                    @change="updateAnimation(battery.key, index)"
+                    :class="noVoltage(batteries[index]['voltage'])"
+                    @change="updateBattery(battery.key, index)"
                     readonly />
                 </v-flex>
                 <v-flex xs6 sm1 class="current-battery-container">
@@ -59,7 +59,7 @@
           <v-card-title class="headline">Delete battery?</v-card-title>
           <v-card-actions>
             <v-btn block @click="closeDialog">Cancel</v-btn>
-            <v-btn block color="error" @click="deleteAnimation">Delete</v-btn>
+            <v-btn block color="error" @click="deleteBattery">Delete</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -78,10 +78,10 @@ export default {
     }
   },
   methods: {
-    updateAnimation (key, index) {
-      this.$store.dispatch('updateAnimation', {
+    updateBattery (key, index) {
+      this.$store.dispatch('updateBattery', {
         key: key,
-        animation: this.batteries[index]
+        battery: this.batteries[index]
       })
     },
     triggerDeleteConfirm (key) {
@@ -92,9 +92,14 @@ export default {
       this.selected = null
       this.dialog = false
     },
-    deleteAnimation () {
-      this.$store.dispatch('deleteAnimation', this.selected)
+    deleteBattery () {
+      this.$store.dispatch('deleteBattery', this.selected)
       this.closeDialog()
+    },
+    noVoltage (input) {
+      if (typeof input === 'string' || input instanceof String) {
+        return 'no-voltage'
+      }
     }
   },
   computed: {
@@ -119,6 +124,11 @@ export default {
     .battery input::placeholder {
       font-style: italic;
     }
+  }
+
+  .no-voltage input {
+    color: gray !important;
+    font-style: italic;
   }
 </style>
 
