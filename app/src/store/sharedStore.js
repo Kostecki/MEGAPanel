@@ -3,6 +3,11 @@ export default {
     loading: false,
     message: null
   },
+  getters: {
+    message (state) {
+      return state.message
+    }
+  },
   mutations: {
     loading (state, payload) {
       state.loading = payload
