@@ -42,13 +42,15 @@
 export default {
   data () {
     return {
-      newAnimation: {}
+      newAnimation: {
+        speedControl: false
+      }
     }
   },
   methods: {
     addNew () {
       if (this.newAnimation.name && this.newAnimation.value) {
-        this.$store.dispatch('addNewAnimation', this.newAnimation)
+        this.$store.dispatch('newAnimation', this.newAnimation)
           .then(this.clear())
           .catch(error => {
             this.$store.commit('setMessage', {
@@ -64,7 +66,9 @@ export default {
         .toLowerCase()
     },
     clear () {
-      this.newAnimation = {}
+      this.newAnimation = {
+        speedControl: false
+      }
     }
   }
 }

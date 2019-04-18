@@ -9,7 +9,7 @@
         ></v-progress-circular>
       </div>
       <div v-else>
-        <div class="subheading page-title mb-3">Existing Animations</div>
+        <div class="subheading page-title mb-3">Animations</div>
         <div v-if="animations && animations.length === 0" class="text-xs-center" style="padding-bottom: 24px">
           <h4>No Animations</h4>
         </div>

@@ -46,6 +46,7 @@ new Vue({
         this.$store.dispatch('autoSignIn', user)
       }
     })
+    this.$store.dispatch('getLightsConfig')
     this.$store.dispatch('animations')
     this.$store.dispatch('batteries')
   }

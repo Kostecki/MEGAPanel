@@ -9,7 +9,7 @@
         ></v-progress-circular>
       </div>
       <div v-else>
-        <div class="subheading page-title mb-3">Existing Batteries</div>
+        <div class="subheading page-title mb-3">Batteries</div>
         <div v-if="batteries && batteries.length === 0" class="text-xs-center" style="padding-bottom: 24px">
           <h4>No Batteries</h4>
         </div>

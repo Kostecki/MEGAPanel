@@ -98,6 +98,14 @@ export default {
       animations: state => state.lights.animations,
       lightsConfig: state => state.lights.lightsConfig
     })
+  },
+  watch: {
+    lightsConfig: function(newVal, oldVal) {
+      if (newVal.animation !== oldVal.animation) {
+        // Wait for animations to be ready in animationClicked ¯\_(ツ)_/¯
+        setTimeout(() => this.animationClicked(newVal.animation), 200)
+      }
+    }, deep: true
   }
 }
 </script>

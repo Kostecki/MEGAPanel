@@ -7,10 +7,10 @@ export default {
     lightsConfig: {
       animation: 'solid',
       color: {
-        r: 255,
+        r: 0,
         g: 0,
         b: 0,
-        a: 0.5
+        a: 0
       },
       speed: 0
     }
@@ -46,23 +46,34 @@ export default {
         commit('loading', false)
       })
     },
+    getLightsConfig ({ commit, dispatch }) {
+      firebase.database().ref('lightsConfig').on('value', response => {
+        dispatch('lightsConfig', response.val())
+      }, error => {
+        commit('setMessage', { text: error.message, type: 'error' })
+      })
+    },
     lightsConfig ({ commit }, payload) {
       let lightsConfig = {
         ...payload,
         brightness: payload.color.a
       }
-      // TODO: POST to API
-      console.log(payload)
+
       commit('lightsConfig', lightsConfig)
+      firebase.database().ref('lightsConfig').set(lightsConfig)
+        .then(() => commit('setMessage', {
+          text: 'Lights changed successfully',
+          type: 'success'
+        }))
+        .catch(error => commit('setMessage', { text: error.message, type: 'error' }))
     },
-    addNewAnimation ({ commit, dispatch }, payload) {
+    newAnimation ({ commit, dispatch }, payload) {
       commit('clearMessage')
 
       return new Promise((resolve, reject) => {
         firebase.database().ref('animations').push(payload)
           .then(() => {
             resolve()
-            dispatch('animations')
             commit('setMessage', {
               text: 'Animation added successfully',
               type: 'success'
@@ -79,30 +90,24 @@ export default {
 
       firebase.database().ref('animations').child(payload.key).set(animation)
         .then(() => {
-          dispatch('animations')
           commit('setMessage', {
             text: 'Animation updated successfully',
             type: 'success'
           })
         })
-        .catch(error => {
-          commit('setMessage', { text: error.message, type: 'error' })
-        })
+        .catch(error => commit('setMessage', { text: error.message, type: 'error' }))
     },
     deleteAnimation ({ commit, dispatch }, payload) {
       commit('clearMessage')
 
       firebase.database().ref('animations').child(payload).remove()
         .then(() => {
-          dispatch('animations')
           commit('setMessage', {
             text: 'Animation deleted successfully',
             type: 'success'
           })
         })
-        .catch(error => {
-          commit('setMessage', { text: error.message, type: 'error' })
-        })
+        .catch(error => commit('setMessage', { text: error.message, type: 'error' }))
     }
   }
 }

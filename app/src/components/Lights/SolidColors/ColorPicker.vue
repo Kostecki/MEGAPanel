@@ -1,7 +1,7 @@
 <template>
   <v-layout row wrap>
     <v-flex xs12>
-      <Chrome v-if="colors" v-model="colors" @input="updateValue" class="chrome-color-select" />
+      <Chrome v-if="lightsConfig.color" v-model="lightsConfig.color" @input="updateValue" class="chrome-color-select" />
     </v-flex>
   </v-layout>
 </template>
@@ -13,9 +13,6 @@ import { Chrome } from 'vue-color'
 export default {
   components: {
     Chrome
-  },
-  created () {
-    this.colors = this.lightsConfig.color
   },
   data () {
     return {
