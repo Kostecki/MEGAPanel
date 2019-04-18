@@ -1,7 +1,7 @@
 <template>
-  <div class="animations">
+  <div class="batteries">
     <v-container>
-      <div v-if="!animationsClone" class="text-xs-center">
+      <div v-if="!batteries" class="text-xs-center">
         <v-progress-circular
           indeterminate
           color="primary"
@@ -9,41 +9,42 @@
         ></v-progress-circular>
       </div>
       <div v-else>
-        <div class="subheading page-title mb-3">Existing Animations</div>
-        <div v-if="animationsClone && animationsClone.length === 0" class="text-xs-center" style="padding-bottom: 24px">
-          <h4>No Animations</h4>
+        <div class="subheading page-title mb-3">Existing Batteries</div>
+        <div v-if="batteries && batteries.length === 0" class="text-xs-center" style="padding-bottom: 24px">
+          <h4>No Batteries</h4>
         </div>
-        <div v-else v-for="(animation, index) in animationsClone" :key="index" class="animation">
+        <div v-else v-for="(battery, index) in batteries" :key="index" class="battery">
           <v-layout align-center row>
             <v-flex>
               <v-layout align-end justify-space-between row wrap class="pa-0">
                 <v-flex xs12 sm5>
                   <v-text-field
-                    v-model="animationsClone[index]['name']"
-                    label="Name"
-                    class="name-input"
-                    @change="updateAnimation(animation.key, index)"></v-text-field>
+                    v-model="batteries[index]['batteryId']"
+                    label="Battery ID"
+                    class="batteryId-input"
+                    @change="updateAnimation(battery.key, index)" />
                 </v-flex>
                 <v-flex xs12 sm5>
                   <v-text-field
-                    v-model="animationsClone[index]['value']"
-                    label="Value"
-                    class="value-input"
-                    @change="updateAnimation(animation.key, index)"></v-text-field>
+                    v-model="batteries[index]['voltage']"
+                    label="Voltage"
+                    class="voltage-input"
+                    placeholder="No voltage registered"
+                    @change="updateAnimation(battery.key, index)"
+                    readonly />
                 </v-flex>
-                <v-flex xs6 sm1 class="speed-control-container">
-                  <span class="speed-control-label">Speed</span>
-                  <v-switch
-                    v-model="animation.speedControl"
+                <v-flex xs6 sm1 class="current-battery-container">
+                  <span class="current-battery-label">Active</span>
+                  <v-checkbox
+                    v-model="batteries[index]['currentBattery']"
                     color="primary"
-                    class="speed-control-toggle"
-                    @change="updateAnimation(animation.key, index)"></v-switch>
+                    readonly />
                 </v-flex>
                 <v-flex xs6 sm1 class="delete-btn">
                   <v-btn
                     flat icon
                     color="grey"
-                    @click="triggerDeleteConfirm(animation.key)">
+                    @click="triggerDeleteConfirm(battery.key)">
                     <v-icon>remove_circle_outline</v-icon>
                   </v-btn>
                 </v-flex>
@@ -55,7 +56,7 @@
 
       <v-dialog v-model="dialog" max-width="290">
         <v-card>
-          <v-card-title class="headline">Delete animation?</v-card-title>
+          <v-card-title class="headline">Delete battery?</v-card-title>
           <v-card-actions>
             <v-btn block @click="closeDialog">Cancel</v-btn>
             <v-btn block color="error" @click="deleteAnimation">Delete</v-btn>
@@ -70,12 +71,8 @@
 import { mapState } from 'vuex'
 
 export default {
-  created () {
-    this.animationsClone = JSON.parse(JSON.stringify(this.animations))
-  },
   data () {
     return {
-      animationsClone: null,
       dialog: false,
       selected: null
     }
@@ -84,7 +81,7 @@ export default {
     updateAnimation (key, index) {
       this.$store.dispatch('updateAnimation', {
         key: key,
-        animation: this.animationsClone[index]
+        animation: this.batteries[index]
       })
     },
     triggerDeleteConfirm (key) {
@@ -102,28 +99,31 @@ export default {
   },
   computed: {
     ...mapState({
-      animations: state => state.lights.animations
+      batteries: state => state.settings.batteries
     })
-  },
-  watch: {
-    // TODO: Maybe remove?
-    animations (newVal, oldVal) {
-      this.animationsClone = JSON.parse(JSON.stringify(newVal))
-    }
+    
   }
 }
 </script>
 
 <style lang="scss">
-  .animations {
+  .batteries {
     .v-input--selection-controls:not(.v-input--hide-details) .v-input__slot {
       margin-bottom: 0;
+    }
+
+    .v-input--selection-controls__input {
+      margin: 0;
+    }
+    
+    .battery input::placeholder {
+      font-style: italic;
     }
   }
 </style>
 
 <style lang="scss" scoped>
-  .animation {
+  .battery {
     @media (max-width: 599px) {
       margin-bottom: 24px;
     }
@@ -133,20 +133,22 @@ export default {
     }
 
     @media (min-width: 600px) {
-      .name-input,
-      .value-input {
+      .batteryId-input,
+      .voltage-input {
         padding-right: 16px;
       }
     }
 
-    .speed-control-container {
+    .current-battery-container {
       position: relative;
 
       .v-input--selection-controls {
         margin-top: 28px;
+        display: flex;
+        justify-content: center;
       }
 
-      .speed-control-label {
+      .current-battery-label {
         color: rgba(0,0,0,.54);
         font-size: 12px;
         position: absolute;
@@ -159,15 +161,7 @@ export default {
         }
       }
 
-      .speed-control-toggle {
-        .v-input__slot {
-          margin-bottom: 0;
-        }
-
-        @media (min-width: 600px) {
-          justify-content: flex-end;
-        }
-      }
+      @media (min-width: 600px) {}
     }
 
     .delete-btn {

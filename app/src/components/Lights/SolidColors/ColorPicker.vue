@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import { Chrome } from 'vue-color'
 
 export default {
@@ -14,7 +15,7 @@ export default {
     Chrome
   },
   created () {
-    this.colors = this.lightsConf.color
+    this.colors = this.lightsConfig.color
   },
   data () {
     return {
@@ -23,8 +24,8 @@ export default {
   },
   methods: {
     updateValue (value) {
-      this.$store.dispatch('updateLightsConf', {
-        ...this.lightsConf,
+      this.$store.dispatch('lightsConfig', {
+        ...this.lightsConfig,
         brightness: value.rgba.a,
         color: {
           r: value.rgba.r,
@@ -36,12 +37,13 @@ export default {
     }
   },
   computed: {
-    lightsConf () {
-      return this.$store.getters.lightsConf
-    }
+    ...mapState({
+      lightsConfig: state => state.lights.lightsConfig
+    })
   },
   watch: {
-    lightsConf (newLightsConf, oldLightsConf) {
+    // TODO: Maybe remove?
+    lightsConfig (newLightsConf, oldLightsConf) {
       this.colors = newLightsConf.color
     }
   }

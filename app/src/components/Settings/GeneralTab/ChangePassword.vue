@@ -37,6 +37,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   data () {
     return {
@@ -65,9 +67,9 @@ export default {
     }
   },
   computed: {
-    loading () {
-      return this.$store.getters.loading
-    }
+    ...mapState({
+      loading: state => state.shared.loading
+    })
   }
 }
 </script>

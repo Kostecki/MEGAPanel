@@ -51,6 +51,7 @@ new Vue({
         this.$store.dispatch('autoSignIn', user)
       }
     })
-    this.$store.dispatch('loadAnimations')
+    this.$store.dispatch('animations')
+    this.$store.dispatch('batteries')
   }
 }).$mount('#app')

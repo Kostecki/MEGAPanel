@@ -55,6 +55,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   data () {
     return {
@@ -65,8 +67,8 @@ export default {
   },
   methods: {
     speedChanged () {
-      this.$store.dispatch('updateLightsConf', {
-        ...this.lightsConf,
+      this.$store.dispatch('lightsConfig', {
+        ...this.lightsConfig,
         speed: this.speed
       })
     },
@@ -83,23 +85,19 @@ export default {
         this.selectedAnimation = animation
       }
 
-      this.$store.dispatch('updateLightsConf', {
-        ...this.lightsConf,
+      this.$store.dispatch('lightsConfig', {
+        ...this.lightsConfig,
         animation: this.selectedAnimation,
         speed: this.speed
       })
     }
   },
   computed: {
-    loading () {
-      return this.$store.getters.loading
-    },
-    animations () {
-      return this.$store.getters.animations
-    },
-    lightsConf () {
-      return this.$store.getters.lightsConf
-    }
+    ...mapState({
+      loading: state => state.shared.loading,
+      animations: state => state.lights.animations,
+      lightsConfig: state => state.lights.lightsConfig
+    })
   }
 }
 </script>

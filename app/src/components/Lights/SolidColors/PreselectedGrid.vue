@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import hexToRGBA from '../../../mixins/hexToRGBA.js'
 
 export default {
@@ -38,22 +39,22 @@ export default {
   },
   methods: {
     presetClicked (color) {
-      this.$store.dispatch('updateLightsConf', {
-        ...this.lightsConf,
-        color: this.hexToRGBA(color, this.lightsConf.color.a)
+      this.$store.dispatch('lightsConfig', {
+        ...this.lightsConfig,
+        color: this.hexToRGBA(color, this.lightsConfig.color.a)
       })
     },
     isActiveColor (color) {
-      let selected = JSON.stringify(this.hexToRGBA(color, this.lightsConf.color.a))
-      let current = JSON.stringify(this.lightsConf.color)
+      let selected = JSON.stringify(this.hexToRGBA(color, this.lightsConfig.color.a))
+      let current = JSON.stringify(this.lightsConfig.color)
 
       return selected === current
     }
   },
   computed: {
-    lightsConf () {
-      return this.$store.getters.lightsConf
-    }
+    ...mapState({
+      lightsConfig: state => state.lights.lightsConfig
+    })
   }
 }
 </script>

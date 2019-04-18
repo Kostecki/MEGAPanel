@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import ChangePassword from './ChangePassword.vue'
 
 export default {
@@ -29,9 +30,9 @@ export default {
     ChangePassword
   },
   computed: {
-    user () {
-      return this.$store.getters.user
-    }
+    ...mapState({
+      user: state => state.user.user
+    })
   }
 }
 </script>

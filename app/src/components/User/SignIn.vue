@@ -53,6 +53,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   data () {
     return {
@@ -75,17 +77,15 @@ export default {
     }
   },
   computed: {
+    ...mapState({
+      user: state => state.user.user,
+      loading: state => state.shared.loading
+    }),
     form () {
       return {
         email: this.email,
         password: this.password
       }
-    },
-    user () {
-      return this.$store.getters.user
-    },
-    loading () {
-      return this.$store.getters.loading
     }
   },
   watch: {
