@@ -38,11 +38,11 @@ export default {
   },
   created () {
     this.options.scales.yAxes[0].ticks.suggestedMin = this.findLowestValue(
-      this.chartData().datasets[0].data
+      this.chartData.datasets[0].data
     )
   },
   mounted () {
-    this.renderChart(this.chartData(), this.options)
+    this.renderChart(this.chartData, this.options)
   },
   methods: {
     findLowestValue (data) {

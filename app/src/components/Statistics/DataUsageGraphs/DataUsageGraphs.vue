@@ -3,7 +3,7 @@
     <div class="caption font-weight-light font-italic text-uppercase">Data Usage</div>
     <v-layout row wrap justify-space-between>
       <v-flex xs12 sm3 style="position: relative">
-        <DataUsageGraph class="graph" :chart-data="filterUpDownHour" range="hour" />
+        <DataUsageGraph class="graph" :chart-data="filterUpDownHour()" range="hour" />
         <div class="text-inside-doughnut">
           <div class="caption font-italic font-weight-light"><v-icon small>arrow_upward</v-icon> {{ getUpDownValue('hour', 'upload') }}</div>
           <div class="caption font-italic font-weight-light"><v-icon small>arrow_downward</v-icon> {{ getUpDownValue('hour', 'download') }}</div>
@@ -11,7 +11,7 @@
         </div>
       </v-flex>
       <v-flex xs12 sm3 style="position: relative">
-        <DataUsageGraph class="graph" :chart-data="filterUpDownDay" range="day" />
+        <DataUsageGraph class="graph" :chart-data="filterUpDownDay()" range="day" />
         <div class="text-inside-doughnut">
           <div class="caption font-italic font-weight-light"><v-icon small>arrow_upward</v-icon> {{ getUpDownValue('day', 'upload') }}</div>
           <div class="caption font-italic font-weight-light"><v-icon small>arrow_downward</v-icon> {{ getUpDownValue('day', 'download') }}</div>
@@ -19,7 +19,7 @@
         </div>
       </v-flex>
       <v-flex xs12 sm3 style="position: relative">
-        <DataUsageGraph class="graph" :chart-data="filterUpDownWeek" range="week" />
+        <DataUsageGraph class="graph" :chart-data="filterUpDownWeek()" range="week" />
         <div class="text-inside-doughnut">
           <div class="caption font-italic font-weight-light"><v-icon small>arrow_upward</v-icon> {{ getUpDownValue('week', 'upload') }}</div>
           <div class="caption font-italic font-weight-light"><v-icon small>arrow_downward</v-icon> {{ getUpDownValue('week', 'download') }}</div>

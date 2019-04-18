@@ -2,7 +2,7 @@
   <v-layout row wrap justify-space-between>
     <div class="caption font-weight-light font-italic text-uppercase mb-4">Today in details</div>
     <v-flex xs12 style="position: relative">
-      <DataUsageTodayChart :chart-data="filterUpDownDaily" />
+      <DataUsageTodayChart :chart-data="filterUpDownDaily()" />
     </v-flex>
   </v-layout>
 </template>

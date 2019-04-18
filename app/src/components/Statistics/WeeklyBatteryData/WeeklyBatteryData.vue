@@ -4,7 +4,7 @@
       class="caption font-weight-light font-italic text-uppercase mb-4"
     >Batteries this week</div>
     <v-flex xs12 style="position: relative">
-      <WeeklyBatteryDataChart :chart-data="filterBatteriesWeekly"/>
+      <WeeklyBatteryDataChart :chart-data="filterBatteriesWeekly()"/>
     </v-flex>
   </v-layout>
 </template>
