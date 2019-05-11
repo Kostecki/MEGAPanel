@@ -87,7 +87,7 @@ export default {
           this.$store.dispatch('deleteAnimation', key)
         }
       })
-    },
+    }
   },
   computed: {
     ...mapState({

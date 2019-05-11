@@ -3,7 +3,7 @@
     <v-layout align-center row class="create-new">
       <v-flex xs12>
         <div class="subheading page-title">New Battery</div>
-        <v-layout align-end justify-space-between row wrap class="create-new pa-0">
+        <v-layout align-end row wrap class="create-new pa-0">
           <v-flex xs12 sm5>
             <v-text-field
               v-model="newBattery['batteryId']"
@@ -72,12 +72,7 @@ export default {
     }
   }
 
-  .add-btn {
-    display: flex;
-    justify-content: flex-end;
-
-    button {
-      margin-right: 0;
-    }
+  .add-btn button {
+    margin-left: 0;
   }
 </style>

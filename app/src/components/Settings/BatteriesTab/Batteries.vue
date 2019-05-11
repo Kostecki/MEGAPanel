@@ -16,7 +16,7 @@
         <div v-else v-for="(battery, index) in batteries" :key="index" class="battery">
           <v-layout align-center row>
             <v-flex>
-              <v-layout align-end justify-space-between row wrap class="pa-0">
+              <v-layout align-end justify-space-between row wrap class="pa-0 battery-layout">
                 <v-flex xs12 sm5>
                   <v-text-field
                     v-model="batteries[index]['batteryId']"
@@ -34,18 +34,16 @@
                     readonly />
                 </v-flex>
                 <v-flex xs6 sm1 class="current-battery-container">
-                  <span class="current-battery-label">Active</span>
-                  <v-checkbox
-                    v-model="batteries[index]['currentBattery']"
-                    color="primary"
-                    readonly />
+                  <span class="custom-label">Active</span>
+                  <v-icon class="icon" :class="batteries[index]['currentBattery'] ? 'active' : null">check</v-icon>
                 </v-flex>
-                <v-flex xs6 sm1 class="delete-btn">
+                <v-flex xs6 sm1 class="remove-container delete-btn">
+                  <span class="custom-label">Remove</span>
                   <v-btn
                     flat icon
                     color="grey"
                     @click="deleteBattery(battery.key)">
-                    <v-icon>remove_circle_outline</v-icon>
+                    <v-icon class="icon">remove_circle_outline</v-icon>
                   </v-btn>
                 </v-flex>
               </v-layout>
@@ -141,8 +139,25 @@ export default {
       }
     }
 
+    .battery-layout {
+      display: flex;
+      align-items: flex-start;
+    }
+
     .current-battery-container {
-      position: relative;
+      .icon {
+        opacity: 0.2;
+      }
+    }
+
+    .current-battery-container,
+    .remove-container {
+      text-align: center;
+      user-select: none;
+
+      span, .icon {
+        display: block;
+      }
 
       .v-input--selection-controls {
         margin-top: 28px;
@@ -150,28 +165,21 @@ export default {
         justify-content: center;
       }
 
-      .current-battery-label {
+      .custom-label {
         color: rgba(0,0,0,.54);
         font-size: 12px;
-        position: absolute;
-        right: auto;
-        height: 120px;
-        line-height: 20px;
 
         @media (min-width: 600px) {
-          left: 12px;
+          // left: 12px;
         }
       }
 
-      @media (min-width: 600px) {}
-    }
-
-    .delete-btn {
-      display: flex;
-      justify-content: flex-end;
+      .active {
+        opacity: 1;
+      }
 
       button {
-        margin-right: 0;
+        margin: -6px 0 0 0;
       }
     }
   }
