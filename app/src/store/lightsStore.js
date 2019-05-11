@@ -48,7 +48,7 @@ export default {
     },
     getLightsConfig ({ commit, dispatch }) {
       firebase.database().ref('lightsConfig').on('value', response => {
-        dispatch('lightsConfig', response.val())
+        commit('lightsConfig', response.val())
       }, error => {
         commit('setMessage', { text: error.message, type: 'error' })
       })
