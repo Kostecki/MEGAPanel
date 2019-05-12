@@ -60,10 +60,13 @@
 import { mapState } from 'vuex'
 
 export default {
+  mounted () {
+    // set selectedAnimation
+  },
   data () {
     return {
       speed: 0,
-      selectedAnimation: 'solid',
+      selectedAnimation: null,
       disableSpeedControl: true
     }
   },
@@ -75,6 +78,15 @@ export default {
       })
     },
     animationClicked (animation) {
+      this.toggleAnimations(animation)
+
+      this.$store.dispatch('lightsConfig', {
+        ...this.lightsConfig,
+        animation: this.selectedAnimation,
+        speed: this.speed
+      })
+    },
+    toggleAnimations (animation) {
       this.speed = 0
       this.disableSpeedControl = !this.animations.find(e => {
         return e.value === animation && e.speedControl
@@ -86,12 +98,6 @@ export default {
       } else {
         this.selectedAnimation = animation
       }
-
-      this.$store.dispatch('lightsConfig', {
-        ...this.lightsConfig,
-        animation: this.selectedAnimation,
-        speed: this.speed
-      })
     }
   },
   computed: {
@@ -100,14 +106,6 @@ export default {
       animations: state => state.lights.animations,
       lightsConfig: state => state.lights.lightsConfig
     })
-  },
-  watch: {
-    lightsConfig: function(newVal, oldVal) {
-      if (newVal.animation !== oldVal.animation) {
-        // Wait for animations to be ready in animationClicked ¯\_(ツ)_/¯
-        setTimeout(() => this.animationClicked(newVal.animation), 200)
-      }
-    }, deep: true
   }
 }
 </script>

@@ -20,10 +20,10 @@
 
 <script>
 import { mapState } from 'vuex'
-import hexToRGBA from '../../../mixins/hexToRGBA.js'
+import { formatColors } from '../../../mixins/formatColors.js'
 
 export default {
-  mixins: [hexToRGBA],
+  mixins: [formatColors],
   data () {
     return {
       preselectedColors: [
@@ -31,9 +31,9 @@ export default {
         '#00ff00',
         '#0000ff',
         '#ffff00',
-        '#8F34AA',
+        '#8f34aa',
         '#00ffff',
-        '#E25241'
+        '#e25241'
       ]
     }
   },
@@ -45,10 +45,11 @@ export default {
       })
     },
     isActiveColor (color) {
-      let selected = JSON.stringify(this.hexToRGBA(color, this.lightsConfig.color.a))
-      let current = JSON.stringify(this.lightsConfig.color)
+      const r = this.lightsConfig.color.r
+      const g = this.lightsConfig.color.g
+      const b = this.lightsConfig.color.b
 
-      return selected === current
+      return color === this.rgbToHex(r, g, b).toLowerCase()
     }
   },
   computed: {
