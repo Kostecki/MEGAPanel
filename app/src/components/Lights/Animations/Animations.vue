@@ -60,9 +60,6 @@
 import { mapState } from 'vuex'
 
 export default {
-  mounted () {
-    // set selectedAnimation
-  },
   data () {
     return {
       speed: 0,
@@ -106,6 +103,13 @@ export default {
       animations: state => state.lights.animations,
       lightsConfig: state => state.lights.lightsConfig
     })
+  },
+  watch: {
+    lightsConfig: function(newVal, oldVal) {
+      if (newVal.animation !== oldVal.animation) {
+        this.selectedAnimation = newVal.animation
+      }
+    }, deep: true
   }
 }
 </script>
