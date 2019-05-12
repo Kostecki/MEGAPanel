@@ -109,6 +109,9 @@ export default {
       if (newVal.animation !== oldVal.animation) {
         this.selectedAnimation = newVal.animation
       }
+      if (newVal.speed !== oldVal.speed) {
+        this.speed = newVal.speed
+      }
     }, deep: true
   }
 }
