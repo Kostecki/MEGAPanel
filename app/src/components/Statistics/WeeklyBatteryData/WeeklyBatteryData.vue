@@ -1,10 +1,16 @@
 <template>
-  <v-layout row wrap justify-space-between>
+  <v-layout
+    row
+    wrap
+    justify-space-between>
     <div
-      class="caption font-weight-light font-italic text-uppercase mb-4"
-    >Batteries this week</div>
-    <v-flex xs12 style="position: relative">
-      <WeeklyBatteryDataChart :chart-data="filterBatteriesWeekly()"/>
+      class="caption font-weight-light font-italic text-uppercase mb-4">
+      Batteries this week
+    </div>
+    <v-flex
+      xs12
+      style="position: relative">
+      <WeeklyBatteryDataChart :chart-data="filterBatteriesWeekly()" />
     </v-flex>
   </v-layout>
 </template>
@@ -88,6 +94,12 @@ export default {
       }
     }
   },
+  computed: {
+    // TODO: this is getting repeated
+    today () {
+      return moment.weekdays(moment().weekday())
+    }
+  },
   methods: {
     filterBatteriesWeekly () {
       const week = this.BatteryHistoric
@@ -99,12 +111,6 @@ export default {
       filtered.datasets[0].data = merged
 
       return filtered
-    }
-  },
-  computed: {
-    // TODO: this is getting repeated
-    today () {
-      return moment.weekdays(moment().weekday())
     }
   }
 }

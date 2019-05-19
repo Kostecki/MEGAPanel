@@ -1,8 +1,15 @@
 <template>
   <div class="current-battery">
-    <div class="caption font-weight-light font-italic text-uppercase">Battery ({{ battery }})</div>
+    <div class="caption font-weight-light font-italic text-uppercase">
+      Battery ({{ battery }})
+    </div>
     <Loader v-if="!currentBatteryVoltage" />
-    <div v-else class="title font-weight-bold mt-1 current-voltage" :class="setState">{{ displayVoltage }}</div>
+    <div
+      v-else
+      class="title font-weight-bold mt-1 current-voltage"
+      :class="setState">
+      {{ displayVoltage }}
+    </div>
   </div>
 </template>
 
@@ -12,9 +19,6 @@ import Loader from '../Shared/Loader.vue'
 
 export default {
   components: { Loader },
-  created () {
-    this.$store.dispatch('statistics/currentBatteryVoltage')
-  },
   data () {
     return {
       battery: 'ThunderDucks' // TODO: get this from the store
@@ -71,6 +75,9 @@ export default {
         return 0
       }
     }
+  },
+  created () {
+    this.$store.dispatch('statistics/currentBatteryVoltage')
   }
 }
 </script>

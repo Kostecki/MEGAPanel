@@ -1,7 +1,14 @@
 <template>
-  <v-layout row wrap justify-space-between>
-    <div class="caption font-weight-light font-italic text-uppercase mb-4">Today in details</div>
-    <v-flex xs12 style="position: relative">
+  <v-layout
+    row
+    wrap
+    justify-space-between>
+    <div class="caption font-weight-light font-italic text-uppercase mb-4">
+      Today in details
+    </div>
+    <v-flex
+      xs12
+      style="position: relative">
       <DataUsageTodayChart :chart-data="filterUpDownDaily()" />
     </v-flex>
   </v-layout>
@@ -246,6 +253,12 @@ export default {
       }
     }
   },
+  computed: {
+    // TODO: this is getting repeated
+    today () {
+      return moment.weekdays(moment().weekday())
+    }
+  },
   methods: {
     filterUpDownDaily () {
       const today = this.DataWeek[this.today]
@@ -262,12 +275,6 @@ export default {
       filtered.datasets[1].data = download
 
       return filtered
-    }
-  },
-  computed: {
-    // TODO: this is getting repeated
-    today () {
-      return moment.weekdays(moment().weekday())
     }
   }
 }

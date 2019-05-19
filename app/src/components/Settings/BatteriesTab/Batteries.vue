@@ -1,49 +1,83 @@
 <template>
   <div class="batteries">
     <v-container>
-      <div v-if="!batteries" class="text-xs-center">
+      <div
+        v-if="!batteries"
+        class="text-xs-center">
         <v-progress-circular
           indeterminate
           color="primary"
-          class="mb-4"
-        ></v-progress-circular>
+          class="mb-4" />
       </div>
       <div v-else>
-        <div class="subheading page-title mb-3">Batteries</div>
-        <div v-if="batteries && batteries.length === 0" class="text-xs-center" style="padding-bottom: 24px">
+        <div class="subheading page-title mb-3">
+          Batteries
+        </div>
+        <div
+          v-if="batteries && batteries.length === 0"
+          class="text-xs-center"
+          style="padding-bottom: 24px">
           <h4>No Batteries</h4>
         </div>
-        <div v-else v-for="(battery, index) in batteries" :key="index" class="battery">
-          <v-layout align-center row>
+        <div
+          v-for="(battery, index) in batteries"
+          v-else
+          :key="index"
+          class="battery">
+          <v-layout
+            align-center
+            row>
             <v-flex>
-              <v-layout align-end justify-space-between row wrap class="pa-0 battery-layout">
-                <v-flex xs12 sm5>
+              <v-layout
+                align-end
+                justify-space-between
+                row
+                wrap
+                class="pa-0 battery-layout">
+                <v-flex
+                  xs12
+                  sm5>
                   <v-text-field
                     v-model="batteries[index]['batteryId']"
                     label="Battery ID"
                     class="batteryId-input"
                     @change="updateBattery(battery.key, index)" />
                 </v-flex>
-                <v-flex xs12 sm5>
+                <v-flex
+                  xs12
+                  sm5>
                   <v-text-field
                     v-model="batteries[index]['voltage']"
                     label="Voltage"
                     class="voltage-input"
                     :class="noVoltage(batteries[index]['voltage'])"
-                    @change="updateBattery(battery.key, index)"
-                    readonly />
+                    readonly
+                    @change="updateBattery(battery.key, index)" />
                 </v-flex>
-                <v-flex xs6 sm1 class="current-battery-container">
+                <v-flex
+                  xs6
+                  sm1
+                  class="current-battery-container">
                   <span class="custom-label">Active</span>
-                  <v-icon class="icon" :class="batteries[index]['currentBattery'] ? 'active' : null">check</v-icon>
+                  <v-icon
+                    class="icon"
+                    :class="batteries[index]['currentBattery'] ? 'active' : null">
+                    check
+                  </v-icon>
                 </v-flex>
-                <v-flex xs6 sm1 class="remove-container delete-btn">
+                <v-flex
+                  xs6
+                  sm1
+                  class="remove-container delete-btn">
                   <span class="custom-label">Remove</span>
                   <v-btn
-                    flat icon
+                    flat
+                    icon
                     color="grey"
                     @click="deleteBattery(battery.key)">
-                    <v-icon class="icon">remove_circle_outline</v-icon>
+                    <v-icon class="icon">
+                      remove_circle_outline
+                    </v-icon>
                   </v-btn>
                 </v-flex>
               </v-layout>
@@ -72,6 +106,9 @@ export default {
         battery: this.batteries[index]
       })
     },
+    computed: {
+      ...mapState('settings', ['batteries'])
+    },
     deleteBattery (key) {
       Swal.fire({
         title: 'Delete battery?',
@@ -92,9 +129,6 @@ export default {
         return 'no-voltage'
       }
     }
-  },
-  computed: {
-    ...mapState('settings', ['batteries'])
   }
 }
 </script>

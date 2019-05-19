@@ -1,37 +1,41 @@
 <template>
   <div>
-    <div class="subheading page-title">Change Password</div>
+    <div class="subheading page-title">
+      Change Password
+    </div>
 
     <v-divider class="my-3" />
 
-    <v-form ref="form" v-model="valid" lazy-validation class="change-pass-form">
+    <v-form
+      ref="form"
+      v-model="valid"
+      lazy-validation
+      class="change-pass-form">
       <v-text-field
         v-model="updatedPassword['passwordOne']"
         :rules="[rules.required]"
         label="Password"
         :append-icon="show.one ? 'visibility_off' : 'visibility'"
         :type="show.one ? 'text' : 'password'"
-        @click:append="show.one = !show.one"
         required
-      >
-      </v-text-field>
+        @click:append="show.one = !show.one" />
       <v-text-field
         v-model="updatedPassword['passwordTwo']"
         :rules="[rules.required, rules.match]"
         label="Confirm Password"
         :append-icon="show.two ? 'visibility_off' : 'visibility'"
         :type="show.two ? 'text' : 'password'"
-        @click:append="show.two = !show.two"
-        required>
-      </v-text-field>
+        required
+        @click:append="show.two = !show.two" />
 
       <v-btn
         color="primary"
         class="save-btn"
-        @click="submitForm"
         :loading="loading"
         :disabled="loading"
-      >Save</v-btn>
+        @click="submitForm">
+        Save
+      </v-btn>
     </v-form>
   </div>
 </template>
@@ -54,6 +58,9 @@ export default {
       updatedPassword: {}
     }
   },
+  computed: {
+    ...mapState('shared', ['loading'])
+  },
   methods: {
     submitForm () {
       if (this.$refs.form.validate()) {
@@ -65,9 +72,6 @@ export default {
     resetForm () {
       this.$refs.form.reset()
     }
-  },
-  computed: {
-    ...mapState('shared', ['loading'])
   }
 }
 </script>

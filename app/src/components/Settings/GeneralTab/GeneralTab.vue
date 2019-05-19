@@ -2,18 +2,28 @@
   <v-layout row>
     <v-flex xs12>
       <v-card color="white">
-        <v-layout class="container" row wrap>
-          <v-flex xs12 sm6 class="user-info">
-            <div class="headline">{{ user.email }}</div>
+        <v-layout
+          class="container"
+          row
+          wrap>
+          <v-flex
+            xs12
+            sm6
+            class="user-info">
+            <div class="headline">
+              {{ user.email }}
+            </div>
             <v-btn
               class="mt-3"
               color="primary"
               @click="$store.dispatch('user/logout')">
-                Log Out
+              Log Out
             </v-btn>
           </v-flex>
 
-          <v-flex xs12 sm6>
+          <v-flex
+            xs12
+            sm6>
             <ChangePassword />
           </v-flex>
         </v-layout>

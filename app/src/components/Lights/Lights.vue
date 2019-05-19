@@ -1,7 +1,11 @@
 <template>
   <v-container text-xs-center>
-    <v-layout row wrap>
-      <v-flex xs12 align-center>
+    <v-layout
+      row
+      wrap>
+      <v-flex
+        xs12
+        align-center>
         <SolidColors />
       </v-flex>
 

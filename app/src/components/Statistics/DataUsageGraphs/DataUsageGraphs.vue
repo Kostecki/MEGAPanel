@@ -1,29 +1,82 @@
 <template>
   <div>
-    <div class="caption font-weight-light font-italic text-uppercase">Data Usage</div>
-    <v-layout row wrap justify-space-between>
-      <v-flex xs12 sm3 style="position: relative">
-        <DataUsageGraph class="graph" :chart-data="filterUpDownHour()" range="hour" />
+    <div class="caption font-weight-light font-italic text-uppercase">
+      Data Usage
+    </div>
+    <v-layout
+      row
+      wrap
+      justify-space-between>
+      <v-flex
+        xs12
+        sm3
+        style="position: relative">
+        <DataUsageGraph
+          class="graph"
+          :chart-data="filterUpDownHour()"
+          range="hour" />
         <div class="text-inside-doughnut">
-          <div class="caption font-italic font-weight-light"><v-icon small>arrow_upward</v-icon> {{ getUpDownValue('hour', 'upload') }}</div>
-          <div class="caption font-italic font-weight-light"><v-icon small>arrow_downward</v-icon> {{ getUpDownValue('hour', 'download') }}</div>
-          <div class="caption font-weight-light font-italic mt-2">{{ showDataInterval('hour') }}</div>
+          <div class="caption font-italic font-weight-light">
+            <v-icon small>
+              arrow_upward
+            </v-icon> {{ getUpDownValue('hour', 'upload') }}
+          </div>
+          <div class="caption font-italic font-weight-light">
+            <v-icon small>
+              arrow_downward
+            </v-icon> {{ getUpDownValue('hour', 'download') }}
+          </div>
+          <div class="caption font-weight-light font-italic mt-2">
+            {{ showDataInterval('hour') }}
+          </div>
         </div>
       </v-flex>
-      <v-flex xs12 sm3 style="position: relative">
-        <DataUsageGraph class="graph" :chart-data="filterUpDownDay()" range="day" />
+      <v-flex
+        xs12
+        sm3
+        style="position: relative">
+        <DataUsageGraph
+          class="graph"
+          :chart-data="filterUpDownDay()"
+          range="day" />
         <div class="text-inside-doughnut">
-          <div class="caption font-italic font-weight-light"><v-icon small>arrow_upward</v-icon> {{ getUpDownValue('day', 'upload') }}</div>
-          <div class="caption font-italic font-weight-light"><v-icon small>arrow_downward</v-icon> {{ getUpDownValue('day', 'download') }}</div>
-          <div class="caption font-weight-light font-italic mt-2">{{showDataInterval('day')}}</div>
+          <div class="caption font-italic font-weight-light">
+            <v-icon small>
+              arrow_upward
+            </v-icon> {{ getUpDownValue('day', 'upload') }}
+          </div>
+          <div class="caption font-italic font-weight-light">
+            <v-icon small>
+              arrow_downward
+            </v-icon> {{ getUpDownValue('day', 'download') }}
+          </div>
+          <div class="caption font-weight-light font-italic mt-2">
+            {{ showDataInterval('day') }}
+          </div>
         </div>
       </v-flex>
-      <v-flex xs12 sm3 style="position: relative">
-        <DataUsageGraph class="graph" :chart-data="filterUpDownWeek()" range="week" />
+      <v-flex
+        xs12
+        sm3
+        style="position: relative">
+        <DataUsageGraph
+          class="graph"
+          :chart-data="filterUpDownWeek()"
+          range="week" />
         <div class="text-inside-doughnut">
-          <div class="caption font-italic font-weight-light"><v-icon small>arrow_upward</v-icon> {{ getUpDownValue('week', 'upload') }}</div>
-          <div class="caption font-italic font-weight-light"><v-icon small>arrow_downward</v-icon> {{ getUpDownValue('week', 'download') }}</div>
-          <div class="caption font-weight-light font-italic mt-2">{{showDataInterval('week')}}</div>
+          <div class="caption font-italic font-weight-light">
+            <v-icon small>
+              arrow_upward
+            </v-icon> {{ getUpDownValue('week', 'upload') }}
+          </div>
+          <div class="caption font-italic font-weight-light">
+            <v-icon small>
+              arrow_downward
+            </v-icon> {{ getUpDownValue('week', 'download') }}
+          </div>
+          <div class="caption font-weight-light font-italic mt-2">
+            {{ showDataInterval('week') }}
+          </div>
         </div>
       </v-flex>
     </v-layout>
@@ -38,9 +91,6 @@ import DataUsageGraph from './DataUsageGraph'
 export default {
   components: {
     DataUsageGraph
-  },
-  created () {
-    moment.locale('en-ie')
   },
   data () {
     return {
@@ -247,6 +297,18 @@ export default {
       }
     }
   },
+  computed: {
+    // TODO: this is getting repeated
+    today () {
+      return moment.weekdays(moment().weekday())
+    },
+    currentHour () {
+      return moment().format('h')
+    }
+  },
+  created () {
+    moment.locale('en-ie')
+  },
   methods: {
     showDataInterval (range) {
       const startOfWeek = moment().startOf('isoweek').format('D.')
@@ -320,15 +382,6 @@ export default {
       }
 
       return this.formatDataUnit(funcs[range].datasets[0].data[direction])
-    }
-  },
-  computed: {
-    // TODO: this is getting repeated
-    today () {
-      return moment.weekdays(moment().weekday())
-    },
-    currentHour () {
-      return moment().format('h')
     }
   }
 }

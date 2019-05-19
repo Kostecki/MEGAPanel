@@ -2,8 +2,7 @@
   <div class="loader-container">
     <v-progress-circular
       indeterminate
-      color="primary"
-    ></v-progress-circular>
+      color="primary" />
   </div>
 </template>
 

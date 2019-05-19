@@ -1,8 +1,13 @@
 <template>
   <div class="avg-speeds">
-    <div class="caption font-weight-light font-italic text-uppercase">Average Network Speed</div>
+    <div class="caption font-weight-light font-italic text-uppercase">
+      Average Network Speed
+    </div>
     <div class="speeds mt-1">
-      <div v-for="(value, key, index) in avg" :key="index" class="single-speed">
+      <div
+        v-for="(value, key, index) in avg"
+        :key="index"
+        class="single-speed">
         <span class="direction font-weight-light">{{ key | capitalize }}:</span> <span class="speed font-weight-bold">{{ value }} kbit/s</span>
       </div>
     </div>

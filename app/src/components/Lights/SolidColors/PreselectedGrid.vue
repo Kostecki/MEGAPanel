@@ -1,16 +1,26 @@
 <template>
-  <v-container grid-list-lg fluid class="container-preselected">
-    <v-layout row wrap>
-      <v-flex v-for="(color, index) in preselectedColors" :key="index">
+  <v-container
+    grid-list-lg
+    fluid
+    class="container-preselected">
+    <v-layout
+      row
+      wrap>
+      <v-flex
+        v-for="(color, index) in preselectedColors"
+        :key="index">
         <v-card
+          v-ripple
           class="preselected-grid-color"
           :color="color"
           max-width="100"
-          v-ripple
-          @click="presetClicked(color)"
-        >
-          <div v-if="isActiveColor(color)" class="current-color">
-            <v-icon x-large>check_circle_outline</v-icon>
+          @click="presetClicked(color)">
+          <div
+            v-if="isActiveColor(color)"
+            class="current-color">
+            <v-icon x-large>
+              check_circle_outline
+            </v-icon>
           </div>
         </v-card>
       </v-flex>

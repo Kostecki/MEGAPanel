@@ -1,5 +1,7 @@
 <template>
-  <v-card color="white" class="animations-container">
+  <v-card
+    color="white"
+    class="animations-container">
     <v-container class="py-0">
       <v-card-title class="px-0">
         <span class="title font-weight-light text-uppercase">Animations</span>
@@ -9,12 +11,15 @@
     <v-divider />
 
     <v-container fluid>
-      <v-layout row wrap>
-        <v-flex xs12 sm4>
+      <v-layout
+        row
+        wrap>
+        <v-flex
+          xs12
+          sm4>
           <span
             class="left body-2 font-weight-light text-uppercase font-italic"
-            @click="() => speed = 0"
-          >Speed ({{speed}})</span>
+            @click="() => speed = 0">Speed ({{ speed }})</span>
           <br>
           <v-slider
             v-model="speed"
@@ -23,31 +28,38 @@
             max="255"
             hide-details
             class="left speed-slider"
-            @change="speedChanged"
-          />
+            @change="speedChanged" />
         </v-flex>
       </v-layout>
     </v-container>
 
-    <v-container fluid style="padding-top:0">
-      <v-layout v-if="loading" row wrap>
+    <v-container
+      fluid
+      style="padding-top:0">
+      <v-layout
+        v-if="loading"
+        row
+        wrap>
         <v-flex class="text-xs-center">
           <v-progress-circular
             indeterminate
             color="primary"
             :width="3"
-            class="spinner"
-          ></v-progress-circular>
+            class="spinner" />
         </v-flex>
       </v-layout>
-      <v-layout row wrap class="animation-cards-container">
-        <v-flex v-for="(animation, index) in animations" :key="index">
+      <v-layout
+        row
+        wrap
+        class="animation-cards-container">
+        <v-flex
+          v-for="(animation, index) in animations"
+          :key="index">
           <v-card
             v-ripple
             class="animation-card"
             :class="selectedAnimation === animation.value ? 'selected' : null"
-            @click="animationClicked(animation.value)"
-          >
+            @click="animationClicked(animation.value)">
             {{ animation.name }}
           </v-card>
         </v-flex>
@@ -66,6 +78,21 @@ export default {
       selectedAnimation: null,
       disableSpeedControl: true
     }
+  },
+  computed: {
+    ...mapState('shared', ['loading']),
+    ...mapState('lights', ['animations', 'lightsConfig'])
+  },
+  watch: {
+    lightsConfig (newVal, oldVal) {
+      if (newVal.animation !== oldVal.animation) {
+        this.selectedAnimation = newVal.animation
+      }
+      if (newVal.speed !== oldVal.speed) {
+        this.speed = newVal.speed
+      }
+    },
+    deep: true
   },
   methods: {
     speedChanged () {
@@ -96,21 +123,6 @@ export default {
         this.selectedAnimation = animation
       }
     }
-  },
-  computed: {
-    ...mapState('shared', ['loading']),
-    ...mapState('lights', ['animations', 'lightsConfig'])
-  },
-  watch: {
-    lightsConfig (newVal, oldVal) {
-      if (newVal.animation !== oldVal.animation) {
-        this.selectedAnimation = newVal.animation
-      }
-      if (newVal.speed !== oldVal.speed) {
-        this.speed = newVal.speed
-      }
-    },
-    deep: true
   }
 }
 </script>

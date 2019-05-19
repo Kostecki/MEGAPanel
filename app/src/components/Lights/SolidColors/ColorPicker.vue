@@ -1,7 +1,13 @@
 <template>
-  <v-layout row wrap>
+  <v-layout
+    row
+    wrap>
     <v-flex xs12>
-      <Chrome v-if="lightsConfig.color" v-model="lightsConfig.color" @input="updateValue" class="chrome-color-select" />
+      <Chrome
+        v-if="lightsConfig.color"
+        v-model="lightsConfig.color"
+        class="chrome-color-select"
+        @input="updateValue" />
     </v-flex>
   </v-layout>
 </template>
@@ -19,6 +25,9 @@ export default {
       colors: null
     }
   },
+  computed: {
+    ...mapState('lights', ['lightsConfig'])
+  },
   methods: {
     updateValue (value) {
       this.$store.dispatch('lights/lightsConfig', {
@@ -32,9 +41,6 @@ export default {
         }
       })
     }
-  },
-  computed: {
-    ...mapState('lights', ['lightsConfig'])
   }
 }
 </script>

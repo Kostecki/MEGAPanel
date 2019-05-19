@@ -41,7 +41,6 @@ Vue.config.productionTip = false
 new Vue({
   router,
   store,
-  render: h => h(App),
   created () {
     firebase.initializeApp({
       apiKey: 'AIzaSyDnheuTGZwZAXzOYA6UwEF6EVrlostKl1o',
@@ -55,5 +54,6 @@ new Vue({
         this.$store.dispatch('user/autoSignIn', user)
       }
     })
-  }
+  },
+  render: h => h(App)
 }).$mount('#app')

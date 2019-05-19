@@ -1,25 +1,29 @@
 <template>
   <v-container class="settings-container">
-    <v-layout row wrap>
-      <v-flex xs12 align-center>
+    <v-layout
+      row
+      wrap>
+      <v-flex
+        xs12
+        align-center>
         <v-card>
           <v-tabs
             v-model="active"
             fixed-tabs
             slider-color="primary">
-              <v-tab
-                v-for="(tab, index) in tabs"
-                :key="index"
-                @click="setActiveTab(tab.name, index)">
-                  {{ tab.name}}
-              </v-tab>
-              <v-tab-item
-                v-for="(tab, index) in tabs"
-                :key="index"
-                :transition="false"
-                :reverse-transition="false">
-                  <component :is="`${tab.name}Tab`" />
-              </v-tab-item>
+            <v-tab
+              v-for="(tab, index) in tabs"
+              :key="index"
+              @click="setActiveTab(tab.name, index)">
+              {{ tab.name }}
+            </v-tab>
+            <v-tab-item
+              v-for="(tab, index) in tabs"
+              :key="index"
+              :transition="false"
+              :reverse-transition="false">
+              <component :is="`${tab.name}Tab`" />
+            </v-tab-item>
           </v-tabs>
         </v-card>
       </v-flex>
@@ -38,10 +42,6 @@ export default {
     AnimationsTab,
     BatteriesTab
   },
-  created () {
-    this.$store.dispatch('settings/batteries')
-    this.setActiveTab(this.$route.params.tab)
-  },
   data () {
     return {
       active: 0,
@@ -51,6 +51,10 @@ export default {
         { name: 'Batteries' }
       ]
     }
+  },
+  created () {
+    this.$store.dispatch('settings/batteries')
+    this.setActiveTab(this.$route.params.tab)
   },
   methods: {
     setActiveTab (tabName, tabIndex) {

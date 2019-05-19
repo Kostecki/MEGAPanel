@@ -1,35 +1,56 @@
 <template>
   <v-container>
-    <v-layout align-center row class="create-new">
+    <v-layout
+      align-center
+      row
+      class="create-new">
       <v-flex xs12>
-        <div class="subheading page-title">Create New</div>
-        <v-layout align-end justify-space-between row wrap class="create-new pa-0">
-          <v-flex xs12 sm5>
+        <div class="subheading page-title">
+          Create New
+        </div>
+        <v-layout
+          align-end
+          justify-space-between
+          row
+          wrap
+          class="create-new pa-0">
+          <v-flex
+            xs12
+            sm5>
             <v-text-field
               v-model="newAnimation['name']"
               label="Name"
               class="name-input"
-              @input="updateValue"></v-text-field>
+              @input="updateValue" />
           </v-flex>
-          <v-flex xs12 sm5>
+          <v-flex
+            xs12
+            sm5>
             <v-text-field
               v-model="newAnimation['value']"
               label="Value"
-              class="value-input"></v-text-field>
+              class="value-input" />
           </v-flex>
-          <v-flex xs6 sm1 class="speed-control-container">
+          <v-flex
+            xs6
+            sm1
+            class="speed-control-container">
             <span class="speed-control-label">Speed</span>
             <v-switch
               v-model="newAnimation['speedControl']"
               color="primary"
-              class="speed-control-toggle"></v-switch>
+              class="speed-control-toggle" />
           </v-flex>
-          <v-flex xs6 sm1 class="add-btn">
+          <v-flex
+            xs6
+            sm1
+            class="add-btn">
             <v-btn
-              flat icon
+              flat
+              icon
               color="grey"
               @click="addNew">
-                <v-icon>add_circle_outline</v-icon>
+              <v-icon>add_circle_outline</v-icon>
             </v-btn>
           </v-flex>
         </v-layout>

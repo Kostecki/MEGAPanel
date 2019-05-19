@@ -1,7 +1,11 @@
 <template>
   <v-container>
-    <v-layout row wrap>
-      <v-flex xs12 align-center>
+    <v-layout
+      row
+      wrap>
+      <v-flex
+        xs12
+        align-center>
         <v-card color="white">
           <v-container class="py-0">
             <v-card-title class="px-0">
@@ -12,21 +16,36 @@
           <v-divider />
 
           <v-container style="margin-bottom: 75px">
-            <v-layout row wrap justify-space-between class="mb-2">
-              <v-flex xs12 sm3 class="mb-2">
+            <v-layout
+              row
+              wrap
+              justify-space-between
+              class="mb-2">
+              <v-flex
+                xs12
+                sm3
+                class="mb-2">
                 <CurrentBattery />
               </v-flex>
-              <v-flex xs12 sm3 class="mb-2">
+              <v-flex
+                xs12
+                sm3
+                class="mb-2">
                 <Power />
               </v-flex>
-              <v-flex xs12 sm3 class="mb-2">
+              <v-flex
+                xs12
+                sm3
+                class="mb-2">
                 <Batteries />
               </v-flex>
             </v-layout>
 
             <v-divider />
 
-            <v-layout row class="my-3">
+            <v-layout
+              row
+              class="my-3">
               <v-flex xs12>
                 <DataUsageGraphs />
               </v-flex>
@@ -34,7 +53,9 @@
 
             <v-divider />
 
-            <v-layout row class="my-3">
+            <v-layout
+              row
+              class="my-3">
               <v-flex xs12>
                 <DataUsageToday />
               </v-flex>
@@ -42,7 +63,9 @@
 
             <v-divider />
 
-            <v-layout row class="mt-3 weekly-battery-data-container">
+            <v-layout
+              row
+              class="mt-3 weekly-battery-data-container">
               <v-flex xs12>
                 <WeeklyBatteryData />
               </v-flex>

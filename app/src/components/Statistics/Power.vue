@@ -1,8 +1,12 @@
 <template>
   <div class="current-amps">
-    <div class="caption font-weight-light font-italic text-uppercase">Power Consumption</div>
+    <div class="caption font-weight-light font-italic text-uppercase">
+      Power Consumption
+    </div>
     <Loader v-if="showLoader" />
-    <div v-else class="content mt-1">
+    <div
+      v-else
+      class="content mt-1">
       <div class="single-value">
         <span class="font-weight-light">Current:</span> <span class="font-weight-bold">{{ amps.live.toFixed(2) }} Amps</span>
       </div>
@@ -14,7 +18,9 @@
 
       <v-tooltip bottom>
         <template v-slot:activator="{ on }">
-          <div class="single-value max" v-on="on">
+          <div
+            class="single-value max"
+            v-on="on">
             <span class="font-weight-light mr-2">Max:</span> <span class="font-weight-bold">{{ ampsMax }} Amps</span>
           </div>
         </template>
@@ -30,8 +36,8 @@ import { objectUtils } from '../../mixins/objectUtils'
 import Loader from '../Shared/Loader.vue'
 
 export default {
-  mixins: [objectUtils],
   components: { Loader },
+  mixins: [objectUtils],
   computed: {
     ...mapState('statistics', ['amps', 'currentBatteryVoltage']),
     showLoader () {

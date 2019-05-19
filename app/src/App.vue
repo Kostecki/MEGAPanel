@@ -4,11 +4,10 @@
     <main>
       <AppMessage
         v-if="message"
-        @dismissed="onDismissed"
         :text="message.text"
         :type="message.type"
-      />
-      <router-view></router-view>
+        @dismissed="onDismissed" />
+      <router-view />
     </main>
   </v-app>
 </template>
@@ -18,14 +17,14 @@ import Navigation from './components/Navigation/Navigation.vue'
 
 export default {
   components: { Navigation },
-  methods: {
-    onDismissed () {
-      this.$store.dispatch('shared/clearMessage')
-    }
-  },
   computed: {
     message () {
       return this.$store.getters.message
+    }
+  },
+  methods: {
+    onDismissed () {
+      this.$store.dispatch('shared/clearMessage')
     }
   }
 }

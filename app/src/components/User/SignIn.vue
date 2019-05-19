@@ -1,9 +1,16 @@
 <template>
   <v-container>
-    <v-layout row align-center justify-center>
-      <v-flex xs12 sm8>
+    <v-layout
+      row
+      align-center
+      justify-center>
+      <v-flex
+        xs12
+        sm8>
         <v-card class="elevation-12">
-          <v-toolbar dark color="primary">
+          <v-toolbar
+            dark
+            color="primary">
             <v-toolbar-title>Sign In</v-toolbar-title>
           </v-toolbar>
           <v-card-text>
@@ -11,38 +18,34 @@
               ref="form"
               v-model="formValid"
               lazy-validation
-              @keyup.native.enter="onSignIn"
-            >
+              @keyup.native.enter="onSignIn">
               <v-text-field
-                v-model="email"
                 ref="email"
+                v-model="email"
                 name="email"
                 label="Email"
                 type="email"
                 :rules="emailRule"
                 required
-                prepend-icon="person"
-              ></v-text-field>
+                prepend-icon="person" />
               <v-text-field
-                v-model="password"
                 ref="password"
+                v-model="password"
                 name="password"
                 label="Password"
                 type="password"
                 :rules="passwordRule"
                 required
-                prepend-icon="lock"
-              ></v-text-field>
+                prepend-icon="lock" />
             </v-form>
           </v-card-text>
           <v-card-actions>
-            <v-spacer></v-spacer>
+            <v-spacer />
             <v-btn
               :loading="loading"
               :disabled="loading"
-              @click="onSignIn"
               color="primary"
-            >
+              @click="onSignIn">
               Sign In
             </v-btn>
           </v-card-actions>
@@ -69,13 +72,6 @@ export default {
       formValid: true
     }
   },
-  methods: {
-    onSignIn () {
-      if (this.$refs.form.validate()) {
-        this.$store.dispatch('user/signUserIn', { email: this.email, password: this.password })
-      }
-    }
-  },
   computed: {
     ...mapState({
       user: state => state.user.user,
@@ -93,6 +89,13 @@ export default {
       const nextUrl = this.$route.params.nextUrl
       if (newVal !== null && newVal !== undefined) {
         this.$router.push(nextUrl || '/')
+      }
+    }
+  },
+  methods: {
+    onSignIn () {
+      if (this.$refs.form.validate()) {
+        this.$store.dispatch('user/signUserIn', { email: this.email, password: this.password })
       }
     }
   }

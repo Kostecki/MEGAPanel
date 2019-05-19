@@ -1,10 +1,17 @@
 <template>
   <div class="batteries">
-    <div class="caption font-weight-light font-italic text-uppercase">Batteries</div>
+    <div class="caption font-weight-light font-italic text-uppercase">
+      Batteries
+    </div>
     <Loader v-if="showLoader" />
 
-    <div v-else class="batteries-list mt-1">
-      <div v-for="(battery, index) in batteries" :key="index" class="single-battery">
+    <div
+      v-else
+      class="batteries-list mt-1">
+      <div
+        v-for="(battery, index) in batteries"
+        :key="index"
+        class="single-battery">
         <span class="name font-weight-light">{{ battery.batteryId }}:</span> <span class="voltage font-weight-bold">{{ displayVoltage(battery.voltage) }}</span>
       </div>
     </div>
@@ -17,8 +24,14 @@ import { objectUtils } from '../../mixins/objectUtils'
 import Loader from '../Shared/Loader.vue'
 
 export default {
-  mixins: [objectUtils],
   components: { Loader },
+  mixins: [objectUtils],
+  computed: {
+    ...mapState('statistics', ['batteries']),
+    showLoader () {
+      return this.hasEmptyProperties(this.batteries)
+    }
+  },
   methods: {
     displayVoltage (voltage) {
       let result = `${voltage}`
@@ -28,12 +41,6 @@ export default {
       }
 
       return result
-    }
-  },
-  computed: {
-    ...mapState('statistics', ['batteries']),
-    showLoader () {
-      return this.hasEmptyProperties(this.batteries)
     }
   }
 }
