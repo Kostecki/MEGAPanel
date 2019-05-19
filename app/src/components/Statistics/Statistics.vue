@@ -20,7 +20,7 @@
                 <Batteries />
               </v-flex>
               <v-flex xs12 sm3>
-                <AvgSpeeds />
+                <Amps />
               </v-flex>
             </v-layout>
 
@@ -57,7 +57,7 @@
 <script>
 import CurrentBattery from './CurrentBattery.vue'
 import Batteries from './Batteries.vue'
-import AvgSpeeds from './AvgSpeeds.vue'
+import Amps from './Amps.vue'
 import DataUsageGraphs from './DataUsageGraphs/DataUsageGraphs.vue'
 import DataUsageToday from './DataUsageToday/DataUsageToday.vue'
 import WeeklyBatteryData from './WeeklyBatteryData/WeeklyBatteryData.vue'
@@ -66,14 +66,15 @@ export default {
   components: {
     CurrentBattery,
     Batteries,
-    AvgSpeeds,
+    Amps,
     DataUsageGraphs,
     DataUsageToday,
     WeeklyBatteryData
   },
-  data () {
-    return {
-    }
+  created () {
+    this.$store.dispatch('statistics/currentBatteryVoltage')
+    this.$store.dispatch('statistics/batteries')
+    this.$store.dispatch('statistics/getAmps')
   }
 }
 </script>

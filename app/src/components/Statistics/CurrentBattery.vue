@@ -1,42 +1,77 @@
 <template>
   <div class="current-battery">
     <div class="caption font-weight-light font-italic text-uppercase">Battery ({{ battery }})</div>
-    <div class="title font-weight-bold mt-1 current-voltage" :class="setState">{{ voltage }} Volt ({{ chargeLevel }}%)</div>
+    <Loader v-if="!currentBatteryVoltage" />
+    <div v-else class="title font-weight-bold mt-1 current-voltage" :class="setState">{{ displayVoltage }}</div>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+import Loader from '../Shared/Loader.vue'
+
 export default {
+  components: { Loader },
+  created () {
+    this.$store.dispatch('statistics/currentBatteryVoltage')
+  },
   data () {
     return {
-      voltage: 12.71, // TODO: get this from the store
       battery: 'ThunderDucks' // TODO: get this from the store
     }
   },
   computed: {
-    // eslint-disable-next-line
-    setState () {
-      const voltage = this.voltage
-
-      if (voltage >= 12.10) { return 'good' }
-      if (voltage > 11.50) { return 'okay' }
-      if (voltage <= 11.50) { return 'bad' }
+    ...mapState({
+      currentBatteryVoltage: state => state.statistics.currentBatteryVoltage
+    }),
+    displayVoltage () {
+      if (this.currentBatteryVoltage) {
+        return `${this.currentBatteryVoltage} Volt (${this.chargeLevel}%)`
+      } else {
+        return '-'
+      }
     },
-    // eslint-disable-next-line
-    chargeLevel () {
-      const voltage = this.voltage
+    setState () {
+      const voltage = this.currentBatteryVoltage
 
-      if (voltage >= 12.73) { return '100' }
-      if (voltage >= 12.62) { return '90' }
-      if (voltage >= 12.50) { return '80' }
-      if (voltage >= 12.37) { return '70' }
-      if (voltage >= 12.24) { return '60' }
-      if (voltage >= 12.10) { return '50' }
-      if (voltage >= 11.96) { return '40' }
-      if (voltage >= 11.81) { return '30' }
-      if (voltage >= 11.66) { return '20' }
-      if (voltage >= 11.51) { return '10' }
-      if (voltage < 11.51) { return '0' }
+      if (!voltage) {
+        return
+      }
+
+      if (voltage >= 12.10) {
+        return 'good'
+      } else if (voltage > 11.50) {
+        return 'okay'
+      } else {
+        return 'bad'
+      }
+    },
+    chargeLevel () {
+      const voltage = this.currentBatteryVoltage
+
+      if (voltage >= 12.73) {
+        return 100
+      } else if (voltage >= 12.62) {
+        return 90
+      } else if (voltage >= 12.50) {
+        return 80
+      } else if (voltage >= 12.37) {
+        return 70
+      } else if (voltage >= 12.24) {
+        return 60
+      } else if (voltage >= 12.10) {
+        return 50
+      } else if (voltage >= 11.96) {
+        return 40
+      } else if (voltage >= 11.81) {
+        return 30
+      } else if (voltage >= 11.66) {
+        return 20
+      } else if (voltage >= 11.51) {
+        return 10
+      } else {
+        return 0
+      }
     }
   }
 }
