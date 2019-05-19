@@ -13,14 +13,14 @@
 
           <v-container style="margin-bottom: 75px">
             <v-layout row wrap justify-space-between class="mb-2">
-              <v-flex xs12 sm3 class="mb-3">
+              <v-flex xs12 sm3 class="mb-2">
                 <CurrentBattery />
               </v-flex>
-              <v-flex xs12 sm3 class="mb-3">
-                <Batteries />
+              <v-flex xs12 sm3 class="mb-2">
+                <Power />
               </v-flex>
-              <v-flex xs12 sm3>
-                <Amps />
+              <v-flex xs12 sm3 class="mb-2">
+                <Batteries />
               </v-flex>
             </v-layout>
 
@@ -57,7 +57,7 @@
 <script>
 import CurrentBattery from './CurrentBattery.vue'
 import Batteries from './Batteries.vue'
-import Amps from './Amps.vue'
+import Power from './Power.vue'
 import DataUsageGraphs from './DataUsageGraphs/DataUsageGraphs.vue'
 import DataUsageToday from './DataUsageToday/DataUsageToday.vue'
 import WeeklyBatteryData from './WeeklyBatteryData/WeeklyBatteryData.vue'
@@ -66,7 +66,7 @@ export default {
   components: {
     CurrentBattery,
     Batteries,
-    Amps,
+    Power,
     DataUsageGraphs,
     DataUsageToday,
     WeeklyBatteryData

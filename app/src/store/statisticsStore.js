@@ -8,8 +8,8 @@ export default {
     batteries: {},
     amps: {
       live: null,
-      min: null,
-      max: null
+      max: null,
+      maxDate: null
     }
   },
   mutations: {
@@ -22,11 +22,9 @@ export default {
     liveAmps (state, payload) {
       state.amps.live = payload
     },
-    minAmps (state, payload) {
-      state.amps.min = payload
-    },
     maxAmps (state, payload) {
-      state.amps.max = payload
+      state.amps.max = payload.current
+      state.amps.maxDate = payload.timestamp
     }
   },
   actions: {
@@ -55,7 +53,6 @@ export default {
     },
     getAmps ({ dispatch }) {
       dispatch('liveAmps')
-      dispatch('minAmps')
       dispatch('maxAmps')
     },
     liveAmps ({ commit, dispatch }) {
@@ -71,19 +68,6 @@ export default {
         commit('setMessage', { text: error.message, type: 'error' }, { root: true })
       })
     },
-    minAmps ({ commit }) {
-      commit('shared/clearMessage', null, { root: true })
-      firebase.database().ref('current').orderByChild('current').limitToFirst(1).on('value', response => {
-        if (response.val()) {
-          const key = Object.keys(response.val())
-          const data = response.val()[key[0]]
-
-          commit('minAmps', data.current)
-        }
-      }, error => {
-        commit('setMessage', { text: error.message, type: 'error' }, { root: true })
-      })
-    },
     maxAmps ({ commit }) {
       commit('shared/clearMessage', null, { root: true })
       firebase.database().ref('current').orderByChild('current').limitToLast(1).on('value', response => {
@@ -91,7 +75,7 @@ export default {
           const key = Object.keys(response.val())
           const data = response.val()[key[0]]
 
-          commit('maxAmps', data.current)
+          commit('maxAmps', { current: data.current, timestamp: data.insertTime })
         }
       }, error => {
         commit('setMessage', { text: error.message, type: 'error' }, { root: true })

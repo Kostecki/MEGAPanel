@@ -4,6 +4,7 @@ import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 import firebase from 'firebase/app'
 import 'firebase/auth'
+import moment from 'moment'
 
 import App from './App.vue'
 import router from './router'
@@ -20,10 +21,17 @@ Vue.component('AppMessage', Message)
 Vue.mixin(formatDataUnit)
 
 Vue.filter('capitalize', value => {
-  if (!value) return ''
-  value = value.toString()
+  if (value) {
+    value = value.toString()
+    return value.charAt(0).toUpperCase() + value.slice(1)
+  }
+})
 
-  return value.charAt(0).toUpperCase() + value.slice(1)
+Vue.filter('epochToHuman', value => {
+  if (value) {
+    let newDate = new Date(value)
+    return moment(newDate).format('dddd, MMMM Do YYYY - HH:mm')
+  }
 })
 
 Vue.use(Vuetify, { theme: { primary: '#FF3D02' } })
