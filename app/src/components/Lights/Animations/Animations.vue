@@ -98,11 +98,8 @@ export default {
     }
   },
   computed: {
-    ...mapState({
-      loading: state => state.shared.loading,
-      animations: state => state.lights.animations,
-      lightsConfig: state => state.lights.lightsConfig
-    })
+    ...mapState('shared', ['loading']),
+    ...mapState('lights', ['animations', 'lightsConfig'])
   },
   watch: {
     lightsConfig (newVal, oldVal) {

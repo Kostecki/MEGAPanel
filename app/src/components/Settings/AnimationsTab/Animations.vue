@@ -90,9 +90,7 @@ export default {
     }
   },
   computed: {
-    ...mapState({
-      animations: state => state.lights.animations
-    })
+    ...mapState('lights', ['animations'])
   }
 }
 </script>

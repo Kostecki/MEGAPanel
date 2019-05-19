@@ -67,9 +67,7 @@ export default {
     }
   },
   computed: {
-    ...mapState({
-      loading: state => state.shared.loading
-    })
+    ...mapState('shared', ['loading'])
   }
 }
 </script>

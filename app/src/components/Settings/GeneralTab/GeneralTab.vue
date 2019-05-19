@@ -31,9 +31,7 @@ export default {
     ChangePassword
   },
   computed: {
-    ...mapState({
-      user: state => state.user.user
-    })
+    ...mapState('user', ['user'])
   }
 }
 </script>

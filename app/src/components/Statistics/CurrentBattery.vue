@@ -21,9 +21,7 @@ export default {
     }
   },
   computed: {
-    ...mapState({
-      currentBatteryVoltage: state => state.statistics.currentBatteryVoltage
-    }),
+    ...mapState('statistics', ['currentBatteryVoltage']),
     displayVoltage () {
       if (this.currentBatteryVoltage) {
         return `${this.currentBatteryVoltage} Volt (${this.chargeLevel}%)`

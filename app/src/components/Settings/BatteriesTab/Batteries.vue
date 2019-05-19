@@ -94,9 +94,7 @@ export default {
     }
   },
   computed: {
-    ...mapState({
-      batteries: state => state.settings.batteries
-    })
+    ...mapState('settings', ['batteries'])
   }
 }
 </script>

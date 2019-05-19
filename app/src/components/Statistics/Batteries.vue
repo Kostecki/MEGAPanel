@@ -31,9 +31,7 @@ export default {
     }
   },
   computed: {
-    ...mapState({
-      batteries: state => state.statistics.batteries
-    }),
+    ...mapState('statistics', ['batteries']),
     showLoader () {
       return this.hasEmptyProperties(this.batteries)
     }

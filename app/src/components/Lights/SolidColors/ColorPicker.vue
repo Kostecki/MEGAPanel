@@ -34,9 +34,7 @@ export default {
     }
   },
   computed: {
-    ...mapState({
-      lightsConfig: state => state.lights.lightsConfig
-    })
+    ...mapState('lights', ['lightsConfig'])
   }
 }
 </script>
