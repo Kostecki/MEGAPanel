@@ -67,7 +67,7 @@ export default {
   },
   methods: {
     updateBattery (key, index) {
-      this.$store.dispatch('updateBattery', {
+      this.$store.dispatch('settings/updateBattery', {
         key: key,
         battery: this.batteries[index]
       })
@@ -83,7 +83,7 @@ export default {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.value) {
-          this.$store.dispatch('deleteBattery', key)
+          this.$store.dispatch('settings/deleteBattery', key)
         }
       })
     },

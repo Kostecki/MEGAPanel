@@ -21,9 +21,9 @@ export default {
     SolidColors,
     Animations
   },
-  data () {
-    return {
-    }
+  created () {
+    this.$store.dispatch('lights/getLightsConfig')
+    this.$store.dispatch('lights/animations')
   }
 }
 </script>

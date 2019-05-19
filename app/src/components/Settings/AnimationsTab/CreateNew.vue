@@ -50,10 +50,10 @@ export default {
   methods: {
     addNew () {
       if (this.newAnimation.name && this.newAnimation.value) {
-        this.$store.dispatch('newAnimation', this.newAnimation)
+        this.$store.dispatch('lights/newAnimation', this.newAnimation)
           .then(this.clear())
           .catch(error => {
-            this.$store.commit('setMessage', {
+            this.$store.commit('shared/setMessage', {
               text: error,
               type: 'error'
             })

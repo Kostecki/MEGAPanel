@@ -68,7 +68,7 @@ export default {
   },
   methods: {
     updateAnimation (key, index) {
-      this.$store.dispatch('updateAnimation', {
+      this.$store.dispatch('lights/updateAnimation', {
         key: key,
         animation: this.animations[index]
       })
@@ -84,7 +84,7 @@ export default {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.value) {
-          this.$store.dispatch('deleteAnimation', key)
+          this.$store.dispatch('lights/deleteAnimation', key)
         }
       })
     }

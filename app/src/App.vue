@@ -20,7 +20,7 @@ export default {
   components: { Navigation },
   methods: {
     onDismissed () {
-      this.$store.dispatch('clearMessage')
+      this.$store.dispatch('shared/clearMessage')
     }
   },
   computed: {

@@ -57,9 +57,9 @@ export default {
   methods: {
     submitForm () {
       if (this.$refs.form.validate()) {
-        this.$store.dispatch('changePassword', this.updatedPassword.passwordOne)
+        this.$store.dispatch('user/changePassword', this.updatedPassword.passwordOne)
           .then(this.resetForm)
-          .catch(error => this.$store.commit('setError', error))
+          .catch(error => this.$store.commit('shared/setError', error))
       }
     },
     resetForm () {

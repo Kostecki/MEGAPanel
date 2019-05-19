@@ -69,7 +69,7 @@ export default {
   },
   methods: {
     speedChanged () {
-      this.$store.dispatch('lightsConfig', {
+      this.$store.dispatch('lights/lightsConfig', {
         ...this.lightsConfig,
         speed: this.speed
       })
@@ -77,7 +77,7 @@ export default {
     animationClicked (animation) {
       this.toggleAnimations(animation)
 
-      this.$store.dispatch('lightsConfig', {
+      this.$store.dispatch('lights/lightsConfig', {
         ...this.lightsConfig,
         animation: this.selectedAnimation,
         speed: this.speed
@@ -105,14 +105,15 @@ export default {
     })
   },
   watch: {
-    lightsConfig: function(newVal, oldVal) {
+    lightsConfig (newVal, oldVal) {
       if (newVal.animation !== oldVal.animation) {
         this.selectedAnimation = newVal.animation
       }
       if (newVal.speed !== oldVal.speed) {
         this.speed = newVal.speed
       }
-    }, deep: true
+    },
+    deep: true
   }
 }
 </script>

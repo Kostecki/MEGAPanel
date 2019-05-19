@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     updateValue (value) {
-      this.$store.dispatch('lightsConfig', {
+      this.$store.dispatch('lights/lightsConfig', {
         ...this.lightsConfig,
         brightness: value.rgba.a,
         color: {

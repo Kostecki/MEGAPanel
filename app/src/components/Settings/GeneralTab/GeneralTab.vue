@@ -8,7 +8,7 @@
             <v-btn
               class="mt-3"
               color="primary"
-              @click="$store.dispatch('logout')">
+              @click="$store.dispatch('user/logout')">
                 Log Out
             </v-btn>
           </v-flex>

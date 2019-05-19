@@ -37,10 +37,10 @@ export default {
   methods: {
     addNew () {
       if (this.newBattery) {
-        this.$store.dispatch('addNewBattery', this.newBattery)
+        this.$store.dispatch('settings/addNewBattery', this.newBattery)
           .then(this.clear())
           .catch(error => {
-            this.$store.commit('setMessage', {
+            this.$store.commit('shared/setMessage', {
               text: error,
               type: 'error'
             })

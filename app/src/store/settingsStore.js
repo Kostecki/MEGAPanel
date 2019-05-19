@@ -2,6 +2,7 @@ import firebase from 'firebase/app'
 import 'firebase/database'
 
 export default {
+  namespaced: true,
   state: {
     batteries: null
   },
@@ -12,8 +13,8 @@ export default {
   },
   actions: {
     batteries ({ commit }) {
-      commit('loading', true)
-      commit('clearMessage')
+      commit('shared/loading', true, { root: true })
+      commit('shared/clearMessage', null, { root: true })
       firebase.database().ref('batteries').on('value', response => {
         if (response.exists()) {
           const batteries = []
@@ -28,31 +29,31 @@ export default {
           }
 
           commit('batteries', batteries)
-          commit('loading', false)
+          commit('shared/loading', false, { root: true })
         }
       }, error => {
-        commit('setMessage', { text: error.message, type: 'error' })
-        commit('loading', false)
+        commit('shared/setMessage', { text: error.message, type: 'error' }, { root: true })
+        commit('shared/loading', false, { root: true })
       })
     },
     addNewBattery ({ commit, dispatch }, payload) {
-      commit('clearMessage')
+      commit('shared/clearMessage', null, { root: true })
 
       return new Promise((resolve, reject) => {
         firebase.database().ref('batteries').push(payload)
           .then(() => {
             resolve()
             dispatch('batteries')
-            commit('setMessage', {
+            commit('shared/setMessage', {
               text: 'Battery added successfully',
               type: 'success'
-            })
+            }, { root: true })
           })
           .catch(error => reject(error))
       })
     },
     updateBattery ({ commit, dispatch }, payload) {
-      commit('clearMessage')
+      commit('shared/clearMessage', null, { root: true })
 
       let battery = Object.assign({}, payload.battery)
       delete battery['key']
@@ -60,28 +61,28 @@ export default {
       firebase.database().ref('batteries').child(payload.key).set(battery)
         .then(() => {
           dispatch('batteries')
-          commit('setMessage', {
+          commit('shared/setMessage', {
             text: 'Battery updated successfully',
             type: 'success'
-          })
+          }, { root: true })
         })
         .catch(error => {
-          commit('setMessage', { text: error.message, type: 'error' })
+          commit('shared/setMessage', { text: error.message, type: 'error' }, { root: true })
         })
     },
     deleteBattery ({ commit, dispatch }, payload) {
-      commit('clearMessage')
+      commit('shared/clearMessage', null, { root: true })
 
       firebase.database().ref('batteries').child(payload).remove()
         .then(() => {
           dispatch('batteries')
-          commit('setMessage', {
+          commit('shared/setMessage', {
             text: 'Battery deleted successfully',
             type: 'success'
-          })
+          }, { root: true })
         })
         .catch(error => {
-          commit('setMessage', { text: error.message, type: 'error' })
+          commit('shared/setMessage', { text: error.message, type: 'error' }, { root: true })
         })
     }
   }

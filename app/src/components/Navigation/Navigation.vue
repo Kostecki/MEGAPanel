@@ -42,7 +42,7 @@ export default {
       return navItems
     },
     userIsAuthenticated () {
-      return this.$store.getters.isAuthenticated
+      return this.$store.getters['user/isAuthenticated']
     }
   }
 }

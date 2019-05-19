@@ -39,7 +39,7 @@ export default {
   },
   methods: {
     presetClicked (color) {
-      this.$store.dispatch('lightsConfig', {
+      this.$store.dispatch('lights/lightsConfig', {
         ...this.lightsConfig,
         color: this.hexToRGBA(color, this.lightsConfig.color.a)
       })

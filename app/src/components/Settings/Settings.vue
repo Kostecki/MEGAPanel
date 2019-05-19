@@ -39,6 +39,7 @@ export default {
     BatteriesTab
   },
   created () {
+    this.$store.dispatch('settings/batteries')
     this.setActiveTab(this.$route.params.tab)
   },
   data () {

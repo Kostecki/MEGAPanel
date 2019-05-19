@@ -3,6 +3,7 @@ import 'firebase/auth'
 import router from '../router'
 
 export default {
+  namespaced: true,
   state: {
     user: null,
     authenticated: false
@@ -22,12 +23,12 @@ export default {
   },
   actions: {
     signUserIn ({ commit }, payload) {
-      commit('loading', true)
-      commit('clearMessage')
+      commit('shared/loading', true, { root: true })
+      commit('shared/clearMessage', null, { root: true })
       firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
         .then(
           user => {
-            commit('loading', false)
+            commit('shared/loading', false, { root: true })
             const newUser = {
               id: user.uid,
               email: user.email
@@ -38,26 +39,26 @@ export default {
         )
         .catch(error => {
           commit('authenticated', false)
-          commit('loading', false)
-          commit('setMessage', { text: error.message, type: 'error' })
+          commit('shared/loading', false, { root: true })
+          commit('shared/setMessage', { text: error.message, type: 'error' }, { root: true })
         })
     },
     changePassword ({ commit }, payload) {
-      commit('loading', true)
-      commit('clearMessage')
+      commit('shared/loading', true, { root: true })
+      commit('shared/clearMessage', null, { root: true })
       return new Promise((resolve, reject) => {
         firebase.auth().currentUser.updatePassword(payload)
           .then(response => {
-            commit('loading', false)
-            commit('setMessage', {
+            commit('shared/loading', false, { root: true })
+            commit('shared/setMessage', {
               text: 'Password changed successfully',
               type: 'success'
-            })
+            }, { root: true })
             resolve()
           })
           .catch(error => {
-            commit('loading', false)
-            commit('setMessage', { text: error.message, type: 'error' })
+            commit('shared/loading', false, { root: true })
+            commit('shared/setMessage', { text: error.message, type: 'error' }, { root: true })
             reject(error)
           })
       })

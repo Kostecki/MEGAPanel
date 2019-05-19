@@ -10,6 +10,7 @@ import router from './router'
 import { store } from './store'
 
 import Message from './components/Shared/Message.vue'
+
 import { formatDataUnit } from './mixins/formatDataUnit'
 
 import './registerServiceWorker'
@@ -43,11 +44,8 @@ new Vue({
     })
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        this.$store.dispatch('autoSignIn', user)
+        this.$store.dispatch('user/autoSignIn', user)
       }
     })
-    this.$store.dispatch('getLightsConfig')
-    this.$store.dispatch('animations')
-    this.$store.dispatch('batteries')
   }
 }).$mount('#app')

@@ -5,6 +5,7 @@ import SharedStore from './sharedStore'
 import UserStore from './userStore'
 import LightsStore from './lightsStore'
 import SettingsStore from './settingsStore'
+import statisticsStore from './statisticsStore'
 
 Vue.use(Vuex)
 
@@ -13,6 +14,7 @@ export const store = new Vuex.Store({
     shared: SharedStore,
     user: UserStore,
     lights: LightsStore,
-    settings: SettingsStore
+    settings: SettingsStore,
+    statistics: statisticsStore
   }
 })
