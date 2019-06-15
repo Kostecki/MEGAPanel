@@ -99,15 +99,15 @@ export default {
       dialog: false
     }
   },
+  computed: {
+    ...mapState('settings', ['batteries'])
+  },
   methods: {
     updateBattery (key, index) {
       this.$store.dispatch('settings/updateBattery', {
         key: key,
         battery: this.batteries[index]
       })
-    },
-    computed: {
-      ...mapState('settings', ['batteries'])
     },
     deleteBattery (key) {
       Swal.fire({

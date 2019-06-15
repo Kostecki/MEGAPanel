@@ -53,6 +53,7 @@ export default {
     }
   },
   created () {
+    this.$store.dispatch('lights/animations')
     this.$store.dispatch('settings/batteries')
     this.setActiveTab(this.$route.params.tab)
   },

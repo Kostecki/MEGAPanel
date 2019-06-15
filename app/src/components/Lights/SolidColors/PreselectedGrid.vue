@@ -47,6 +47,9 @@ export default {
       ]
     }
   },
+  computed: {
+    ...mapState('lights', ['lightsConfig'])
+  },
   methods: {
     presetClicked (color) {
       this.$store.dispatch('lights/lightsConfig', {
@@ -61,9 +64,6 @@ export default {
 
       return color === this.rgbToHex(r, g, b).toLowerCase()
     }
-  },
-  computed: {
-    ...mapState('lights', ['lightsConfig'])
   }
 }
 </script>
