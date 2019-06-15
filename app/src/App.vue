@@ -13,14 +13,13 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import Navigation from './components/Navigation/Navigation.vue'
 
 export default {
   components: { Navigation },
   computed: {
-    message () {
-      return this.$store.getters.message
-    }
+    ...mapGetters('shared', ['message'])
   },
   methods: {
     onDismissed () {

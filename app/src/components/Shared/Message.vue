@@ -11,7 +11,16 @@
 
 <script>
 export default {
-  props: ['text', 'type'],
+  props: {
+    text: {
+      default: null,
+      type: String
+    },
+    type: {
+      default: null,
+      type: String
+    }
+  },
   data () {
     return {
       timeout: 3000
