@@ -46,7 +46,9 @@
             <v-layout
               row
               class="my-3">
-              <v-flex xs12>
+              <v-flex
+                xs12
+                style="opacity: 0.2">
                 <DataUsageGraphs />
               </v-flex>
             </v-layout>
@@ -56,7 +58,9 @@
             <v-layout
               row
               class="my-3">
-              <v-flex xs12>
+              <v-flex
+                xs12
+                style="opacity: 0.2">
                 <DataUsageToday />
               </v-flex>
             </v-layout>
@@ -66,7 +70,9 @@
             <v-layout
               row
               class="mt-3 weekly-battery-data-container">
-              <v-flex xs12>
+              <v-flex
+                xs12
+                style="opacity: 0.2">
                 <WeeklyBatteryData />
               </v-flex>
             </v-layout>
