@@ -1,3 +1,4 @@
+import axios from 'axios'
 import firebase from 'firebase/app'
 import 'firebase/database'
 
@@ -61,12 +62,15 @@ export default {
       }
 
       commit('lightsConfig', lightsConfig)
-      firebase.database().ref('lightsConfig').set(lightsConfig)
-        .then(() => commit('shared/setMessage', {
-          text: 'Lights changed successfully',
-          type: 'success'
-        }, { root: true }))
-        .catch(error => commit('shared/setMessage', { text: error.message, type: 'error' }, { root: true }))
+      axios.post('https://mega.re/mqtt', lightsConfig)
+        .then(() => {
+          firebase.database().ref('lightsConfig').set(lightsConfig)
+            .then(() => commit('shared/setMessage', {
+              text: 'Lights changed successfully',
+              type: 'success'
+            }, { root: true }))
+            .catch(error => commit('shared/setMessage', { text: error.message, type: 'error' }, { root: true }))
+        })
     },
     newAnimation ({ commit, dispatch }, payload) {
       commit('shared/clearMessage', null, { root: true })
