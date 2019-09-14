@@ -1,5 +1,5 @@
 <template>
-  <v-card flat>
+  <v-card flat class="navigation-card">
     <v-bottom-navigation
       v-model="bottomNav"
       :value="true"
@@ -53,4 +53,9 @@ export default {
 </script>
 
 <style lang="scss">
+  .navigation-card {
+    span {
+      font-weight: 400;
+    }
+  }
 </style>

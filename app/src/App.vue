@@ -34,7 +34,7 @@ export default {
     background: #ECEEEE;
   }
 
-  .application--wrap {
+  .v-application--wrap {
     background: #ECEEEE;
   }
 
