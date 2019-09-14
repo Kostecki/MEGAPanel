@@ -1,10 +1,10 @@
 <template>
   <v-container>
-    <v-layout
+    <v-row
       row
       align-center
       justify-center>
-      <v-flex
+      <v-col
         xs12
         sm8>
         <v-card class="elevation-12">
@@ -50,8 +50,8 @@
             </v-btn>
           </v-card-actions>
         </v-card>
-      </v-flex>
-    </v-layout>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 

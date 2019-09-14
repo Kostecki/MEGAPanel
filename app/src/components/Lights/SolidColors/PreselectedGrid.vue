@@ -1,31 +1,25 @@
 <template>
-  <v-container
-    grid-list-lg
-    fluid
-    class="container-preselected">
-    <v-layout
-      row
-      wrap>
-      <v-flex
-        v-for="(color, index) in preselectedColors"
-        :key="index">
-        <v-card
-          v-ripple
-          class="preselected-grid-color"
-          :color="color"
-          max-width="100"
-          @click="presetClicked(color)">
-          <div
-            v-if="isActiveColor(color)"
-            class="current-color">
-            <v-icon x-large>
-              check_circle_outline
-            </v-icon>
-          </div>
-        </v-card>
-      </v-flex>
-    </v-layout>
-  </v-container>
+  <v-row class="container-preselected">
+    <v-col
+      v-for="(color, index) in preselectedColors"
+      :key="index"
+      class="single-color-wrap">
+      <v-card
+        v-ripple
+        class="preselected-grid-color"
+        :color="color"
+        max-width="100"
+        @click="presetClicked(color)">
+        <div
+          v-if="isActiveColor(color)"
+          class="current-color">
+          <v-icon x-large>
+            check_circle_outline
+          </v-icon>
+        </div>
+      </v-card>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
@@ -71,33 +65,47 @@ export default {
 <style lang="scss" scoped>
   .container-preselected {
     padding: 0;
-    margin: 0 0 25px 0;
   }
 
-  .preselected-grid-color {
-    width: 100%;
-    cursor: pointer;
+  .single-color-wrap {
+    padding-left:8px;
+    padding-right: 8px;
+    padding-top: 0;
 
-    &:hover {
-      opacity: 0.7;
+    &:first-of-type {
+      padding-left: 12px;
     }
 
-    &:after {
-      content: "";
-      display: block;
-      padding-bottom: 100%;
+    &:last-of-type {
+      padding-right: 12px;
     }
 
-    .current-color {
-      position: absolute;
+    .preselected-grid-color {
       width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
+      border-radius: 0;
+      cursor: pointer;
 
-      @media screen and (max-width: 662px){
-        .material-icons {
-          font-size: 20px !important;
+      &:hover {
+        opacity: 0.7;
+      }
+
+      &:after {
+        content: "";
+        display: block;
+        padding-bottom: 100%;
+      }
+
+      .current-color {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+
+        @media screen and (max-width: 662px){
+          .material-icons {
+            font-size: 20px !important;
+          }
         }
       }
     }

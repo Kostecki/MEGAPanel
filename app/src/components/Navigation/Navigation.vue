@@ -1,7 +1,7 @@
 <template>
   <v-card flat>
-    <v-bottom-nav
-      :active.sync="bottomNav"
+    <v-bottom-navigation
+      v-model="bottomNav"
       :value="true"
       fixed
       color="white">
@@ -9,14 +9,15 @@
         v-for="(item, index) in navItems"
         :key="index"
         color="primary"
-        flat
+        text
         :value="item.value"
         router
-        :to="item.link">
+        :to="item.link"
+        style="width: 100%">
         <span>{{ item.title }}</span>
         <v-icon>{{ item.icon }}</v-icon>
       </v-btn>
-    </v-bottom-nav>
+    </v-bottom-navigation>
   </v-card>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
-  <v-layout row>
-    <v-flex xs12>
+  <v-row>
+    <v-col cols="12" class="py-0">
       <v-card color="white">
         <CreateNew />
 
@@ -8,8 +8,8 @@
 
         <Animations />
       </v-card>
-    </v-flex>
-  </v-layout>
+    </v-col>
+  </v-row>
 </template>
 
 <script>

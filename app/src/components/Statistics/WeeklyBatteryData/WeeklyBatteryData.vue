@@ -1,18 +1,15 @@
 <template>
-  <v-layout
-    row
-    wrap
-    justify-space-between>
+  <div>
     <div
       class="caption font-weight-light font-italic text-uppercase mb-4">
       Batteries this week
     </div>
-    <v-flex
-      xs12
+    <v-col
+      cols="12"
       style="position: relative">
       <WeeklyBatteryDataChart :chart-data="filterBatteriesWeekly()" />
-    </v-flex>
-  </v-layout>
+    </v-col>
+  </div>
 </template>
 
 <script>

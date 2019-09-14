@@ -11,12 +11,11 @@
     <v-divider />
 
     <v-container fluid>
-      <v-layout
-        row
-        wrap>
-        <v-flex
-          xs12
-          sm4>
+      <v-row>
+        <v-col
+        cols="12"
+        sm="4"
+        class="py-0">
           <span
             class="left body-2 font-weight-light text-uppercase font-italic"
             @click="() => speed = 0">Speed ({{ speed }})</span>
@@ -29,41 +28,41 @@
             hide-details
             class="left speed-slider"
             @change="speedChanged" />
-        </v-flex>
-      </v-layout>
+        </v-col>
+      </v-row>
     </v-container>
 
     <v-container
       fluid
       style="padding-top:0">
-      <v-layout
-        v-if="loading"
-        row
-        wrap>
-        <v-flex class="text-xs-center">
+      <v-row
+        class="text-center"
+        v-if="loading">
+        <v-col>
           <v-progress-circular
             indeterminate
             color="primary"
             :width="3"
             class="spinner" />
-        </v-flex>
-      </v-layout>
-      <v-layout
-        row
-        wrap
-        class="animation-cards-container">
-        <v-flex
-          v-for="(animation, index) in animations"
-          :key="index">
-          <v-card
-            v-ripple
-            class="animation-card"
-            :class="selectedAnimation === animation.value ? 'selected' : null"
-            @click="animationClicked(animation.value)">
-            {{ animation.name }}
-          </v-card>
-        </v-flex>
-      </v-layout>
+        </v-col>
+      </v-row>
+      <v-col class="py-0">
+        <v-row
+          class="animation-cards-container">
+          <v-col
+            v-for="(animation, index) in animations"
+            :key="index"
+            class="pa-0">
+            <v-card
+              v-ripple
+              class="animation-card text-center"
+              :class="selectedAnimation === animation.value ? 'selected' : null"
+              @click="animationClicked(animation.value)">
+              {{ animation.name }}
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-col>
     </v-container>
   </v-card>
 </template>
@@ -129,12 +128,19 @@ export default {
 
 <style lang="scss">
   .animations-container {
-    margin-top: 25px;
     margin-bottom: 75px;
+
+    .v-card__title {
+      padding: 16px 0;
+    }
   }
 </style>
 
 <style lang="scss" scoped>
+  .title {
+    line-height: 1;
+  }
+  
   .speed-slider {
     margin: 0;
     width: 100%;
@@ -161,6 +167,8 @@ export default {
     padding: 15px;
     font-weight: 500;
     text-transform: uppercase;
+    font-size: 14px;
+    border-radius: 2px;
     cursor: pointer;
 
     &:hover {

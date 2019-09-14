@@ -1,11 +1,8 @@
 <template>
   <v-container class="settings-container">
-    <v-layout
-      row
-      wrap>
-      <v-flex
-        xs12
-        align-center>
+    <v-row>
+      <v-col
+        cols="12">
         <v-card>
           <v-tabs
             v-model="active"
@@ -26,8 +23,8 @@
             </v-tab-item>
           </v-tabs>
         </v-card>
-      </v-flex>
-    </v-layout>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -59,7 +56,7 @@ export default {
   },
   methods: {
     setActiveTab (tabName, tabIndex) {
-      if (tabName !== this.$route.params.tab) {
+      if (!tabName || tabName !== this.$route.params.tab) {
         this.$router.push({
           name: 'Settings',
           params: {

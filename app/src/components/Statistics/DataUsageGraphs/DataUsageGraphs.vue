@@ -3,13 +3,11 @@
     <div class="caption font-weight-light font-italic text-uppercase">
       Data Usage
     </div>
-    <v-layout
-      row
-      wrap
-      justify-space-between>
-      <v-flex
-        xs12
-        sm3
+    <v-row
+      justify="space-between">
+      <v-col
+        cols="12"
+        sm="3"
         style="position: relative">
         <DataUsageGraph
           class="graph"
@@ -30,10 +28,10 @@
             {{ showDataInterval('hour') }}
           </div>
         </div>
-      </v-flex>
-      <v-flex
-        xs12
-        sm3
+      </v-col>
+      <v-col
+        cols="12"
+        sm="3"
         style="position: relative">
         <DataUsageGraph
           class="graph"
@@ -54,10 +52,10 @@
             {{ showDataInterval('day') }}
           </div>
         </div>
-      </v-flex>
-      <v-flex
-        xs12
-        sm3
+      </v-col>
+      <v-col
+        cols="12"
+        sm="3"
         style="position: relative">
         <DataUsageGraph
           class="graph"
@@ -78,8 +76,8 @@
             {{ showDataInterval('week') }}
           </div>
         </div>
-      </v-flex>
-    </v-layout>
+      </v-col>
+    </v-row>
   </div>
 </template>
 

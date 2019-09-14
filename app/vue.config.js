@@ -9,5 +9,13 @@ module.exports = {
     plugins: [
       new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /en-IE/)
     ]
+  },
+  css: {
+    loaderOptions: {
+      sass: {
+        implementation: require('sass'),
+        fiber: require('fibers')
+      }
+    }
   }
 }

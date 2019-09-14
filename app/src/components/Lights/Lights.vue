@@ -1,18 +1,15 @@
 <template>
-  <v-container text-xs-center>
-    <v-layout
-      row
-      wrap>
-      <v-flex
-        xs12
-        align-center>
+  <v-container>
+    <v-row>
+      <v-col
+        cols="12" class="pt-0">
         <SolidColors />
-      </v-flex>
+      </v-col>
 
-      <v-flex xs12>
+      <v-col cols="12">
         <Animations />
-      </v-flex>
-    </v-layout>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 

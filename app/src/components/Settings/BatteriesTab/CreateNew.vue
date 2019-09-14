@@ -1,41 +1,39 @@
 <template>
   <v-container>
-    <v-layout
-      align-center
-      row
+    <v-row
+      align="center"
       class="create-new">
-      <v-flex xs12>
+      <v-col cols="12" class="py-0 pr-0">
         <div class="subheading page-title">
           New Battery
         </div>
-        <v-layout
-          align-end
-          row
-          wrap
+        <v-row
+          align="center"
           class="create-new pa-0">
-          <v-flex
-            xs12
-            sm5>
+          <v-col
+            cols="12"
+            sm="5"
+            class="py-0 pr-0">
             <v-text-field
               v-model="newBattery['batteryId']"
               label="Name"
               class="name-input" />
-          </v-flex>
-          <v-flex
-            xs6
-            sm1
-            class="add-btn">
+          </v-col>
+          <v-col
+            cols="6"
+            sm="1"
+            class="add-btn pa-0">
             <v-btn
-              flat
+              text
               icon
               color="grey"
               @click="addNew">
               <v-icon>add_circle_outline</v-icon>
             </v-btn>
-          </v-flex>
-        </v-layout>
-      </v-flex>
-    </v-layout>
+          </v-col>
+        </v-row>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 

@@ -1,11 +1,9 @@
 <template>
   <v-container>
-    <v-layout
-      row
-      wrap>
-      <v-flex
-        xs12
-        align-center>
+    <v-row>
+      <v-col
+        cols="12"
+        align-self="center">
         <v-card color="white">
           <v-container class="py-0">
             <v-card-title class="px-0">
@@ -16,70 +14,65 @@
           <v-divider />
 
           <v-container style="margin-bottom: 75px">
-            <v-layout
-              row
-              wrap
-              justify-space-between
+            <v-row
+              justify="space-between"
               class="mb-2">
-              <v-flex
-                xs12
-                sm3
-                class="mb-2">
+              <v-col
+                cols="12"
+                sm="3"
+                class="mb-2 py-0 pr-0">
                 <CurrentBattery />
-              </v-flex>
-              <v-flex
-                xs12
-                sm3
-                class="mb-2">
+              </v-col>
+              <v-col
+                cols="12"
+                sm="3"
+                class="mb-2 pa-0">
                 <Power />
-              </v-flex>
-              <v-flex
-                xs12
-                sm3
-                class="mb-2">
+              </v-col>
+              <v-col
+                cols="12"
+                sm="3"
+                class="mb-2 py-0 pl-0">
                 <Batteries />
-              </v-flex>
-            </v-layout>
+              </v-col>
+            </v-row>
 
             <v-divider />
 
-            <v-layout
-              row
+            <v-row
               class="my-3">
-              <v-flex
-                xs12
+              <v-col
+                cols="12"
                 style="opacity: 0.2">
                 <DataUsageGraphs />
-              </v-flex>
-            </v-layout>
+              </v-col>
+            </v-row>
 
             <v-divider />
 
-            <v-layout
-              row
+            <v-row
               class="my-3">
-              <v-flex
-                xs12
+              <v-col
+                cols="12"
                 style="opacity: 0.2">
                 <DataUsageToday />
-              </v-flex>
-            </v-layout>
+              </v-col>
+            </v-row>
 
             <v-divider />
 
-            <v-layout
-              row
+            <v-row
               class="mt-3 weekly-battery-data-container">
-              <v-flex
-                xs12
+              <v-col
+                cols="12"
                 style="opacity: 0.2">
                 <WeeklyBatteryData />
-              </v-flex>
-            </v-layout>
+              </v-col>
+            </v-row>
           </v-container>
         </v-card>
-      </v-flex>
-    </v-layout>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -108,5 +101,12 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
+  .v-card__title {
+    padding: 16px 0;
+  }
+
+  .title {
+    line-height: 1;
+  }
 </style>

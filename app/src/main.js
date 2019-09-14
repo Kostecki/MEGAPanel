@@ -1,7 +1,6 @@
 import Vue from 'vue'
 
-import Vuetify from 'vuetify'
-import 'vuetify/dist/vuetify.min.css'
+import vuetify from './plugins/vuetify'
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import moment from 'moment'
@@ -34,13 +33,14 @@ Vue.filter('epochToHuman', value => {
   }
 })
 
-Vue.use(Vuetify, { theme: { primary: '#FF3D02' } })
+// Vue.use(Vuetify, { theme: { primary: '#FF3D02' } })
 
 Vue.config.productionTip = false
 
 new Vue({
   router,
   store,
+  vuetify,
   created () {
     firebase.initializeApp({
       apiKey: 'AIzaSyDnheuTGZwZAXzOYA6UwEF6EVrlostKl1o',

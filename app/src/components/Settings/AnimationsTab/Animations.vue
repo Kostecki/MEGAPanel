@@ -24,60 +24,60 @@
           v-else
           :key="index"
           class="animation">
-          <v-layout
+          <v-row
             align-center
             row>
-            <v-flex>
-              <v-layout
-                align-end
-                justify-space-between
-                row
-                wrap
+            <v-col class="py-0">
+              <v-row
+                align="center"
+                justify="space-between"
                 class="pa-0">
-                <v-flex
-                  xs12
-                  sm5>
+                <v-col
+                cols="12"
+                sm="5"
+                class="pr-0 py-0">
                   <v-text-field
                     v-model="animations[index]['name']"
                     label="Name"
                     class="name-input"
                     @change="updateAnimation(animation.key, index)" />
-                </v-flex>
-                <v-flex
-                  xs12
-                  sm5>
+                </v-col>
+                <v-col
+                  cols="12"
+                  sm="5"
+                  class="pa-0">
                   <v-text-field
                     v-model="animations[index]['value']"
                     label="Value"
                     class="value-input"
                     @change="updateAnimation(animation.key, index)" />
-                </v-flex>
-                <v-flex
-                  xs6
-                  sm1
-                  class="speed-control-container">
+                </v-col>
+                <v-col
+                  cols="6"
+                  sm="1"
+                  class="speed-control-container pa-0">
                   <span class="speed-control-label">Speed</span>
                   <v-switch
                     v-model="animation.speedControl"
                     color="primary"
                     class="speed-control-toggle"
                     @change="updateAnimation(animation.key, index)" />
-                </v-flex>
-                <v-flex
-                  xs6
-                  sm1
+                </v-col>
+                <v-col
+                  cols="6"
+                  sm="1"
                   class="delete-btn">
                   <v-btn
-                    flat
+                    text
                     icon
                     color="grey"
                     @click="deleteAnimation(animation.key)">
                     <v-icon>remove_circle_outline</v-icon>
                   </v-btn>
-                </v-flex>
-              </v-layout>
-            </v-flex>
-          </v-layout>
+                </v-col>
+              </v-row>
+            </v-col>
+          </v-row>
         </div>
       </div>
     </v-container>

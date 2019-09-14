@@ -43,6 +43,10 @@ export default {
     margin: 0 auto;
   }
 
+  .container { // Vuetify-container
+    padding: 24px;
+  }
+
   // Sweetalert2
   .swal2-container {
     font-family: Roboto;

@@ -1,15 +1,13 @@
 <template>
-  <v-layout row>
-    <v-flex xs12>
+  <v-row>
+    <v-col cols="12" class="py-0">
       <v-card color="white">
-        <v-layout
-          class="container"
-          row
-          wrap>
-          <v-flex
-            xs12
-            sm6
-            class="user-info">
+        <v-row
+          class="container">
+          <v-col
+            cols="12"
+            sm="6"
+            class="user-info pa-0">
             <div class="headline">
               {{ user.email }}
             </div>
@@ -19,17 +17,18 @@
               @click="$store.dispatch('user/logout')">
               Log Out
             </v-btn>
-          </v-flex>
+          </v-col>
 
-          <v-flex
-            xs12
-            sm6>
+          <v-col
+            cols="12"
+            sm="6"
+            class="pa-0">
             <ChangePassword />
-          </v-flex>
-        </v-layout>
+          </v-col>
+        </v-row>
       </v-card>
-    </v-flex>
-  </v-layout>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
@@ -47,6 +46,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .container {
+    margin: 0;
+  }
+
   .user-info {
     display: flex;
     justify-content: center;

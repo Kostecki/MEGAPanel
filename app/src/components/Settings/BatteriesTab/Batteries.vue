@@ -3,7 +3,7 @@
     <v-container>
       <div
         v-if="!batteries"
-        class="text-xs-center">
+        class="text-center">
         <v-progress-circular
           indeterminate
           color="primary"
@@ -24,28 +24,27 @@
           v-else
           :key="index"
           class="battery">
-          <v-layout
+          <v-row
             align-center
             row>
-            <v-flex>
-              <v-layout
-                align-end
-                justify-space-between
-                row
-                wrap
+            <v-col class="py-0">
+              <v-row
+                justify="space-between"
                 class="pa-0 battery-layout">
-                <v-flex
-                  xs12
-                  sm5>
+                <v-col
+                  cols="12"
+                  sm="5"
+                  class="pr-0">
                   <v-text-field
                     v-model="batteries[index]['batteryId']"
                     label="Battery ID"
                     class="batteryId-input"
                     @change="updateBattery(battery.key, index)" />
-                </v-flex>
-                <v-flex
-                  xs12
-                  sm5>
+                </v-col>
+                <v-col
+                  cols="12"
+                  sm="5"
+                  class="px-0">
                   <v-text-field
                     v-model="batteries[index]['voltage']"
                     label="Voltage"
@@ -53,25 +52,25 @@
                     :class="noVoltage(batteries[index]['voltage'])"
                     readonly
                     @change="updateBattery(battery.key, index)" />
-                </v-flex>
-                <v-flex
-                  xs6
-                  sm1
-                  class="current-battery-container">
+                </v-col>
+                <v-col
+                  cols="6"
+                  sm="1"
+                  class="current-battery-container px-0">
                   <span class="custom-label">Active</span>
                   <v-icon
                     class="icon"
                     :class="batteries[index]['currentBattery'] ? 'active' : null">
                     check
                   </v-icon>
-                </v-flex>
-                <v-flex
-                  xs6
-                  sm1
-                  class="remove-container delete-btn">
+                </v-col>
+                <v-col
+                  cols="6"
+                  sm="1"
+                  class="remove-container delete-btn px-0">
                   <span class="custom-label">Remove</span>
                   <v-btn
-                    flat
+                    text
                     icon
                     color="grey"
                     @click="deleteBattery(battery.key)">
@@ -79,10 +78,10 @@
                       remove_circle_outline
                     </v-icon>
                   </v-btn>
-                </v-flex>
-              </v-layout>
-            </v-flex>
-          </v-layout>
+                </v-col>
+              </v-row>
+            </v-col>
+          </v-row>
         </div>
       </div>
     </v-container>

@@ -1,15 +1,15 @@
 <template>
-  <v-layout
+  <v-row
     row
     wrap>
-    <v-flex xs12>
+    <v-col cols="12" class="pb-0">
       <Chrome
         v-if="lightsConfig.color"
         v-model="lightsConfig.color"
         class="chrome-color-select"
         @input="updateValue" />
-    </v-flex>
-  </v-layout>
+    </v-col>
+  </v-row>
 </template>
 
 <script>

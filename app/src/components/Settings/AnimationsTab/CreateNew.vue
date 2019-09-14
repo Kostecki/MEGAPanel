@@ -1,61 +1,60 @@
 <template>
   <v-container>
-    <v-layout
-      align-center
-      row
+    <v-row
+      align="center"
       class="create-new">
-      <v-flex xs12>
+      <v-col cols="12" class="py-0">
         <div class="subheading page-title">
           Create New
         </div>
-        <v-layout
-          align-end
-          justify-space-between
-          row
-          wrap
+        <v-row
+          align="end"
+          justify="space-between"
           class="create-new pa-0">
-          <v-flex
-            xs12
-            sm5>
+          <v-col
+            cols="12"
+            sm="5"
+            class="py-0">
             <v-text-field
               v-model="newAnimation['name']"
               label="Name"
               class="name-input"
               @input="updateValue" />
-          </v-flex>
-          <v-flex
-            xs12
-            sm5>
+          </v-col>
+          <v-col
+            cols="12"
+            sm="5"
+            class="pa-0">
             <v-text-field
               v-model="newAnimation['value']"
               label="Value"
               class="value-input" />
-          </v-flex>
-          <v-flex
-            xs6
-            sm1
-            class="speed-control-container">
+          </v-col>
+          <v-col
+            cols="6"
+            sm="1"
+            class="speed-control-container py-0">
             <span class="speed-control-label">Speed</span>
             <v-switch
               v-model="newAnimation['speedControl']"
               color="primary"
               class="speed-control-toggle" />
-          </v-flex>
-          <v-flex
-            xs6
-            sm1
+          </v-col>
+          <v-col
+            cols="6"
+            sm="1"
             class="add-btn">
             <v-btn
-              flat
+              text
               icon
               color="grey"
               @click="addNew">
               <v-icon>add_circle_outline</v-icon>
             </v-btn>
-          </v-flex>
-        </v-layout>
-      </v-flex>
-    </v-layout>
+          </v-col>
+        </v-row>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 

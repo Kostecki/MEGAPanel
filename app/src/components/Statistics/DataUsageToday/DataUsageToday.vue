@@ -1,17 +1,14 @@
 <template>
-  <v-layout
-    row
-    wrap
-    justify-space-between>
+  <div>
     <div class="caption font-weight-light font-italic text-uppercase mb-4">
       Today in details
     </div>
-    <v-flex
-      xs12
+    <v-col
+      cols="12"
       style="position: relative">
       <DataUsageTodayChart :chart-data="filterUpDownDaily()" />
-    </v-flex>
-  </v-layout>
+    </v-col>
+  </div>
 </template>
 
 <script>
