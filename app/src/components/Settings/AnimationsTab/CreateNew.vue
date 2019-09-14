@@ -3,7 +3,9 @@
     <v-row
       align="center"
       class="create-new">
-      <v-col cols="12" class="py-0">
+      <v-col
+        cols="12"
+        class="py-0">
         <div class="subheading page-title">
           Create New
         </div>

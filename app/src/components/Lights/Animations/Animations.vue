@@ -13,9 +13,9 @@
     <v-container fluid>
       <v-row>
         <v-col
-        cols="12"
-        sm="4"
-        class="py-0">
+          cols="12"
+          sm="4"
+          class="py-0">
           <span
             class="left body-2 font-weight-light text-uppercase font-italic"
             @click="() => speed = 0">Speed ({{ speed }})</span>
@@ -36,8 +36,8 @@
       fluid
       style="padding-top:0">
       <v-row
-        class="text-center"
-        v-if="loading">
+        v-if="loading"
+        class="text-center">
         <v-col>
           <v-progress-circular
             indeterminate
@@ -140,7 +140,7 @@ export default {
   .title {
     line-height: 1;
   }
-  
+
   .speed-slider {
     margin: 0;
     width: 100%;

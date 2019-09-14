@@ -2,7 +2,8 @@
   <v-container>
     <v-row>
       <v-col
-        cols="12" class="pt-0">
+        cols="12"
+        class="pt-0">
         <SolidColors />
       </v-col>
 

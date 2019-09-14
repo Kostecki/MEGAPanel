@@ -2,7 +2,9 @@
   <v-row
     row
     wrap>
-    <v-col cols="12" class="pb-0">
+    <v-col
+      cols="12"
+      class="pb-0">
       <Chrome
         v-if="lightsConfig.color"
         v-model="lightsConfig.color"

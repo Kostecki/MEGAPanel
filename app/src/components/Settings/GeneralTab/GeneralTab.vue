@@ -1,7 +1,10 @@
 <template>
   <v-row>
-    <v-col cols="12" class="py-0">
-      <v-card color="white">
+    <v-col
+      cols="12"
+      class="py-0">
+      <v-card
+        color="white">
         <v-row
           class="container">
           <v-col
