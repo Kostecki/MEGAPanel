@@ -13,8 +13,10 @@ module.exports = {
   css: {
     loaderOptions: {
       sass: {
-        implementation: require('sass'),
-        fiber: require('fibers')
+        sassOptions: {
+          implementation: require('sass'),
+          fiber: require('fibers')
+        }
       }
     }
   }

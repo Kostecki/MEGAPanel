@@ -10,10 +10,14 @@
 
     <v-container fluid>
       <v-row>
-        <v-col cols="12" class="py-0">
+        <v-col
+          cols="12"
+          class="py-0">
           <PreselectedGrid />
         </v-col>
-        <v-col cols="12" class="py-0">
+        <v-col
+          cols="12"
+          class="py-0">
           <ColorPicker />
         </v-col>
       </v-row>
@@ -41,9 +45,9 @@ export default {
   .v-card__title {
     padding: 16px 0;
   }
-  
+
   .title {
-    line-height: 1;  
+    line-height: 1;
   }
 
   .selected-color {
