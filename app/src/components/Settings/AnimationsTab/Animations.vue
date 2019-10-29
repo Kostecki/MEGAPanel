@@ -33,9 +33,9 @@
                 justify="space-between"
                 class="pa-0">
                 <v-col
-                cols="12"
-                sm="5"
-                class="pr-0 py-0">
+                  cols="12"
+                  sm="5"
+                  class="pr-0 py-0">
                   <v-text-field
                     v-model="animations[index]['name']"
                     label="Name"
