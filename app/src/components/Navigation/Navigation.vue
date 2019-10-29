@@ -15,7 +15,7 @@
         :value="item.value"
         router
         :to="item.link"
-        style="width: 100%">
+        style="width: 100%; height: 100%;">
         <span>{{ item.title }}</span>
         <v-icon>{{ item.icon }}</v-icon>
       </v-btn>
