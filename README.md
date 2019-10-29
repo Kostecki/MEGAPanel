@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/Kostecki/MEGAPanel.svg?branch=master)](https://travis-ci.org/Kostecki/MEGAPanel)
+[![Build Status](https://travis-ci.com/Kostecki/MEGAPanel.svg?branch=master)](https://travis-ci.com/Kostecki/MEGAPanel)
 
 [https://mega.re](https://mega.re)
 
